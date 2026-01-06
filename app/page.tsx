@@ -1,6 +1,9 @@
 "use client";
 import { CopilotSidebar } from "@copilotkit/react-ui";
 import { useCoAgent } from "@copilotkit/react-core";
+import { UserButton, SignedIn, SignedOut } from "@neondatabase/neon-js/auth/react/ui";
+import { authClient } from "@/app/lib/auth/client";
+import Link from "next/link";
 
 interface Job {
   id: string;
@@ -18,6 +21,10 @@ interface AgentState {
 }
 
 export default function Home() {
+  const { data: session, isPending: isSessionLoading } = authClient.useSession();
+  const user = session?.user;
+  const firstName = user?.name?.split(' ')[0] || null;
+
   const { state } = useCoAgent<AgentState>({
     name: "esports_agent",
     initialState: {
@@ -40,11 +47,41 @@ Your tools:
 Always use your tools to provide real data! Be enthusiastic about esports! 🎮`}
       labels={{
         title: "Esports Jobs AI",
-        initial: "🎮 Ready to find your dream job in esports? Ask me anything!",
+        initial: firstName
+          ? `🎮 Hey ${firstName}! Ready to level up your esports career?`
+          : "🎮 Ready to find your dream job in esports? Ask me anything!",
       }}
     >
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
-        <section className="h-screen flex items-center justify-center">
+        {/* Header with Auth */}
+        <header className="fixed top-0 left-0 right-0 z-50 p-4 flex justify-between items-center bg-black/30 backdrop-blur-sm">
+          <h2 className="text-white font-bold text-lg">🎮 EsportsJobs.quest</h2>
+          <div>
+            {isSessionLoading ? (
+              <div className="text-gray-400">Loading...</div>
+            ) : (
+              <>
+                <SignedIn>
+                  <div className="flex items-center gap-3">
+                    <span className="text-white text-sm">Hi, {firstName || user?.email}</span>
+                    <UserButton />
+                  </div>
+                </SignedIn>
+                <SignedOut>
+                  <Link
+                    href="/auth/sign-in"
+                    className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg font-medium transition-colors"
+                  >
+                    Sign In
+                  </Link>
+                </SignedOut>
+              </>
+            )}
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <section className="h-screen flex items-center justify-center pt-16">
           <div className="text-center text-white">
             <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
               EsportsJobs.quest
