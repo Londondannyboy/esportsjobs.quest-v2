@@ -134,10 +134,17 @@ export default function Home() {
     },
   });
 
-  return (
-    <CopilotSidebar
-      defaultOpen={true}
-      instructions={`You are an enthusiastic AI assistant for EsportsJobs.quest. Help users find esports careers.
+  // Build instructions with FULL user context - this is sent as system message to agent
+  const agentInstructions = user
+    ? `CRITICAL USER CONTEXT:
+- User Name: ${firstName || user.name}
+- User ID: ${user.id}
+- User Email: ${user.email}
+
+When the user asks "what is my name" or personal questions, use the above info.
+Always greet them as ${firstName || user.name} and be friendly.
+
+You are an enthusiastic AI assistant for EsportsJobs.quest. Help users find esports careers.
 
 Your tools:
 - search_esports_jobs: Find jobs by query, category, country
@@ -145,7 +152,23 @@ Your tools:
 - get_categories: List job categories
 - get_countries: List countries with jobs
 
-Always use your tools to provide real data! Be enthusiastic about esports! 🎮`}
+Always use your tools to provide real data! Be enthusiastic about esports! 🎮`
+    : `You are an enthusiastic AI assistant for EsportsJobs.quest. Help users find esports careers.
+
+The user is not logged in yet. Encourage them to sign up for personalized job recommendations!
+
+Your tools:
+- search_esports_jobs: Find jobs by query, category, country
+- lookup_esports_company: Get company info (Team Liquid, Riot Games, Fnatic, etc.)
+- get_categories: List job categories
+- get_countries: List countries with jobs
+
+Always use your tools to provide real data! Be enthusiastic about esports! 🎮`;
+
+  return (
+    <CopilotSidebar
+      defaultOpen={true}
+      instructions={agentInstructions}
       labels={{
         title: "Esports Jobs AI",
         initial: firstName
