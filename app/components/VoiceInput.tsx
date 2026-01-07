@@ -19,7 +19,7 @@ function VoiceButton({ onMessage, firstName, userId }: VoiceButtonProps) {
   // Track if agent is speaking
   useEffect(() => {
     const playbackMsgs = messages.filter(
-      (m: { type: string }) => m.type === "assistant_message" || m.type === "assistant_end"
+      (m) => m.type === "assistant_message" || m.type === "assistant_end"
     );
     const lastPlayback = playbackMsgs[playbackMsgs.length - 1];
     setIsPlaying(lastPlayback?.type === "assistant_message");
@@ -27,24 +27,24 @@ function VoiceButton({ onMessage, firstName, userId }: VoiceButtonProps) {
 
   // Forward messages to CopilotKit
   useEffect(() => {
-    const conversationMsgs = messages.filter(
-      (m: { type: string; message?: { content?: string } }) =>
-        (m.type === "user_message" || m.type === "assistant_message") && m.message?.content
-    );
+    const conversationMsgs = messages.filter((m) => {
+      if (m.type !== "user_message" && m.type !== "assistant_message") return false;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const msg = m as any;
+      return msg.message?.content;
+    });
 
     if (conversationMsgs.length > 0) {
-      const lastMsg = conversationMsgs[conversationMsgs.length - 1] as {
-        id?: string;
-        type: string;
-        message?: { content?: string };
-      };
-      const msgId = lastMsg?.id || `${conversationMsgs.length}-${lastMsg?.message?.content?.slice(0, 20)}`;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const lastMsg = conversationMsgs[conversationMsgs.length - 1] as any;
+      const content = lastMsg?.message?.content;
+      const msgId = lastMsg?.id || `${conversationMsgs.length}-${content?.slice(0, 20)}`;
 
-      if (lastMsg?.message?.content && msgId !== lastSentMsgId.current) {
+      if (content && msgId !== lastSentMsgId.current) {
         const isUser = lastMsg.type === "user_message";
-        console.log(`[Voice] ${isUser ? "User" : "AI"}:`, lastMsg.message.content.slice(0, 80));
+        console.log(`[Voice] ${isUser ? "User" : "AI"}:`, content.slice(0, 80));
         lastSentMsgId.current = msgId;
-        onMessage(lastMsg.message.content, isUser ? "user" : "assistant");
+        onMessage(content, isUser ? "user" : "assistant");
       }
     }
   }, [messages, onMessage]);
