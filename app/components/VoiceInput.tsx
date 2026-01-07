@@ -3,14 +3,25 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { VoiceProvider, useVoice } from "@humeai/voice-react";
 
+interface PageContext {
+  pageId: string;
+  pageType: string;
+  location?: string;
+  title: string;
+  pageH1?: string;
+  pageUrl?: string;
+  pageDescription?: string;
+}
+
 interface VoiceButtonProps {
   onMessage: (text: string, role?: "user" | "assistant") => void;
   firstName?: string | null;
   userId?: string | null;
   email?: string | null;
+  pageContext?: PageContext | null;
 }
 
-function VoiceButton({ onMessage, firstName, userId, email }: VoiceButtonProps) {
+function VoiceButton({ onMessage, firstName, userId, email, pageContext }: VoiceButtonProps) {
   const { connect, disconnect, status, messages, sendUserInput } = useVoice();
   const [isPending, setIsPending] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -205,15 +216,17 @@ export function VoiceInput({
   firstName,
   userId,
   email,
+  pageContext,
 }: {
   onMessage: (text: string, role?: "user" | "assistant") => void;
   firstName?: string | null;
   userId?: string | null;
   email?: string | null;
+  pageContext?: PageContext | null;
 }) {
   return (
     <VoiceProvider onError={handleVoiceError} onOpen={handleVoiceOpen} onClose={handleVoiceClose}>
-      <VoiceButton onMessage={onMessage} firstName={firstName} userId={userId} email={email} />
+      <VoiceButton onMessage={onMessage} firstName={firstName} userId={userId} email={email} pageContext={pageContext} />
     </VoiceProvider>
   );
 }

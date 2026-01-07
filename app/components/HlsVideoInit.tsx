@@ -1,0 +1,108 @@
+'use client';
+
+import { useEffect } from 'react';
+import Hls from 'hls.js';
+
+/**
+ * HlsVideoInit - Client component that initializes HLS.js for all video elements
+ * Add this component once in your layout to enable HLS streaming site-wide
+ */
+export function HlsVideoInit() {
+  useEffect(() => {
+    // Find all video elements with HLS sources
+    const initHls = () => {
+      const videos = document.querySelectorAll('video');
+
+      videos.forEach((video) => {
+        // Check if video has an HLS source
+        const source = video.querySelector('source');
+        const src = source?.src || video.src;
+
+        if (!src || !src.includes('.m3u8')) return;
+
+        // Skip if already initialized
+        if ((video as any)._hlsInitialized) return;
+        (video as any)._hlsInitialized = true;
+
+        // Safari supports HLS natively
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = src;
+          attemptAutoplay(video);
+          return;
+        }
+
+        // Use hls.js for other browsers
+        if (Hls.isSupported()) {
+          const hls = new Hls({
+            enableWorker: true,
+            lowLatencyMode: false,
+            backBufferLength: 90,
+          });
+
+          hls.loadSource(src);
+          hls.attachMedia(video);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            attemptAutoplay(video);
+          });
+
+          hls.on(Hls.Events.ERROR, (event, data) => {
+            // Only handle fatal errors - non-fatal are auto-recovered
+            if (data.fatal) {
+              // Try to recover silently
+              if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                hls.startLoad();
+              } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+                hls.recoverMediaError();
+              }
+              // Only log if recovery fails (will trigger another fatal error)
+            }
+          });
+
+          // Store reference for cleanup
+          (video as any)._hls = hls;
+        }
+      });
+    };
+
+    // Attempt autoplay with proper promise handling per Mux docs
+    const attemptAutoplay = (video: HTMLVideoElement) => {
+      // Only attempt if video has autoplay attribute
+      if (!video.hasAttribute('autoplay') && !video.autoplay) return;
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay prevented - expected behavior
+          // Video will show poster, user can interact to play
+        });
+      }
+    };
+
+    // Initialize on mount
+    initHls();
+
+    // Re-initialize when DOM changes (for dynamic content)
+    const observer = new MutationObserver(() => {
+      initHls();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Cleanup
+    return () => {
+      observer.disconnect();
+      document.querySelectorAll('video').forEach((video) => {
+        const hls = (video as any)._hls;
+        if (hls) {
+          hls.destroy();
+        }
+      });
+    };
+  }, []);
+
+  return null; // This component doesn't render anything
+}
