@@ -89,7 +89,14 @@ export default function Home() {
     // Forward USER messages to CopilotKit to trigger the agent
     // This makes voice transcripts appear in the sidebar
     if (role === "user") {
-      appendMessage(new TextMessage({ content: text, role: Role.User }));
+      try {
+        const message = new TextMessage({ content: text, role: Role.User });
+        console.log("[Voice] Appending message to CopilotKit:", message);
+        appendMessage(message);
+        console.log("[Voice] Message appended successfully");
+      } catch (e) {
+        console.error("[Voice] Error appending message:", e);
+      }
     }
     // Note: Assistant messages are handled by Hume voice - don't duplicate in chat
   }, [appendMessage]);
