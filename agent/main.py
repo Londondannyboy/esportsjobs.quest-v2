@@ -28,6 +28,15 @@ from pydantic_ai.models.google import GoogleModel
 
 from tools.job_search import search_jobs, get_available_categories, get_available_countries
 from tools.company_lookup import lookup_company
+from tools.zep_memory import (
+    ensure_user_exists,
+    ensure_thread_exists,
+    add_message_to_memory,
+    get_user_context,
+    search_user_memory,
+    get_job_preferences,
+    generate_thread_id
+)
 
 
 # =====
@@ -148,6 +157,15 @@ agent = Agent(
         | "Find jobs", "show jobs" | search_esports_jobs |
         | "What categories?" | get_categories |
         | "Which countries?" | get_countries |
+        | "What have we talked about?" | get_my_conversation_history |
+        | "What jobs am I interested in?" | get_my_job_preferences |
+
+        ## Memory Tools (Zep):
+        - get_my_conversation_history: Get facts and context from past conversations
+        - get_my_job_preferences: Get user's preferred roles, locations, companies
+        - remember_user_interest: Store user's interests for future sessions
+
+        When a user shows interest in something (role, company, location), use remember_user_interest to save it!
 
         ## Examples:
         User: "What is my name?"
@@ -156,10 +174,14 @@ agent = Agent(
         User: "Find me UK jobs"
         You: [CALL search_esports_jobs with country="UK"]
 
+        User: "I really like Riot Games"
+        You: [CALL remember_user_interest with interest="Riot Games"] then acknowledge
+
         ## Your Personality
         - Enthusiastic about esports! Use emojis sparingly: 🎮 🏆
         - Be specific with real data from tools
         - Keep responses concise but helpful
+        - Remember what users tell you and reference it in future conversations!
     """).strip(),
 )
 
@@ -273,6 +295,82 @@ def get_my_profile(ctx: RunContext[StateDeps[AppState]]) -> dict:
         "found": False,
         "message": "User not logged in. Please sign in to see your profile."
     }
+
+
+@agent.tool
+async def get_my_conversation_history(ctx: RunContext[StateDeps[AppState]]) -> dict:
+    """Get conversation context and facts Zep has learned about this user.
+
+    Call this to understand user's job preferences, past interests, and conversation history.
+    """
+    user = ctx.deps.state.user
+    user_id = user.id if user else _cached_user_context.get("user_id")
+
+    if not user_id:
+        return {"available": False, "message": "User not logged in"}
+
+    thread_id = generate_thread_id(user_id)
+
+    # Ensure user and thread exist
+    user_name = user.firstName if user else _cached_user_context.get("name")
+    await ensure_user_exists(user_id, user_name)
+    await ensure_thread_exists(user_id, thread_id)
+
+    # Get context
+    context = await get_user_context(thread_id)
+    print(f"[Tool] get_my_conversation_history: {context}", file=sys.stderr)
+
+    return context
+
+
+@agent.tool
+async def get_my_job_preferences(ctx: RunContext[StateDeps[AppState]]) -> dict:
+    """Get user's job preferences from conversation memory.
+
+    Returns roles, locations, companies the user has shown interest in.
+    """
+    user = ctx.deps.state.user
+    user_id = user.id if user else _cached_user_context.get("user_id")
+
+    if not user_id:
+        return {"available": False, "message": "User not logged in"}
+
+    preferences = await get_job_preferences(user_id)
+    print(f"[Tool] get_my_job_preferences: {preferences}", file=sys.stderr)
+
+    return preferences
+
+
+@agent.tool
+async def remember_user_interest(ctx: RunContext[StateDeps[AppState]], interest: str) -> dict:
+    """Store something the user is interested in (job role, company, location, etc.)
+
+    Args:
+        interest: What the user is interested in (e.g., "marketing jobs at Riot Games")
+    """
+    user = ctx.deps.state.user
+    user_id = user.id if user else _cached_user_context.get("user_id")
+
+    if not user_id:
+        return {"stored": False, "message": "User not logged in"}
+
+    thread_id = generate_thread_id(user_id)
+    user_name = user.firstName if user else _cached_user_context.get("name")
+
+    # Ensure user and thread exist
+    await ensure_user_exists(user_id, user_name)
+    await ensure_thread_exists(user_id, thread_id)
+
+    # Add as a user message so Zep extracts facts
+    await add_message_to_memory(
+        thread_id=thread_id,
+        role="user",
+        content=f"I'm interested in {interest}",
+        user_name=user_name
+    )
+
+    print(f"[Tool] remember_user_interest: {interest}", file=sys.stderr)
+    return {"stored": True, "interest": interest}
 
 
 # =====
@@ -481,6 +579,18 @@ async def clm_endpoint(
     # Run agent with system prompt for user context
     response_text = await run_agent_for_clm(user_message, system_prompt)
     print(f"[CLM] Response: {response_text[:80]}", file=sys.stderr)
+
+    # Store conversation in Zep for memory
+    user_id = _cached_user_context.get("user_id")
+    if user_id:
+        thread_id = generate_thread_id(user_id)
+        user_name = _cached_user_context.get("name")
+
+        # Ensure user/thread exist and store messages
+        await ensure_user_exists(user_id, user_name)
+        await ensure_thread_exists(user_id, thread_id)
+        await add_message_to_memory(thread_id, "user", user_message, user_name)
+        await add_message_to_memory(thread_id, "assistant", response_text)
 
     if request.stream:
         msg_id = f"chatcmpl-{uuid.uuid4().hex[:8]}"

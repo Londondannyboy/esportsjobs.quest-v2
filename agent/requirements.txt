@@ -5,3 +5,4 @@ pydantic-ai[ag-ui]
 httpx
 google-generativeai
 psycopg2-binary
+zep-cloud
