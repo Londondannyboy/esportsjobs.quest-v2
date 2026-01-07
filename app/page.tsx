@@ -168,6 +168,7 @@ Always use your tools to provide real data! Be enthusiastic about esports! 🎮`
   return (
     <CopilotSidebar
       defaultOpen={true}
+      disableSystemMessage={true}
       instructions={agentInstructions}
       labels={{
         title: "Esports Jobs AI",
