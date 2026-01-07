@@ -2,22 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import { CopilotPopup } from "@copilotkit/react-ui";
-import { useCoAgent, useCopilotChat } from "@copilotkit/react-core";
-import { Role, TextMessage } from "@copilotkit/runtime-client-gql";
+import { useCoAgent } from "@copilotkit/react-core";
 import { authClient } from "@/app/lib/auth/client";
-import dynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo } from "react";
-
-// Dynamic import for Voice (client-side only)
-const VoiceInput = dynamic(
-  () => import("./VoiceInput").then((mod) => ({ default: mod.VoiceInput })),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-16 h-16 rounded-full bg-gray-700/50 animate-pulse" />
-    ),
-  }
-);
+import { useEffect, useMemo } from "react";
 
 interface Job {
   id: string;
@@ -145,23 +132,6 @@ export function GlobalCopilotUI() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
 
-  // Voice to CopilotKit bridge
-  const { appendMessage } = useCopilotChat();
-
-  const handleVoiceMessage = useCallback(
-    (text: string, role?: "user" | "assistant") => {
-      if (role === "user") {
-        try {
-          const message = new TextMessage({ content: text, role: Role.User });
-          appendMessage(message);
-        } catch (e) {
-          console.error("[Voice] Error appending message:", e);
-        }
-      }
-    },
-    [appendMessage]
-  );
-
   // Generate page-aware instructions for CopilotKit
   const agentInstructions = useMemo(() => {
     const userSection = user
@@ -222,32 +192,18 @@ Always use your tools to provide real data! Be enthusiastic about esports career
     return `${greeting}I'm here to help you find your next esports opportunity. What are you looking for?`;
   }, [pageContext, firstName]);
 
-  // Don't render on homepage (it has its own CopilotSidebar)
+  // Don't render on homepage (it has its own CopilotSidebar + Voice)
   if (pathname === "/") {
     return null;
   }
 
   return (
-    <>
-      {/* Floating Voice Widget */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <VoiceInput
-          onMessage={handleVoiceMessage}
-          firstName={firstName}
-          userId={user?.id}
-          email={user?.email}
-          pageContext={pageContext}
-        />
-      </div>
-
-      {/* CopilotKit Popup - Floating chat widget */}
-      <CopilotPopup
-        instructions={agentInstructions}
-        labels={{
-          title: "Esports Jobs AI",
-          initial: initialMessage,
-        }}
-      />
-    </>
+    <CopilotPopup
+      instructions={agentInstructions}
+      labels={{
+        title: "Esports Jobs AI",
+        initial: initialMessage,
+      }}
+    />
   );
 }

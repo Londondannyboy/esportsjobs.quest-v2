@@ -520,7 +520,7 @@ export default async function JobsPage({ searchParams }: PageProps) {
 function JobCard({ job }: { job: EsportsJob }) {
   return (
     <Link
-      href={`/esports-jobs/${job.id}`}
+      href={`/job/${job.id}`}
       className="bg-gray-900/50 rounded-xl overflow-hidden hover:bg-gray-800/50 transition-colors border border-gray-800 hover:border-cyan-500/50 group"
     >
       <div className="flex flex-col md:flex-row">

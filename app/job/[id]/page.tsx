@@ -34,11 +34,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: `${job.title} - ${job.company} | Esports Jobs`,
       description: `${job.type} position at ${job.company}. ${job.location}.`,
       type: "website",
-      url: `https://esportsjobs.quest/esports-jobs/${job.id}`,
+      url: `https://esportsjobs.quest/job/${job.id}`,
       images: [{ url: job.heroImage, alt: job.heroImageAlt }],
     },
     alternates: {
-      canonical: `https://esportsjobs.quest/esports-jobs/${job.id}`,
+      canonical: `https://esportsjobs.quest/job/${job.id}`,
     },
   };
 }
@@ -333,7 +333,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
               {relatedJobs.map((relJob) => (
                 <Link
                   key={relJob.id}
-                  href={`/esports-jobs/${relJob.id}`}
+                  href={`/job/${relJob.id}`}
                   className="block bg-gray-900/50 rounded-xl overflow-hidden border border-gray-700 hover:border-cyan-500/50 transition-all group"
                 >
                   <div className="h-32 relative">

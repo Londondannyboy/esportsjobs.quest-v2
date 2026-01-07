@@ -41,7 +41,7 @@ export function JobEmbed({ category, limit = 3, title, showViewAll = true }: Job
         {jobs.map((job) => (
           <Link
             key={job.id}
-            href={`/esports-jobs/${job.id}`}
+            href={`/job/${job.id}`}
             className="flex items-center gap-4 bg-slate-800/50 rounded-xl p-4 border border-slate-700 hover:border-violet-500/50 transition-all group"
           >
             <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
@@ -90,7 +90,7 @@ export function JobEmbedCompact({ category, limit = 2 }: { category?: EsportsJob
         {jobs.map((job) => (
           <Link
             key={job.id}
-            href={`/esports-jobs/${job.id}`}
+            href={`/job/${job.id}`}
             className="flex items-center justify-between text-sm hover:bg-slate-700/50 rounded-lg p-2 -mx-2 transition-colors"
           >
             <span className="text-white">{job.title}</span>
@@ -132,7 +132,7 @@ export function EntryLevelJobEmbed({ limit = 3 }: { limit?: number }) {
         {jobs.map((job) => (
           <Link
             key={job.id}
-            href={`/esports-jobs/${job.id}`}
+            href={`/job/${job.id}`}
             className="flex items-center gap-4 bg-slate-800/50 rounded-xl p-4 border border-slate-700 hover:border-green-500/50 transition-all group"
           >
             <div className="flex-1 min-w-0">

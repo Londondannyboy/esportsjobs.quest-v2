@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Individual Job Listings - dynamically generated
     ...esportsJobs.map((job) => ({
-      url: `${baseUrl}/esports-jobs/${job.id}`,
+      url: `${baseUrl}/job/${job.id}`,
       lastModified: new Date(job.postedDate),
       changeFrequency: "daily" as const,
       priority: 0.8,
