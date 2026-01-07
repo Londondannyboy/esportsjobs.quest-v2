@@ -28,15 +28,6 @@ from pydantic_ai.models.google import GoogleModel
 
 from tools.job_search import search_jobs, get_available_categories, get_available_countries
 from tools.company_lookup import lookup_company
-from tools.zep_memory import (
-    ensure_user_exists,
-    ensure_thread_exists,
-    add_message_to_memory,
-    get_user_context,
-    search_user_memory,
-    get_job_preferences,
-    generate_thread_id
-)
 
 
 # =====
@@ -48,35 +39,31 @@ _cached_user_context: dict = {}
 
 
 def extract_user_from_instructions(instructions: str) -> dict:
-    """Extract user info from CopilotKit instructions or Hume system prompt."""
+    """Extract user info from CopilotKit instructions text."""
     result = {"user_id": None, "name": None, "email": None}
 
     if not instructions:
         return result
 
-    # Look for User ID pattern - multiple formats
-    # "User ID: xxx" or "ID: xxx"
-    id_match = re.search(r'(?:User\s+)?ID:\s*([a-zA-Z0-9-]+)', instructions, re.IGNORECASE)
+    # Look for User ID pattern (UUID format or general alphanumeric)
+    id_match = re.search(r'User ID:\s*([a-zA-Z0-9-]+)', instructions, re.IGNORECASE)
     if id_match:
         result["user_id"] = id_match.group(1)
 
-    # Look for User Name pattern - multiple formats
-    # "User Name: xxx" or "Name: xxx"
-    name_match = re.search(r'(?:User\s+)?Name:\s*([^\n]+)', instructions, re.IGNORECASE)
+    # Look for User Name pattern
+    name_match = re.search(r'User Name:\s*([^\n]+)', instructions, re.IGNORECASE)
     if name_match:
         result["name"] = name_match.group(1).strip()
 
     # Look for Email pattern
-    email_match = re.search(r'(?:User\s+)?Email:\s*([^\n]+)', instructions, re.IGNORECASE)
+    email_match = re.search(r'User Email:\s*([^\n]+)', instructions, re.IGNORECASE)
     if email_match:
         result["email"] = email_match.group(1).strip()
 
-    if result["user_id"] or result["name"]:
+    if result["user_id"]:
         global _cached_user_context
         _cached_user_context = result
-        name_display = result['name'] or 'Unknown'
-        id_display = result['user_id'][:8] + '...' if result['user_id'] else 'N/A'
-        print(f"[Cache] Cached user: {name_display} ({id_display})", file=sys.stderr)
+        print(f"[Cache] Cached user from instructions: {result['name']} ({result['user_id'][:8]}...)", file=sys.stderr)
 
     return result
 
@@ -157,15 +144,6 @@ agent = Agent(
         | "Find jobs", "show jobs" | search_esports_jobs |
         | "What categories?" | get_categories |
         | "Which countries?" | get_countries |
-        | "What have we talked about?" | get_my_conversation_history |
-        | "What jobs am I interested in?" | get_my_job_preferences |
-
-        ## Memory Tools (Zep):
-        - get_my_conversation_history: Get facts and context from past conversations
-        - get_my_job_preferences: Get user's preferred roles, locations, companies
-        - remember_user_interest: Store user's interests for future sessions
-
-        When a user shows interest in something (role, company, location), use remember_user_interest to save it!
 
         ## Examples:
         User: "What is my name?"
@@ -174,14 +152,10 @@ agent = Agent(
         User: "Find me UK jobs"
         You: [CALL search_esports_jobs with country="UK"]
 
-        User: "I really like Riot Games"
-        You: [CALL remember_user_interest with interest="Riot Games"] then acknowledge
-
         ## Your Personality
         - Enthusiastic about esports! Use emojis sparingly: 🎮 🏆
         - Be specific with real data from tools
         - Keep responses concise but helpful
-        - Remember what users tell you and reference it in future conversations!
     """).strip(),
 )
 
@@ -295,82 +269,6 @@ def get_my_profile(ctx: RunContext[StateDeps[AppState]]) -> dict:
         "found": False,
         "message": "User not logged in. Please sign in to see your profile."
     }
-
-
-@agent.tool
-async def get_my_conversation_history(ctx: RunContext[StateDeps[AppState]]) -> dict:
-    """Get conversation context and facts Zep has learned about this user.
-
-    Call this to understand user's job preferences, past interests, and conversation history.
-    """
-    user = ctx.deps.state.user
-    user_id = user.id if user else _cached_user_context.get("user_id")
-
-    if not user_id:
-        return {"available": False, "message": "User not logged in"}
-
-    thread_id = generate_thread_id(user_id)
-
-    # Ensure user and thread exist
-    user_name = user.firstName if user else _cached_user_context.get("name")
-    await ensure_user_exists(user_id, user_name)
-    await ensure_thread_exists(user_id, thread_id)
-
-    # Get context
-    context = await get_user_context(thread_id)
-    print(f"[Tool] get_my_conversation_history: {context}", file=sys.stderr)
-
-    return context
-
-
-@agent.tool
-async def get_my_job_preferences(ctx: RunContext[StateDeps[AppState]]) -> dict:
-    """Get user's job preferences from conversation memory.
-
-    Returns roles, locations, companies the user has shown interest in.
-    """
-    user = ctx.deps.state.user
-    user_id = user.id if user else _cached_user_context.get("user_id")
-
-    if not user_id:
-        return {"available": False, "message": "User not logged in"}
-
-    preferences = await get_job_preferences(user_id)
-    print(f"[Tool] get_my_job_preferences: {preferences}", file=sys.stderr)
-
-    return preferences
-
-
-@agent.tool
-async def remember_user_interest(ctx: RunContext[StateDeps[AppState]], interest: str) -> dict:
-    """Store something the user is interested in (job role, company, location, etc.)
-
-    Args:
-        interest: What the user is interested in (e.g., "marketing jobs at Riot Games")
-    """
-    user = ctx.deps.state.user
-    user_id = user.id if user else _cached_user_context.get("user_id")
-
-    if not user_id:
-        return {"stored": False, "message": "User not logged in"}
-
-    thread_id = generate_thread_id(user_id)
-    user_name = user.firstName if user else _cached_user_context.get("name")
-
-    # Ensure user and thread exist
-    await ensure_user_exists(user_id, user_name)
-    await ensure_thread_exists(user_id, thread_id)
-
-    # Add as a user message so Zep extracts facts
-    await add_message_to_memory(
-        thread_id=thread_id,
-        role="user",
-        content=f"I'm interested in {interest}",
-        user_name=user_name
-    )
-
-    print(f"[Tool] remember_user_interest: {interest}", file=sys.stderr)
-    return {"stored": True, "interest": interest}
 
 
 # =====
@@ -504,27 +402,11 @@ async def stream_sse_response(content: str, msg_id: str):
     yield "data: [DONE]\n\n"
 
 
-async def run_agent_for_clm(user_message: str, system_prompt: str = None) -> str:
+async def run_agent_for_clm(user_message: str) -> str:
     """Run the Pydantic AI agent and return text response."""
     try:
-        # Extract user context from system prompt if provided
-        if system_prompt:
-            extract_user_from_instructions(system_prompt)
-
         print(f"[CLM] Starting agent run for: {user_message[:50]}", file=sys.stderr)
-        print(f"[CLM] Cached user context: {_cached_user_context}", file=sys.stderr)
-
-        # Build state with cached user if available
         state = AppState()
-        if _cached_user_context.get("name") or _cached_user_context.get("user_id"):
-            state.user = UserProfile(
-                id=_cached_user_context.get("user_id"),
-                name=_cached_user_context.get("name"),
-                firstName=_cached_user_context.get("name"),
-                email=_cached_user_context.get("email")
-            )
-            print(f"[CLM] State user set: {state.user.name}", file=sys.stderr)
-
         deps = StateDeps(state)
         result = await agent.run(user_message, deps=deps)
         print(f"[CLM] Agent result type: {type(result)}", file=sys.stderr)
@@ -548,10 +430,8 @@ async def clm_endpoint(
     authorization: Optional[str] = Header(None)
 ):
     """OpenAI-compatible endpoint for Hume CLM."""
-    # Debug: Log what Hume sends
-    print(f"[CLM DEBUG] Full auth header: {authorization}", file=sys.stderr)
-
-    # TEMPORARILY DISABLED for debugging - re-enable after testing
+    # Auth temporarily disabled - Hume identifier was removed
+    # TODO: Re-enable after fixing Hume CLM config
     # expected_secret = os.getenv("CLM_AUTH_SECRET")
     # if expected_secret:
     #     if not authorization or not authorization.startswith("Bearer "):
@@ -560,37 +440,13 @@ async def clm_endpoint(
     #     if token != expected_secret:
     #         raise HTTPException(status_code=401, detail="Invalid authorization")
 
-    # Extract system prompt (contains user context from Hume)
-    system_prompt = None
-    for msg in request.messages:
-        if msg.role == "system":
-            system_prompt = msg.content
-            print(f"[CLM] Found system prompt: {system_prompt[:100]}...", file=sys.stderr)
-            break
-
-    # Get user message (last non-system message)
-    user_message = ""
-    for msg in reversed(request.messages):
-        if msg.role == "user":
-            user_message = msg.content
-            break
+    # Get user message
+    user_message = request.messages[-1].content if request.messages else ""
     print(f"[CLM] Query: {user_message[:80]}", file=sys.stderr)
 
-    # Run agent with system prompt for user context
-    response_text = await run_agent_for_clm(user_message, system_prompt)
+    # Run agent
+    response_text = await run_agent_for_clm(user_message)
     print(f"[CLM] Response: {response_text[:80]}", file=sys.stderr)
-
-    # Store conversation in Zep for memory
-    user_id = _cached_user_context.get("user_id")
-    if user_id:
-        thread_id = generate_thread_id(user_id)
-        user_name = _cached_user_context.get("name")
-
-        # Ensure user/thread exist and store messages
-        await ensure_user_exists(user_id, user_name)
-        await ensure_thread_exists(user_id, thread_id)
-        await add_message_to_memory(thread_id, "user", user_message, user_name)
-        await add_message_to_memory(thread_id, "assistant", response_text)
 
     if request.stream:
         msg_id = f"chatcmpl-{uuid.uuid4().hex[:8]}"
