@@ -58,8 +58,11 @@ export default function Home() {
   });
 
   // Sync user from auth to agent state
+  // IMPORTANT: Always sync if user exists but state.user doesn't match (handles state resets)
   useEffect(() => {
-    if (user && !state?.user?.id) {
+    console.log("🔄 User sync effect - user:", user?.name, "state.user:", state?.user?.name);
+    if (user && (!state?.user || state?.user?.id !== user.id)) {
+      console.log("🔄 Setting user state:", { id: user.id, firstName, name: user.name, email: user.email });
       setState((prev) => ({
         jobs: prev?.jobs ?? [],
         search_query: prev?.search_query ?? "",
@@ -71,7 +74,8 @@ export default function Home() {
         },
       }));
     }
-  }, [user?.id, state?.user?.id, firstName, setState]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
 
   // Voice message callback - forwards to CopilotKit
   const handleVoiceMessage = useCallback((text: string, role?: "user" | "assistant") => {
