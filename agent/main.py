@@ -126,10 +126,20 @@ class UserProfile(BaseModel):
     email: Optional[str] = None
 
 
+class PageContext(BaseModel):
+    """Current page context synced from frontend."""
+    pageId: str = ""
+    pageType: str = ""  # "job-listing" | "career-guide" | "salary-guide" | "homepage"
+    location: Optional[str] = None
+    category: Optional[str] = None
+    title: str = ""
+
+
 class AppState(BaseModel):
     jobs: list[Job] = Field(default_factory=list)
     search_query: str = ""
     user: Optional[UserProfile] = None
+    page: Optional[PageContext] = None
 
 
 # =====
@@ -148,6 +158,7 @@ agent = Agent(
         | User asks... | TOOL TO CALL |
         |--------------|--------------|
         | "What is my name/email?" | get_my_profile |
+        | "What page am I on?" | get_current_page |
         | "What are my skills?" | get_my_full_context |
         | "What jobs have I saved?" | get_my_saved_jobs |
         | "Remember when I said..." | recall_past_conversations |
@@ -155,6 +166,16 @@ agent = Agent(
         | "Find/show jobs" | search_esports_jobs |
         | "Save this job" | save_job_to_favorites |
         | "My skills are..." | update_my_skills |
+
+        ## PAGE CONTEXT AWARENESS
+        ALWAYS call get_current_page when the user asks about jobs or content.
+        Use the page context to provide relevant recommendations:
+        - If user is on a location page (e.g., London), prioritize jobs in that location
+        - If user is on a career guide page, provide career-relevant advice
+        - If user is on a salary guide page, focus on salary information
+
+        Example: User on "esports-jobs-london" page asks "show me jobs"
+        → Use search_esports_jobs with country filter for UK/London
 
         ## PERSONALIZED ADVICE
         When recommending jobs, FIRST call get_my_full_context to understand:
@@ -283,6 +304,36 @@ def get_my_profile(ctx: RunContext[StateDeps[AppState]]) -> dict:
     return {
         "found": False,
         "message": "User not logged in. Please sign in to see your profile."
+    }
+
+
+@agent.tool
+def get_current_page(ctx: RunContext[StateDeps[AppState]]) -> dict:
+    """Get information about the page the user is currently viewing.
+
+    ALWAYS call this when user asks about jobs or content to understand their context.
+    Use the page location/category to filter job searches appropriately.
+    """
+    page = ctx.deps.state.page
+
+    if page and page.pageId:
+        print(f"[Tool] get_current_page: {page.pageId} ({page.pageType})", file=sys.stderr)
+        return {
+            "found": True,
+            "pageId": page.pageId,
+            "pageType": page.pageType,
+            "location": page.location,
+            "category": page.category,
+            "title": page.title,
+            "context": f"User is viewing: {page.title}" + (f" (Location: {page.location})" if page.location else "")
+        }
+
+    print("[Tool] get_current_page: User is on homepage (no page context)", file=sys.stderr)
+    return {
+        "found": False,
+        "pageId": "homepage",
+        "pageType": "homepage",
+        "message": "User is on the homepage or page context not set"
     }
 
 
