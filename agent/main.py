@@ -11,6 +11,8 @@ import json
 import uuid
 import time
 import asyncio
+import re
+import sys
 from typing import Optional, List
 from textwrap import dedent
 from dotenv import load_dotenv
@@ -26,6 +28,71 @@ from pydantic_ai.models.google import GoogleModel
 
 from tools.job_search import search_jobs, get_available_categories, get_available_countries
 from tools.company_lookup import lookup_company
+
+
+# =====
+# User Context Cache (for CopilotKit instructions parsing)
+# =====
+# When CopilotKit passes user info in instructions, we cache it here
+# so tools can access it even when state.user is None
+_cached_user_context: dict = {}
+
+
+def extract_user_from_instructions(instructions: str) -> dict:
+    """Extract user info from CopilotKit instructions text."""
+    result = {"user_id": None, "name": None, "email": None}
+
+    if not instructions:
+        return result
+
+    # Look for User ID pattern
+    id_match = re.search(r'User ID:\s*([a-f0-9-]+)', instructions, re.IGNORECASE)
+    if id_match:
+        result["user_id"] = id_match.group(1)
+
+    # Look for User Name pattern
+    name_match = re.search(r'User Name:\s*([^\n]+)', instructions, re.IGNORECASE)
+    if name_match:
+        result["name"] = name_match.group(1).strip()
+
+    # Look for Email pattern
+    email_match = re.search(r'User Email:\s*([^\n]+)', instructions, re.IGNORECASE)
+    if email_match:
+        result["email"] = email_match.group(1).strip()
+
+    if result["user_id"]:
+        global _cached_user_context
+        _cached_user_context = result
+        print(f"[Cache] Cached user from instructions: {result['name']} ({result['user_id'][:8]}...)", file=sys.stderr)
+
+    return result
+
+
+def get_effective_user_id(state_user) -> Optional[str]:
+    """Get user ID from state or cached instructions."""
+    if state_user and state_user.id:
+        return state_user.id
+    if _cached_user_context.get("user_id"):
+        return _cached_user_context["user_id"]
+    return None
+
+
+def get_effective_user_name(state_user) -> Optional[str]:
+    """Get user name from state or cached instructions."""
+    if state_user and (state_user.firstName or state_user.name):
+        return state_user.firstName or state_user.name
+    if _cached_user_context.get("name"):
+        return _cached_user_context["name"]
+    return None
+
+
+def get_effective_user_email(state_user) -> Optional[str]:
+    """Get user email from state or cached instructions."""
+    if state_user and state_user.email:
+        return state_user.email
+    if _cached_user_context.get("email"):
+        return _cached_user_context["email"]
+    return None
 
 
 # =====
@@ -70,27 +137,42 @@ async def build_system_prompt(ctx: RunContext[StateDeps[AppState]]) -> str:
     state = ctx.deps.state
     user = state.user
 
-    # Personalized greeting if user is logged in
-    if user and (user.firstName or user.name):
-        name = user.firstName or user.name
-        user_context = f"You are speaking with {name}. Address them by name occasionally to be friendly."
+    # Get effective user info (from state OR cached from CopilotKit instructions)
+    user_name = get_effective_user_name(user)
+    user_email = get_effective_user_email(user)
+    user_id = get_effective_user_id(user)
+
+    print(f"[Prompt] Building prompt: name={user_name}, email={user_email}, id={user_id[:8] if user_id else None}...", file=sys.stderr)
+
+    # Build user context section
+    if user_name:
+        user_context = f"""## CRITICAL USER CONTEXT
+You are speaking with {user_name}.
+- User Name: {user_name}
+- User Email: {user_email or 'unknown'}
+- User ID: {user_id or 'unknown'}
+
+IMPORTANT: When the user asks "what is my name?", "who am I?", or similar personal questions,
+ANSWER DIRECTLY using the info above. Say "Your name is {user_name}" - DO NOT say you don't know!
+
+Address them by name occasionally to be friendly."""
     else:
-        user_context = "The user is not logged in yet. Encourage them to sign up for personalized job recommendations!"
+        user_context = """## USER CONTEXT
+The user is not logged in yet. Encourage them to sign up for personalized job recommendations!"""
 
     return dedent(f"""
         You are an enthusiastic AI assistant for EsportsJobs.quest, helping users find careers in esports and gaming.
 
-        ## USER CONTEXT
         {user_context}
 
         ## CRITICAL: ALWAYS USE YOUR TOOLS!
-        You MUST use tools to answer questions. NEVER make up information.
+        You MUST use tools to answer questions about jobs. NEVER make up job information.
 
         **MANDATORY TOOL USAGE:**
-        - "Team Liquid", "Riot Games", "Fnatic", "Cloud9", "G2", "100 Thieves" → CALL lookup_esports_company
-        - "find jobs", "show jobs", "marketing jobs" → CALL search_esports_jobs
-        - "what categories", "job types" → CALL get_categories
-        - "which countries", "locations" → CALL get_countries
+        - "Team Liquid", "Riot Games", "Fnatic", "Cloud9", "G2", "100 Thieves" -> CALL lookup_esports_company
+        - "find jobs", "show jobs", "marketing jobs" -> CALL search_esports_jobs
+        - "what categories", "job types" -> CALL get_categories
+        - "which countries", "locations" -> CALL get_countries
 
         ## Examples:
         User: "Tell me about Team Liquid"
@@ -99,8 +181,11 @@ async def build_system_prompt(ctx: RunContext[StateDeps[AppState]]) -> str:
         User: "Find me coaching jobs"
         You: [CALL search_esports_jobs with category="coaching"]
 
+        User: "What is my name?"
+        You: "Your name is {user_name or 'unknown - please sign in'}!"
+
         ## Your Personality
-        - Enthusiastic about esports! Use emojis: 🎮 🏆 🚀 💪
+        - Enthusiastic about esports! Use emojis sparingly: 🎮 🏆
         - Be specific with real data from tools
         - Keep responses concise but helpful
     """).strip()
@@ -115,7 +200,7 @@ def search_esports_jobs(ctx: RunContext[StateDeps[AppState]], query: str = None,
         category: Job category: coaching, marketing, production, management, content, operations
         country: Country filter
     """
-    print(f"🔍 Searching: query={query}, category={category}, country={country}")
+    print(f"[Tool] Searching: query={query}, category={category}, country={country}", file=sys.stderr)
     results = search_jobs(query=query, category=category, country=country, limit=5)
 
     # Update state
@@ -146,7 +231,7 @@ def lookup_esports_company(ctx: RunContext[StateDeps[AppState]], company_name: s
     Args:
         company_name: Company name (e.g., Team Liquid, Riot Games, Fnatic)
     """
-    print(f"🏢 Looking up: {company_name}")
+    print(f"[Tool] Looking up: {company_name}", file=sys.stderr)
     profile = lookup_company(company_name)
 
     if not profile:
@@ -202,6 +287,48 @@ main_app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# =====
+# Middleware to Extract User Context from CopilotKit Instructions
+# =====
+@main_app.middleware("http")
+async def extract_user_middleware(request: Request, call_next):
+    """Extract user context from CopilotKit instructions before processing."""
+    # Only process POST requests that might contain messages
+    if request.method == "POST":
+        try:
+            # Read and restore body
+            body_bytes = await request.body()
+            if body_bytes:
+                body = json.loads(body_bytes)
+                messages = body.get("messages", [])
+
+                # Look for system messages with user context
+                for msg in messages:
+                    role = msg.get("role", "")
+                    content = msg.get("content", "")
+
+                    if role == "system" and "User ID:" in content:
+                        extracted = extract_user_from_instructions(content)
+                        if extracted.get("user_id"):
+                            print(f"[Middleware] Extracted user: {extracted.get('name')} ({extracted.get('user_id')[:8]}...)", file=sys.stderr)
+
+                    # Also check other messages for user context (CopilotKit may embed it)
+                    elif "User Name:" in content and "User ID:" in content:
+                        extracted = extract_user_from_instructions(content)
+                        if extracted.get("user_id"):
+                            print(f"[Middleware] Extracted from message: {extracted.get('name')}", file=sys.stderr)
+
+                # Reconstruct request with body
+                async def receive():
+                    return {"type": "http.request", "body": body_bytes}
+
+                request = Request(request.scope, receive)
+        except Exception as e:
+            print(f"[Middleware] Error extracting user: {e}", file=sys.stderr)
+
+    return await call_next(request)
 
 
 # Health check
@@ -263,11 +390,11 @@ async def stream_sse_response(content: str, msg_id: str):
 async def run_agent_for_clm(user_message: str) -> str:
     """Run the Pydantic AI agent and return text response."""
     try:
-        print(f"[CLM] Starting agent run for: {user_message[:50]}")
+        print(f"[CLM] Starting agent run for: {user_message[:50]}", file=sys.stderr)
         state = AppState()
         deps = StateDeps(state)
         result = await agent.run(user_message, deps=deps)
-        print(f"[CLM] Agent result type: {type(result)}")
+        print(f"[CLM] Agent result type: {type(result)}", file=sys.stderr)
 
         # Pydantic AI returns result.output for the text response
         if hasattr(result, 'output') and result.output:
@@ -277,8 +404,8 @@ async def run_agent_for_clm(user_message: str) -> str:
         return str(result)
     except Exception as e:
         import traceback
-        print(f"[CLM] Agent error: {e}")
-        print(f"[CLM] Traceback: {traceback.format_exc()}")
+        print(f"[CLM] Agent error: {e}", file=sys.stderr)
+        print(f"[CLM] Traceback: {traceback.format_exc()}", file=sys.stderr)
         return "Sorry, I couldn't process that request. Try asking about esports jobs!"
 
 
@@ -299,11 +426,11 @@ async def clm_endpoint(
 
     # Get user message
     user_message = request.messages[-1].content if request.messages else ""
-    print(f"[CLM] Query: {user_message[:80]}")
+    print(f"[CLM] Query: {user_message[:80]}", file=sys.stderr)
 
     # Run agent
     response_text = await run_agent_for_clm(user_message)
-    print(f"[CLM] Response: {response_text[:80]}")
+    print(f"[CLM] Response: {response_text[:80]}", file=sys.stderr)
 
     if request.stream:
         msg_id = f"chatcmpl-{uuid.uuid4().hex[:8]}"
