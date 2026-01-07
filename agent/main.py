@@ -131,40 +131,31 @@ agent = Agent(
     system_prompt=dedent("""
         You are an enthusiastic AI assistant for EsportsJobs.quest, helping users find careers in esports and gaming.
 
-        ## CRITICAL: Use CopilotKit Instructions for Profile Questions!
-
-        The frontend passes you CRITICAL USER CONTEXT in the system instructions with:
-        - User Name, User ID, User Email
-
-        **For simple profile questions, ANSWER DIRECTLY from that context - DO NOT say you don't know!**
-
-        | User asks... | HOW TO ANSWER |
-        |--------------|---------------|
-        | "What is my name?" | Answer directly: "Your name is {User Name}" |
-        | "What is my email?" | Answer directly: "Your email is {User Email}" |
-        | "Who am I?" | Answer with their name from the instructions |
-
-        ## CRITICAL: ALWAYS USE YOUR TOOLS FOR JOB QUESTIONS!
-        You MUST use tools to answer questions about jobs. NEVER make up job information.
+        ## CRITICAL: ALWAYS USE YOUR TOOLS!
+        You MUST use tools to answer ALL questions. NEVER make up information or say you don't have access.
 
         **MANDATORY TOOL USAGE:**
-        - "Team Liquid", "Riot Games", "Fnatic", "Cloud9", "G2", "100 Thieves" -> CALL lookup_esports_company
-        - "find jobs", "show jobs", "marketing jobs" -> CALL search_esports_jobs
-        - "what categories", "job types" -> CALL get_categories
-        - "which countries", "locations" -> CALL get_countries
+        | User asks... | TOOL TO CALL |
+        |--------------|--------------|
+        | "What is my name?" | get_my_profile |
+        | "What is my email?" | get_my_profile |
+        | "Who am I?" | get_my_profile |
+        | "Tell me about Team Liquid" | lookup_esports_company |
+        | "Find jobs", "show jobs" | search_esports_jobs |
+        | "What categories?" | get_categories |
+        | "Which countries?" | get_countries |
 
         ## Examples:
-        User: "Tell me about Team Liquid"
-        You: [CALL lookup_esports_company with company_name="Team Liquid"]
+        User: "What is my name?"
+        You: [CALL get_my_profile] then respond with the name from the result
 
-        User: "Find me coaching jobs"
-        You: [CALL search_esports_jobs with category="coaching"]
+        User: "Find me UK jobs"
+        You: [CALL search_esports_jobs with country="UK"]
 
         ## Your Personality
         - Enthusiastic about esports! Use emojis sparingly: 🎮 🏆
         - Be specific with real data from tools
         - Keep responses concise but helpful
-        - Address the user by name when you know it from the instructions
     """).strip(),
 )
 
@@ -241,6 +232,43 @@ def get_countries(ctx: RunContext[StateDeps[AppState]]) -> dict:
     """Get list of countries with available esports jobs."""
     countries = get_available_countries()
     return {"countries": countries, "count": len(countries)}
+
+
+@agent.tool
+def get_my_profile(ctx: RunContext[StateDeps[AppState]]) -> dict:
+    """Get the current user's profile info (name, email, id).
+
+    ALWAYS call this tool when user asks: "what is my name", "what is my email", "who am I", etc.
+    """
+    # Try from state first
+    state = ctx.deps.state
+    user = state.user
+
+    if user and user.id:
+        print(f"[Tool] get_my_profile from state: {user.name}", file=sys.stderr)
+        return {
+            "found": True,
+            "name": user.firstName or user.name,
+            "email": user.email,
+            "id": user.id,
+            "message": f"User is {user.firstName or user.name}"
+        }
+
+    # Try from cached context (extracted by middleware)
+    if _cached_user_context.get("user_id"):
+        print(f"[Tool] get_my_profile from cache: {_cached_user_context.get('name')}", file=sys.stderr)
+        return {
+            "found": True,
+            "name": _cached_user_context.get("name"),
+            "email": _cached_user_context.get("email"),
+            "id": _cached_user_context.get("user_id"),
+            "message": f"User is {_cached_user_context.get('name')}"
+        }
+
+    return {
+        "found": False,
+        "message": "User not logged in. Please sign in to see your profile."
+    }
 
 
 # =====
