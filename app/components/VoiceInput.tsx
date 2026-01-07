@@ -7,9 +7,10 @@ interface VoiceButtonProps {
   onMessage: (text: string, role?: "user" | "assistant") => void;
   firstName?: string | null;
   userId?: string | null;
+  email?: string | null;
 }
 
-function VoiceButton({ onMessage, firstName, userId }: VoiceButtonProps) {
+function VoiceButton({ onMessage, firstName, userId, email }: VoiceButtonProps) {
   const { connect, disconnect, status, messages, sendUserInput } = useVoice();
   const [isPending, setIsPending] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -72,6 +73,7 @@ You are the voice assistant for EsportsJobs.quest - an AI-powered esports job se
 
 ## USER INFO
 ${firstName ? `Name: ${firstName}` : "Guest user"}
+${email ? `Email: ${email}` : ""}
 ${userId ? `ID: ${userId}` : ""}
 
 ## PERSONALITY
@@ -202,14 +204,16 @@ export function VoiceInput({
   onMessage,
   firstName,
   userId,
+  email,
 }: {
   onMessage: (text: string, role?: "user" | "assistant") => void;
   firstName?: string | null;
   userId?: string | null;
+  email?: string | null;
 }) {
   return (
     <VoiceProvider onError={handleVoiceError} onOpen={handleVoiceOpen} onClose={handleVoiceClose}>
-      <VoiceButton onMessage={onMessage} firstName={firstName} userId={userId} />
+      <VoiceButton onMessage={onMessage} firstName={firstName} userId={userId} email={email} />
     </VoiceProvider>
   );
 }

@@ -327,16 +327,17 @@ async def extract_user_middleware(request: Request, call_next):
                     print(f"[Middleware] AG-UI cached user: {_cached_user_context.get('name')}", file=sys.stderr)
 
                 # CLM protocol: User context might be in system messages
+                # Check for Name:, Email:, or ID: patterns (VoiceInput uses these)
                 messages = body.get("messages", [])
                 for msg in messages:
                     role = msg.get("role", "")
                     content = msg.get("content", "")
 
-                    if role == "system" and "User ID:" in content:
+                    if role == "system" and ("Name:" in content or "ID:" in content or "Email:" in content):
                         extracted = extract_user_from_instructions(content)
-                        if extracted.get("user_id"):
+                        if extracted.get("user_id") or extracted.get("name"):
                             _cached_user_context = extracted
-                            print(f"[Middleware] CLM cached user: {extracted.get('name')}", file=sys.stderr)
+                            print(f"[Middleware] CLM cached user: {extracted.get('name')} (ID: {extracted.get('user_id')})", file=sys.stderr)
                             break
 
                 # Reconstruct request with body

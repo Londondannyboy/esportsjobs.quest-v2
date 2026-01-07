@@ -213,6 +213,7 @@ Always use your tools to provide real data! Be enthusiastic about esports! 🎮`
               onMessage={handleVoiceMessage}
               firstName={firstName}
               userId={user?.id}
+              email={user?.email}
             />
 
             {/* Scroll indicator */}
