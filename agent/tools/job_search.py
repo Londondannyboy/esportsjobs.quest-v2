@@ -7,6 +7,21 @@ import httpx
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 
+# Country abbreviation mappings
+COUNTRY_ALIASES = {
+    "us": "United States",
+    "usa": "United States",
+    "america": "United States",
+    "uk": "United Kingdom",
+    "gb": "United Kingdom",
+    "britain": "United Kingdom",
+    "england": "United Kingdom",
+    "de": "Germany",
+    "sg": "Singapore",
+    "vn": "Vietnam",
+    "id": "Indonesia",
+}
+
 
 class JobSearchResult(BaseModel):
     """A single job search result."""
@@ -90,8 +105,10 @@ def search_jobs_sync(
             params.append(category)
 
         if country:
+            # Normalize country abbreviations
+            country_normalized = COUNTRY_ALIASES.get(country.lower(), country)
             conditions.append("LOWER(country) ILIKE %s")
-            params.append(f"%{country}%")
+            params.append(f"%{country_normalized}%")
 
         if job_type:
             conditions.append("LOWER(type) ILIKE %s")
