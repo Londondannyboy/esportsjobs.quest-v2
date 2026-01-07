@@ -410,12 +410,26 @@ export default function Home() {
               </Link>
             )}
 
-            {/* Rest of Jobs */}
+            {/* Rest of Jobs - indices 1, 3 get video thumbnails (0, 2, 4 in original array) */}
             <div className="grid gap-4">
-              {featuredJobs.slice(1).map((job) => (
+              {featuredJobs.slice(1).map((job, idx) => {
+                const hasVideo = idx === 1 || idx === 3; // Jobs at original indices 2 and 4
+                return (
                 <Link key={job.id} href={`/job/${job.id}`} className="job-card bg-gray-900/50 rounded-xl overflow-hidden flex flex-col md:flex-row hover:bg-gray-800/50 transition-colors group">
                   <div className="relative w-full md:w-52 h-36 md:h-auto flex-shrink-0 overflow-hidden">
-                    <img src={job.heroImage} alt={job.heroImageAlt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                    {hasVideo ? (
+                      <>
+                        <img src={`https://image.mux.com/${MUX_PLAYBACK_ID}/thumbnail.webp?time=${idx + 2}&width=400`} alt={job.heroImageAlt} className="md:hidden w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                        <video autoPlay muted loop playsInline preload="none" poster={`https://image.mux.com/${MUX_PLAYBACK_ID}/thumbnail.webp?time=${idx + 2}`} className="hidden md:block w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                          <source src={`https://stream.mux.com/${MUX_PLAYBACK_ID}.m3u8`} type="application/x-mpegURL" />
+                        </video>
+                        <div className="absolute top-2 left-2">
+                          <span className="px-2 py-1 bg-purple-500/80 rounded text-xs font-bold text-white">▶</span>
+                        </div>
+                      </>
+                    ) : (
+                      <img src={job.heroImage} alt={job.heroImageAlt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-900/80 md:block hidden" />
                   </div>
                   <div className="flex-1 p-5 flex flex-col md:flex-row md:items-center gap-4">
@@ -438,7 +452,8 @@ export default function Home() {
                     </div>
                   </div>
                 </Link>
-              ))}
+              );
+              })}
             </div>
 
             <div className="text-center mt-10">
