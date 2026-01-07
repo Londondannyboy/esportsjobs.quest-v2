@@ -45,8 +45,8 @@ def extract_user_from_instructions(instructions: str) -> dict:
     if not instructions:
         return result
 
-    # Look for User ID pattern
-    id_match = re.search(r'User ID:\s*([a-f0-9-]+)', instructions, re.IGNORECASE)
+    # Look for User ID pattern (UUID format or general alphanumeric)
+    id_match = re.search(r'User ID:\s*([a-zA-Z0-9-]+)', instructions, re.IGNORECASE)
     if id_match:
         result["user_id"] = id_match.group(1)
 
@@ -312,13 +312,13 @@ async def extract_user_middleware(request: Request, call_next):
                     if role == "system" and "User ID:" in content:
                         extracted = extract_user_from_instructions(content)
                         if extracted.get("user_id"):
-                            print(f"[Middleware] Extracted user: {extracted.get('name')} ({extracted.get('user_id')[:8]}...)", file=sys.stderr)
+                            print(f"[Middleware] Cached user: {extracted.get('name')}", file=sys.stderr)
 
                     # Also check other messages for user context (CopilotKit may embed it)
                     elif "User Name:" in content and "User ID:" in content:
                         extracted = extract_user_from_instructions(content)
                         if extracted.get("user_id"):
-                            print(f"[Middleware] Extracted from message: {extracted.get('name')}", file=sys.stderr)
+                            print(f"[Middleware] Cached user from message: {extracted.get('name')}", file=sys.stderr)
 
                 # Reconstruct request with body
                 async def receive():
