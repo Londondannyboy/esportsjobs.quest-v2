@@ -13,12 +13,15 @@ import { UnifiedHeader } from "./components/UnifiedHeader";
 import { UnifiedFooter } from "./components/UnifiedFooter";
 
 // Dynamic imports for heavy components
-const GamerHero = dynamic(() => import("./components/GamerHero"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-cyan-900/20 animate-pulse" />
-  ),
-});
+const GamerHero = dynamic(
+  () => import("./components/GamerHero").then(mod => mod.GamerHero),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-cyan-900/20 animate-pulse" />
+    ),
+  }
+);
 
 const VoiceInput = dynamic(
   () => import("./components/VoiceInput").then((mod) => ({ default: mod.VoiceInput })),
