@@ -32,7 +32,11 @@ from tools.user_context import (
     get_user_profile, save_user_profile,
     get_user_job_interests, save_job_interest,
     get_conversation_memory, search_user_memories,
-    get_full_user_context
+    get_full_user_context,
+    # Profile items (skills, role, location coaching)
+    ensure_profile_items_table, get_profile_items,
+    save_profile_item, delete_profile_item,
+    get_profile_completeness as get_profile_completeness_db
 )
 
 
@@ -159,13 +163,18 @@ agent = Agent(
         |--------------|--------------|
         | "What is my name/email?" | get_my_profile |
         | "What page am I on?" | get_current_page |
-        | "What are my skills?" | get_my_full_context |
+        | "What are my skills?" | get_user_skills_and_preferences |
+        | "Show my profile" | show_user_profile_graph |
         | "What jobs have I saved?" | get_my_saved_jobs |
         | "Remember when I said..." | recall_past_conversations |
         | "Tell me about [company]" | lookup_esports_company |
         | "Find/show jobs" | search_esports_jobs |
         | "Save this job" | save_job_to_favorites |
-        | "My skills are..." | update_my_skills |
+        | "I know Python" / skills | save_user_skill |
+        | "Looking for CTO roles" | save_role_preference |
+        | "I'm based in London" | save_location_preference |
+        | "I have 5 years experience" | save_experience_level |
+        | "Is my profile complete?" | check_profile_completeness |
 
         ## PAGE CONTEXT AWARENESS
         ALWAYS call get_current_page when the user asks about jobs or content.
@@ -177,21 +186,46 @@ agent = Agent(
         Example: User on "esports-jobs-london" page asks "show me jobs"
         → Use search_esports_jobs with country filter for UK/London
 
-        ## PERSONALIZED ADVICE
-        When recommending jobs, FIRST call get_my_full_context to understand:
-        - User's skills and experience
-        - Jobs they've saved before
-        - Past conversation topics
+        ## PROFILE COACHING
+        Help users build their career profile step by step:
 
-        Example: If user asks for "marketing jobs" but their skills are in coaching,
-        gently point this out: "I see your background is in coaching - are you looking
-        to transition into marketing, or would you like coaching roles instead?"
+        1. **When user mentions a skill** (e.g., "I know Python", "I'm good at marketing"):
+           → Call save_user_skill immediately
+           → Confirm: "Got it, I've added Python to your profile!"
+
+        2. **When user mentions a target role** (e.g., "I want to be a CTO", "Looking for marketing roles"):
+           → Call save_role_preference
+           → Confirm: "I've set your target role to CTO"
+
+        3. **When user mentions location** (e.g., "I'm based in London", "I want remote work"):
+           → Call save_location_preference
+           → Confirm: "Set your location preference to London"
+
+        4. **After adding profile data**:
+           → Call check_profile_completeness
+           → If incomplete, suggest next step: "Your profile is 50% complete. Would you like to add your skills?"
+
+        5. **For new users with empty profiles**:
+           → Check profile completeness first
+           → Guide them: "Let's build your profile! What role are you interested in?"
+
+        ## PERSONALIZED ADVICE
+        When recommending jobs, FIRST call get_user_skills_and_preferences to understand:
+        - User's skills and proficiency levels
+        - Target role and location
+        - Jobs they've saved before
+
+        Use this to personalize recommendations:
+        - Filter jobs by user's preferred location
+        - Highlight jobs matching their skills
+        - Suggest roles aligned with their career goals
 
         ## Your Personality
         - Enthusiastic about esports! Use emojis sparingly: 🎮 🏆
         - Be specific with real data from tools
         - Give personalized advice based on user context
         - Keep responses concise but helpful
+        - Proactively help users complete their profile
     """).strip(),
 )
 
@@ -424,6 +458,249 @@ def recall_past_conversations(ctx: RunContext[StateDeps[AppState]], topic: str =
 
 
 # =====
+# Profile Coaching Tools (Skills, Role, Location)
+# =====
+
+@agent.tool
+def save_user_skill(ctx: RunContext[StateDeps[AppState]], skill: str, proficiency: str = "intermediate") -> dict:
+    """Save a skill to user's profile.
+
+    Call this when user mentions they have a skill (e.g., "I know Python", "I'm good at marketing").
+
+    Args:
+        skill: The skill name (e.g., "Python", "Marketing", "Leadership")
+        proficiency: Skill level - "beginner", "intermediate", or "expert"
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Saving skill '{skill}' ({proficiency}) for user {user_id}", file=sys.stderr)
+
+    result = save_profile_item(
+        user_id=user_id,
+        item_type="skill",
+        value=skill,
+        metadata={"proficiency": proficiency},
+        confirmed=True  # Direct save, HITL handled in frontend if needed
+    )
+
+    if result.get("success"):
+        return {
+            "success": True,
+            "message": f"Added {skill} ({proficiency}) to your profile",
+            "skill": skill,
+            "proficiency": proficiency
+        }
+    return result
+
+
+@agent.tool
+def save_role_preference(ctx: RunContext[StateDeps[AppState]], role: str) -> dict:
+    """Save user's target job role. Replaces any previous role.
+
+    Call this when user mentions what role they're looking for (e.g., "I want to be a CTO", "Looking for marketing roles").
+
+    Args:
+        role: The target role (e.g., "CTO", "Marketing Manager", "Esports Coach")
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Saving role preference '{role}' for user {user_id}", file=sys.stderr)
+
+    result = save_profile_item(
+        user_id=user_id,
+        item_type="role",
+        value=role,
+        confirmed=True
+    )
+
+    if result.get("success"):
+        return {
+            "success": True,
+            "message": f"Set your target role to: {role}",
+            "role": role
+        }
+    return result
+
+
+@agent.tool
+def save_location_preference(ctx: RunContext[StateDeps[AppState]], location: str, remote_ok: bool = True) -> dict:
+    """Save user's preferred work location. Replaces any previous location.
+
+    Call this when user mentions where they want to work (e.g., "I'm based in London", "Looking for remote work").
+
+    Args:
+        location: The location (e.g., "London", "Remote", "Los Angeles")
+        remote_ok: Whether remote work is acceptable
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Saving location '{location}' (remote_ok={remote_ok}) for user {user_id}", file=sys.stderr)
+
+    result = save_profile_item(
+        user_id=user_id,
+        item_type="location",
+        value=location,
+        metadata={"remote_ok": remote_ok},
+        confirmed=True
+    )
+
+    if result.get("success"):
+        remote_note = " (remote also OK)" if remote_ok else ""
+        return {
+            "success": True,
+            "message": f"Set your preferred location to: {location}{remote_note}",
+            "location": location,
+            "remote_ok": remote_ok
+        }
+    return result
+
+
+@agent.tool
+def save_experience_level(ctx: RunContext[StateDeps[AppState]], years: int) -> dict:
+    """Save user's years of experience.
+
+    Args:
+        years: Number of years of professional experience
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Saving experience years: {years} for user {user_id}", file=sys.stderr)
+
+    result = save_profile_item(
+        user_id=user_id,
+        item_type="experience_years",
+        value=str(years),
+        confirmed=True
+    )
+
+    if result.get("success"):
+        return {
+            "success": True,
+            "message": f"Noted you have {years} years of experience",
+            "years": years
+        }
+    return result
+
+
+@agent.tool
+def check_profile_completeness(ctx: RunContext[StateDeps[AppState]]) -> dict:
+    """Check how complete the user's profile is.
+
+    Returns profile completeness percentage and what's missing.
+    Use this to guide users through completing their profile.
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"complete": False, "percent": 0, "message": "User not logged in"}
+
+    print(f"[Tool] Checking profile completeness for user {user_id}", file=sys.stderr)
+
+    result = get_profile_completeness_db(user_id)
+    return result
+
+
+@agent.tool
+def get_user_skills_and_preferences(ctx: RunContext[StateDeps[AppState]]) -> dict:
+    """Get all of user's saved skills, role, and location preferences.
+
+    Use this to see what the user has already told us about themselves.
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"found": False, "message": "User not logged in"}
+
+    print(f"[Tool] Getting profile items for user {user_id}", file=sys.stderr)
+
+    result = get_profile_items(user_id)
+    return result
+
+
+@agent.tool
+def show_user_profile_graph(ctx: RunContext[StateDeps[AppState]]) -> dict:
+    """Render user's profile as a visual graph.
+
+    Frontend will render this as an interactive 3D graph showing:
+    - User at center
+    - Skills as purple nodes
+    - Target role as blue node
+    - Location as green node
+
+    Call this when user asks to see their profile or skills.
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"render": False, "message": "User not logged in"}
+
+    print(f"[Tool] Rendering profile graph for user {user_id}", file=sys.stderr)
+
+    # Get profile data
+    profile = get_profile_items(user_id)
+    completeness = get_profile_completeness_db(user_id)
+
+    if not profile.get("found"):
+        return {"render": False, "message": "No profile data yet"}
+
+    items = profile.get("items", {})
+
+    # Build graph data for frontend
+    nodes = [{"id": "user", "name": "You", "type": "user", "color": "#FFD700"}]
+    links = []
+
+    # Add skills
+    for skill in items.get("skill", []):
+        skill_id = f"skill_{skill['value']}"
+        nodes.append({
+            "id": skill_id,
+            "name": skill['value'],
+            "type": "skill",
+            "color": "#A855F7",
+            "metadata": skill.get("metadata", {})
+        })
+        links.append({"source": "user", "target": skill_id})
+
+    # Add role
+    for role in items.get("role", []):
+        role_id = f"role_{role['value']}"
+        nodes.append({
+            "id": role_id,
+            "name": role['value'],
+            "type": "role",
+            "color": "#3B82F6"
+        })
+        links.append({"source": "user", "target": role_id})
+
+    # Add location
+    for loc in items.get("location", []):
+        loc_id = f"location_{loc['value']}"
+        nodes.append({
+            "id": loc_id,
+            "name": loc['value'],
+            "type": "location",
+            "color": "#22C55E",
+            "metadata": loc.get("metadata", {})
+        })
+        links.append({"source": "user", "target": loc_id})
+
+    return {
+        "render": True,
+        "type": "profile_graph",
+        "completeness": completeness,
+        "graph": {
+            "nodes": nodes,
+            "links": links
+        }
+    }
+
+
+# =====
 # AG-UI App (for CopilotKit)
 # =====
 ag_ui_app = agent.to_ag_ui(deps=StateDeps(AppState()))
@@ -497,6 +774,15 @@ async def extract_user_middleware(request: Request, call_next):
             print(f"[Middleware] Error extracting user: {e}", file=sys.stderr)
 
     return await call_next(request)
+
+
+# Startup event - ensure tables exist
+@main_app.on_event("startup")
+async def startup_event():
+    """Initialize database tables on startup."""
+    print("[Startup] Ensuring profile_items table exists...", file=sys.stderr)
+    ensure_profile_items_table()
+    print("[Startup] Ready!", file=sys.stderr)
 
 
 # Health check

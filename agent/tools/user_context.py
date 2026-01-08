@@ -9,6 +9,7 @@ Provides tools for:
 
 import os
 import sys
+import json
 from typing import Optional, List
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -243,6 +244,209 @@ def search_user_memories(user_id: str, query: str, limit: int = 3) -> dict:
     except Exception as e:
         print(f"[UserContext] Zep search error: {e}", file=sys.stderr)
         return {"found": False, "error": str(e)}
+
+
+# =====
+# Profile Items (Skills, Role, Location, etc.)
+# =====
+
+def ensure_profile_items_table():
+    """Create user_profile_items table if it doesn't exist."""
+    try:
+        conn = get_db_connection()
+        if not conn:
+            return False
+
+        with conn.cursor() as cur:
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS user_profile_items (
+                    id SERIAL PRIMARY KEY,
+                    user_id TEXT NOT NULL,
+                    item_type TEXT NOT NULL,
+                    value TEXT NOT NULL,
+                    metadata JSONB DEFAULT '{}',
+                    confirmed BOOLEAN DEFAULT false,
+                    created_at TIMESTAMPTZ DEFAULT NOW(),
+                    updated_at TIMESTAMPTZ DEFAULT NOW(),
+                    UNIQUE(user_id, item_type, value)
+                );
+                CREATE INDEX IF NOT EXISTS idx_profile_items_user ON user_profile_items(user_id);
+                CREATE INDEX IF NOT EXISTS idx_profile_items_type ON user_profile_items(item_type);
+            """)
+        conn.commit()
+        conn.close()
+        print("[UserContext] Profile items table ready", file=sys.stderr)
+        return True
+    except Exception as e:
+        print(f"[UserContext] Table creation error: {e}", file=sys.stderr)
+        return False
+
+
+def get_profile_items(user_id: str, item_type: str = None) -> dict:
+    """Get user profile items, optionally filtered by type."""
+    try:
+        conn = get_db_connection()
+        if not conn:
+            return {"found": False, "error": "Database not configured"}
+
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            if item_type:
+                cur.execute("""
+                    SELECT item_type, value, metadata, confirmed, created_at
+                    FROM user_profile_items
+                    WHERE user_id = %s AND item_type = %s
+                    ORDER BY created_at DESC
+                """, (user_id, item_type))
+            else:
+                cur.execute("""
+                    SELECT item_type, value, metadata, confirmed, created_at
+                    FROM user_profile_items
+                    WHERE user_id = %s
+                    ORDER BY item_type, created_at DESC
+                """, (user_id,))
+            rows = cur.fetchall()
+
+        conn.close()
+
+        # Group by type
+        items_by_type = {}
+        for row in rows:
+            t = row['item_type']
+            if t not in items_by_type:
+                items_by_type[t] = []
+            items_by_type[t].append({
+                'value': row['value'],
+                'metadata': row['metadata'] or {},
+                'confirmed': row['confirmed'],
+                'created_at': str(row['created_at'])
+            })
+
+        return {
+            "found": True,
+            "items": items_by_type,
+            "total": len(rows)
+        }
+    except Exception as e:
+        print(f"[UserContext] Error getting profile items: {e}", file=sys.stderr)
+        return {"found": False, "error": str(e)}
+
+
+def save_profile_item(user_id: str, item_type: str, value: str,
+                     metadata: dict = None, confirmed: bool = False,
+                     replace_existing: bool = False) -> dict:
+    """
+    Save a profile item.
+
+    Args:
+        user_id: User ID
+        item_type: 'skill', 'location', 'role', 'salary_min', 'salary_max', 'experience_years'
+        value: The value to save
+        metadata: Optional metadata (e.g., {proficiency: 'expert'})
+        confirmed: Whether user confirmed this (HITL)
+        replace_existing: If True, delete existing items of this type first (for single-value fields)
+    """
+    try:
+        conn = get_db_connection()
+        if not conn:
+            return {"success": False, "error": "Database not configured"}
+
+        # Single-value fields should replace existing
+        single_value_types = ['location', 'role', 'salary_min', 'salary_max', 'experience_years']
+        should_replace = replace_existing or item_type in single_value_types
+
+        with conn.cursor() as cur:
+            # Delete existing if this is a single-value field
+            if should_replace:
+                cur.execute("""
+                    DELETE FROM user_profile_items
+                    WHERE user_id = %s AND item_type = %s
+                """, (user_id, item_type))
+
+            # Insert new item
+            cur.execute("""
+                INSERT INTO user_profile_items (user_id, item_type, value, metadata, confirmed, updated_at)
+                VALUES (%s, %s, %s, %s, %s, NOW())
+                ON CONFLICT (user_id, item_type, value) DO UPDATE SET
+                    metadata = COALESCE(EXCLUDED.metadata, user_profile_items.metadata),
+                    confirmed = EXCLUDED.confirmed,
+                    updated_at = NOW()
+            """, (user_id, item_type, value, json.dumps(metadata or {}), confirmed))
+
+        conn.commit()
+        conn.close()
+
+        return {
+            "success": True,
+            "type": item_type,
+            "value": value,
+            "confirmed": confirmed,
+            "replaced": should_replace
+        }
+    except Exception as e:
+        print(f"[UserContext] Error saving profile item: {e}", file=sys.stderr)
+        return {"success": False, "error": str(e)}
+
+
+def delete_profile_item(user_id: str, item_type: str, value: str) -> dict:
+    """Delete a profile item."""
+    try:
+        conn = get_db_connection()
+        if not conn:
+            return {"success": False, "error": "Database not configured"}
+
+        with conn.cursor() as cur:
+            cur.execute("""
+                DELETE FROM user_profile_items
+                WHERE user_id = %s AND item_type = %s AND value = %s
+            """, (user_id, item_type, value))
+            deleted = cur.rowcount
+
+        conn.commit()
+        conn.close()
+
+        return {"success": True, "deleted": deleted > 0}
+    except Exception as e:
+        print(f"[UserContext] Error deleting profile item: {e}", file=sys.stderr)
+        return {"success": False, "error": str(e)}
+
+
+def get_profile_completeness(user_id: str) -> dict:
+    """Check how complete the user's profile is."""
+    items = get_profile_items(user_id)
+    if not items.get("found"):
+        return {"complete": False, "percent": 0, "missing": ["skills", "location", "role"]}
+
+    items_by_type = items.get("items", {})
+
+    has_skills = len(items_by_type.get("skill", [])) >= 1
+    has_location = len(items_by_type.get("location", [])) >= 1
+    has_role = len(items_by_type.get("role", [])) >= 1
+    has_experience = len(items_by_type.get("experience_years", [])) >= 1
+
+    missing = []
+    if not has_skills:
+        missing.append("skills")
+    if not has_location:
+        missing.append("location")
+    if not has_role:
+        missing.append("role")
+    if not has_experience:
+        missing.append("experience")
+
+    total_fields = 4
+    completed = total_fields - len(missing)
+    percent = int((completed / total_fields) * 100)
+
+    return {
+        "complete": len(missing) == 0,
+        "percent": percent,
+        "skills_count": len(items_by_type.get("skill", [])),
+        "has_location": has_location,
+        "has_role": has_role,
+        "has_experience": has_experience,
+        "missing": missing,
+        "items": items_by_type
+    }
 
 
 # =====
