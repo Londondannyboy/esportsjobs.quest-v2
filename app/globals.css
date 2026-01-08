@@ -420,6 +420,49 @@ body {
     0 0 60px rgba(168, 85, 247, 0.4) !important;
 }
 
+/* ================================================================
+   COPILOTKIT TOGGLE BUTTON - FIXED BOTTOM RIGHT POSITION
+   ================================================================ */
+
+/* The toggle button container - force bottom right */
+[class*="copilotKitToggle"],
+[class*="CopilotKitToggle"],
+.copilotKitToggle,
+button[class*="toggle"],
+button[class*="Toggle"] {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 9999 !important;
+}
+
+/* Sidebar toggle button wrapper */
+[class*="sidebarToggle"],
+[class*="SidebarToggle"] {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 9999 !important;
+}
+
+/* Make sidebar take reasonable width, not too wide */
+.copilotKitSidebar {
+  max-width: 420px !important;
+  width: 100% !important;
+}
+
+/* On mobile, sidebar is full width */
+@media (max-width: 640px) {
+  .copilotKitSidebar {
+    max-width: 100% !important;
+    width: 100vw !important;
+  }
+}
+
 /* Code blocks - Cyberpunk terminal look */
 .copilotKitCodeBlock {
   background: rgba(5, 5, 15, 0.95) !important;
