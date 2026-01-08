@@ -17,19 +17,6 @@ const CopilotSidebar = dynamic(
 );
 
 
-// Three.js Career Showcase - lazy loaded
-const ThreeCareerShowcase = dynamic(
-  () => import("./components/ThreeCareerShowcase").then(mod => mod.ThreeCareerShowcase),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-[500px] flex items-center justify-center bg-gradient-to-b from-gray-900 to-black">
-        <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
-      </div>
-    )
-  }
-);
-
 // Three.js Spotlight Walk - lazy loaded
 const ThreeSpotlightWalk = dynamic(
   () => import("./components/ThreeSpotlightWalk").then(mod => mod.ThreeSpotlightWalk),
@@ -577,24 +564,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* Three.js Career Journey Showcase */}
-        <section className="py-16 bg-gradient-to-b from-black via-gray-900/50 to-black overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-8">
-              <AnimatedSectionHeader
-                text="Your Career Journey"
-                highlightText="Career Journey"
-                firstName={firstName}
-                personalizedText="{name}'s Career Journey"
-                subtitle="From starting out to going pro - visualize your path in esports"
-                personalizedSubtitle="From where you are now to going pro - we'll help you get there, {name}"
-                theme="rainbow"
-              />
-            </div>
-            <ThreeCareerShowcase />
           </div>
         </section>
 
