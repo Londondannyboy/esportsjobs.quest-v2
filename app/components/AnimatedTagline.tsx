@@ -1,14 +1,37 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 
-export function AnimatedTagline() {
+interface AnimatedTaglineProps {
+  is3DMode?: boolean;
+  firstName?: string | null;
+}
+
+export function AnimatedTagline({ is3DMode = false, firstName }: AnimatedTaglineProps) {
   const prefersReducedMotion = useReducedMotion();
+
+  // Determine tagline text based on mode and login status
+  const getTaglineText = () => {
+    if (is3DMode && firstName) {
+      return `WELCOME, ${firstName.toUpperCase()}`;
+    }
+    if (is3DMode) {
+      return "JOIN THE ESPORTS REVOLUTION";
+    }
+    return "JOIN THE REVOLUTION";
+  };
+
+  const taglineText = getTaglineText();
+  const srText = is3DMode && firstName
+    ? `Welcome, ${firstName}, to the Esports Revolution`
+    : is3DMode
+    ? "Join the Esports Revolution"
+    : "Join the Revolution";
 
   return (
     <div className="relative mb-8">
       {/* Screen reader accessible text */}
-      <span className="sr-only">Join the Revolution</span>
+      <span className="sr-only">{srText}</span>
 
       {/* Main animated tagline */}
       <motion.div
@@ -18,32 +41,43 @@ export function AnimatedTagline() {
         transition={{ duration: 0.8, delay: 0.3 }}
         aria-hidden="true"
       >
-        <motion.span
-          className="inline-block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight"
-          style={{
-            background: "linear-gradient(90deg, #00fff2, #bf00ff, #ff00aa, #00fff2)",
-            backgroundSize: "300% 100%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-          animate={prefersReducedMotion ? {} : {
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          JOIN THE REVOLUTION
-        </motion.span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={taglineText} // Re-animate when text changes
+            className="inline-block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight"
+            style={{
+              background: "linear-gradient(90deg, #00fff2, #bf00ff, #ff00aa, #00fff2)",
+              backgroundSize: "300% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              backgroundPosition: prefersReducedMotion ? "0% 50%" : ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            exit={prefersReducedMotion ? {} : { opacity: 0, scale: 1.1 }}
+            transition={{
+              opacity: { duration: 0.5 },
+              scale: { duration: 0.5 },
+              backgroundPosition: {
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear",
+              },
+            }}
+          >
+            {taglineText}
+          </motion.span>
+        </AnimatePresence>
       </motion.div>
 
       {/* Animated neon glow line underneath */}
       <motion.div
         className="relative h-1 mx-auto mt-4 rounded-full overflow-hidden"
-        style={{ maxWidth: "500px" }}
+        style={{ maxWidth: is3DMode ? "700px" : "500px" }}
         initial={prefersReducedMotion ? false : { scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1, delay: 0.5 }}

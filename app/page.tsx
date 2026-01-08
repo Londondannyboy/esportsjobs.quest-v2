@@ -190,6 +190,7 @@ export default function Home() {
   // Deferred loading - only load heavy components when user interacts
   const [chatEnabled, setChatEnabled] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [is3DMode, setIs3DMode] = useState(false); // Tracks when video swaps to 3D
 
   const { state, setState } = useCoAgent<AgentState>({
     name: "esports_agent",
@@ -239,7 +240,7 @@ export default function Home() {
         <section className="relative h-screen flex items-center justify-center">
           <div className="absolute inset-0 z-0">
             <Suspense fallback={<div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-cyan-900/20" />}>
-              <GamerHero className="w-full h-full" />
+              <GamerHero className="w-full h-full" onSwapTo3D={() => setIs3DMode(true)} />
             </Suspense>
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60" />
           </div>
@@ -261,7 +262,7 @@ export default function Home() {
               <span className="text-2xl font-black text-cyan-400">#1</span>
               <span className="text-white font-medium">Best Esports Recruitment Agency</span>
             </div>
-            <AnimatedTagline />
+            <AnimatedTagline is3DMode={is3DMode} firstName={firstName} />
             <h1 className="sr-only">Esports Recruitment Agency Quest</h1>
             <div className="mt-8">
               <JobSearch size="large" className="mb-4" />

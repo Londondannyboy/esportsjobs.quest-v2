@@ -223,9 +223,10 @@ function ThreeCanvas({ animationSpeed, prefersReducedMotion }: { animationSpeed:
 // Main component with Video → 3D swap
 interface GamerHeroProps {
   className?: string
+  onSwapTo3D?: () => void // Callback when video swaps to 3D
 }
 
-export function GamerHero({ className = '' }: GamerHeroProps) {
+export function GamerHero({ className = '', onSwapTo3D }: GamerHeroProps) {
   const [isMobile, setIsMobile] = useState(false)
   const [isClient, setIsClient] = useState(false)
   const [show3D, setShow3D] = useState(false) // Start with video, swap to 3D
@@ -256,7 +257,10 @@ export function GamerHero({ className = '' }: GamerHeroProps) {
         // 1. Lighthouse measures fast video LCP
         // 2. Users enjoy the video before 3D loads
         // 3. 3D assets load in background during video playback
-        setTimeout(() => setShow3D(true), 5000)
+        setTimeout(() => {
+          setShow3D(true)
+          onSwapTo3D?.() // Notify parent component of the swap
+        }, 5000)
       }
     }
 
