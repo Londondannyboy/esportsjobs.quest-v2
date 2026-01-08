@@ -292,7 +292,7 @@ export function ProfileItemsList({
               <span className="text-sm text-white">{skill.name}</span>
               {skill.metadata?.proficiency && (
                 <span className="text-xs text-purple-300">
-                  ({skill.metadata.proficiency as string})
+                  ({String(skill.metadata.proficiency)})
                 </span>
               )}
               {onDeleteItem && (
@@ -343,7 +343,7 @@ export function ProfileItemsList({
         {locations.length > 0 ? (
           <div className="flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-lg px-4 py-2 inline-block">
             <span className="text-white">{locations[0].name}</span>
-            {locations[0].metadata?.remote_ok && (
+            {locations[0].metadata?.remote_ok === true && (
               <span className="text-xs text-green-300">(Remote OK)</span>
             )}
             {onDeleteItem && (
