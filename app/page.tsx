@@ -308,7 +308,7 @@ export default function Home() {
               poster="https://image.mux.com/QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI/thumbnail.webp?time=1&width=1200"
               className="w-full h-full object-cover opacity-30"
             >
-              <source src="https://stream.mux.com/QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI/low.mp4" type="video/mp4" />
+              <source src="https://stream.mux.com/QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI.m3u8" type="application/x-mpegURL" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0a0a0f]/80 to-[#0d0d15]" />
           </div>
