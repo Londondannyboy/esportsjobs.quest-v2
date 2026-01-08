@@ -2,14 +2,17 @@
 
 import { Suspense, useRef, useEffect, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useGLTF, useAnimations, OrbitControls, Environment, Float, Text3D, Center } from '@react-three/drei'
+import { useGLTF, useAnimations, Float } from '@react-three/drei'
 import * as THREE from 'three'
+
+// Mux video playback ID for mobile hero
+const MUX_HERO_PLAYBACK_ID = "QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI"
 
 // Soldier model with animation blending (adapted from Three.js examples)
 function Soldier({ speed = 0 }: { speed: number }) {
   const group = useRef<THREE.Group>(null)
   const { scene, animations } = useGLTF('/models/Soldier.glb')
-  const { actions, mixer } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group)
 
   // Animation state
   const [currentAction, setCurrentAction] = useState<string>('Idle')
@@ -188,20 +191,21 @@ function CameraRig() {
   return null
 }
 
-// Scene content
+// Scene content - NO Environment preset (saves 1.7 MB HDR file)
 function Scene({ animationSpeed }: { animationSpeed: number }) {
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.3} />
+      {/* Lighting - enhanced to compensate for no Environment map */}
+      <ambientLight intensity={0.4} />
       <directionalLight
         position={[5, 5, 5]}
-        intensity={1}
+        intensity={1.2}
         castShadow
         shadow-mapSize={[1024, 1024]}
       />
-      <pointLight position={[-3, 2, -3]} color="#22d3ee" intensity={2} />
-      <pointLight position={[3, 2, 3]} color="#a855f7" intensity={2} />
+      <pointLight position={[-3, 2, -3]} color="#22d3ee" intensity={3} />
+      <pointLight position={[3, 2, 3]} color="#a855f7" intensity={3} />
+      <pointLight position={[0, 3, 0]} color="#ffffff" intensity={0.5} />
 
       {/* Character */}
       <Soldier speed={animationSpeed} />
@@ -213,9 +217,6 @@ function Scene({ animationSpeed }: { animationSpeed: number }) {
 
       {/* Camera movement */}
       <CameraRig />
-
-      {/* Environment map for reflections */}
-      <Environment preset="night" />
     </>
   )
 }
@@ -230,29 +231,71 @@ function Loader() {
   )
 }
 
+// Video hero for mobile - much lighter than 3D
+function VideoHero() {
+  return (
+    <div className="absolute inset-0">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster={`https://image.mux.com/${MUX_HERO_PLAYBACK_ID}/thumbnail.webp?time=2&width=800`}
+        className="w-full h-full object-cover"
+        aria-hidden="true"
+      >
+        <source
+          src={`https://stream.mux.com/${MUX_HERO_PLAYBACK_ID}/low.mp4`}
+          type="video/mp4"
+        />
+      </video>
+      {/* Gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
+    </div>
+  )
+}
+
 // Main component
 interface GamerHeroProps {
   className?: string
 }
 
 export function GamerHero({ className = '' }: GamerHeroProps) {
+  // Detect mobile for video fallback (saves ~2.8 MB on mobile)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
   // Auto-animate: cycle between idle, walk, run for constant motion
   const [animationSpeed, setAnimationSpeed] = useState(0.3) // Start walking
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
-  // Check for reduced motion preference
+  // Client-side detection
   useEffect(() => {
+    setIsClient(true)
+
+    // Check for mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     setPrefersReducedMotion(mediaQuery.matches)
-
     const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches)
     mediaQuery.addEventListener('change', handler)
-    return () => mediaQuery.removeEventListener('change', handler)
+
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+      mediaQuery.removeEventListener('change', handler)
+    }
   }, [])
 
   // Cycle animation for constant visual interest (skip if reduced motion preferred)
   useEffect(() => {
-    if (prefersReducedMotion) return
+    if (prefersReducedMotion || isMobile) return
 
     let direction = 1
     const interval = setInterval(() => {
@@ -265,23 +308,32 @@ export function GamerHero({ className = '' }: GamerHeroProps) {
     }, 2000)
 
     return () => clearInterval(interval)
-  }, [prefersReducedMotion])
+  }, [prefersReducedMotion, isMobile])
 
   return (
-    <div className={`relative ${className}`} role="img" aria-label="Animated 3D esports soldier character with floating neon elements representing the gaming industry">
+    <div className={`relative ${className}`} role="img" aria-label="Esports gaming hero visual with neon cyberpunk aesthetic">
       {/* Purple gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-[#0a0a0f] to-cyan-900/30" />
-      <Canvas
-        shadows
-        camera={{ position: [0, 1, 5], fov: 50 }}
-        style={{ background: 'transparent' }}
-        aria-hidden="true"
-        frameloop={prefersReducedMotion ? 'demand' : 'always'}
-      >
-        <Suspense fallback={<Loader />}>
-          <Scene animationSpeed={prefersReducedMotion ? 0 : animationSpeed} />
-        </Suspense>
-      </Canvas>
+
+      {/* Mobile: Video | Desktop: 3D Canvas */}
+      {isClient && isMobile ? (
+        <VideoHero />
+      ) : isClient ? (
+        <Canvas
+          shadows
+          camera={{ position: [0, 1, 5], fov: 50 }}
+          style={{ background: 'transparent' }}
+          aria-hidden="true"
+          frameloop={prefersReducedMotion ? 'demand' : 'always'}
+        >
+          <Suspense fallback={<Loader />}>
+            <Scene animationSpeed={prefersReducedMotion ? 0 : animationSpeed} />
+          </Suspense>
+        </Canvas>
+      ) : (
+        // SSR placeholder
+        <div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-cyan-900/20" />
+      )}
 
       {/* Gradient overlay at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
@@ -289,5 +341,4 @@ export function GamerHero({ className = '' }: GamerHeroProps) {
   )
 }
 
-// Preload the model
-useGLTF.preload('/models/Soldier.glb')
+// REMOVED: useGLTF.preload - let it load lazily only when needed on desktop

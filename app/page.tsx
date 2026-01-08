@@ -294,9 +294,24 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Description Section */}
-        <section className="py-12 bg-gradient-to-b from-[#0a0a0f] to-[#0d0d15] border-b border-gray-800/50">
-          <div className="max-w-4xl mx-auto px-4 text-center">
+        {/* Description Section with Video Background */}
+        <section className="py-12 relative overflow-hidden border-b border-gray-800/50">
+          {/* Video background */}
+          <div className="absolute inset-0" aria-hidden="true">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="https://image.mux.com/QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI/thumbnail.webp?time=1&width=1200"
+              className="w-full h-full object-cover opacity-30"
+            >
+              <source src="https://stream.mux.com/QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI/low.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0a0a0f]/80 to-[#0d0d15]" />
+          </div>
+          <div className="relative max-w-4xl mx-auto px-4 text-center">
             <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
               Leading <strong className="text-cyan-400">esports recruiters</strong> connecting gaming talent with top organisations worldwide.
               Browse <strong className="text-cyan-400">esports jobs</strong> in pro gaming, coaching, content creation, and esports management.
