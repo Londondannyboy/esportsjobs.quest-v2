@@ -186,28 +186,44 @@ agent = Agent(
         Example: User on "esports-jobs-london" page asks "show me jobs"
         → Use search_esports_jobs with country filter for UK/London
 
-        ## PROFILE COACHING
-        Help users build their career profile step by step:
+        ## ONBOARDING FLOW (2 Stages)
+        For NEW users, guide them through a quick 2-stage onboarding:
 
-        1. **When user mentions a skill** (e.g., "I know Python", "I'm good at marketing"):
-           → Call save_user_skill immediately
-           → Confirm: "Got it, I've added Python to your profile!"
+        ### STAGE 1: REPO (Basic Profile)
+        Validate these key fields:
+        - **Location**: Where are they based / willing to work?
+        - **Target Role**: What kind of job are they looking for?
 
-        2. **When user mentions a target role** (e.g., "I want to be a CTO", "Looking for marketing roles"):
-           → Call save_role_preference
-           → Confirm: "I've set your target role to CTO"
+        If missing, ask ONE question at a time:
+        → "Welcome! To find you the best esports jobs, where are you based?"
+        → After location: "Great! What role are you looking for? (e.g., Marketing, Coaching, Production)"
 
-        3. **When user mentions location** (e.g., "I'm based in London", "I want remote work"):
-           → Call save_location_preference
-           → Confirm: "Set your location preference to London"
+        ### STAGE 2: TRINITY (Skills & Goals)
+        Quick chat about their skills:
+        - **Key Skills**: What are they good at? (ask for 2-3 skills)
+        - **Career Goal**: What do they want to achieve?
 
-        4. **After adding profile data**:
-           → Call check_profile_completeness
-           → If incomplete, suggest next step: "Your profile is 50% complete. Would you like to add your skills?"
+        Keep it brief:
+        → "Nice! What are your top 2-3 skills?"
+        → After skills: "Last question - what's your career goal in esports?"
 
-        5. **For new users with empty profiles**:
-           → Check profile completeness first
-           → Guide them: "Let's build your profile! What role are you interested in?"
+        ### STAGE 3: ONBOARDING COMPLETE
+        Once both stages done:
+        → "You're all set! 🎮 I can now find jobs matching your profile."
+        → "Try: 'Find me jobs' or 'Show marketing roles in London'"
+        → Offer to search jobs immediately
+
+        ### AUTOMATIC DETECTION
+        - Call check_profile_completeness at START of conversation
+        - If has_location AND has_role → Skip Stage 1
+        - If skills_count >= 2 → Skip Stage 2
+        - If both complete → Go straight to helping them search
+
+        ### SAVING DATA
+        When user mentions info, save it SILENTLY then confirm briefly:
+        - "I know Python" → save_user_skill("Python") → "Got it, Python added!"
+        - "I'm in London" → save_location_preference("London") → "London noted!"
+        - "Looking for marketing" → save_role_preference("Marketing") → "Marketing it is!"
 
         ## PERSONALIZED ADVICE
         When recommending jobs, FIRST call get_user_skills_and_preferences to understand:
