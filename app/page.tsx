@@ -26,6 +26,10 @@ const ProfileItemsList = dynamic(
   () => import("./components/UserProfileGraph").then(mod => mod.ProfileItemsList),
   { ssr: false }
 );
+const JobMatchInline = dynamic(
+  () => import("./components/JobMatchCard").then(mod => mod.JobMatchInline),
+  { ssr: false }
+);
 
 // Three.js Spotlight Walk - lazy loaded
 const ThreeSpotlightWalk = dynamic(
@@ -352,6 +356,53 @@ export default function Home() {
               ✓ Location set to <span className="font-medium text-white">{result.location}</span>
               {result.remote_ok && <span className="text-green-400"> (Remote OK)</span>}
             </p>
+          </div>
+        );
+      }
+      return null;
+    },
+  });
+
+  // Render job assessment results
+  useRenderToolCall({
+    name: "assess_job_fit",
+    render: ({ status, result }) => {
+      if (status === "executing") {
+        return (
+          <div className="p-4 rounded-lg bg-cyan-500/20 border border-cyan-500/30 animate-pulse">
+            <p className="text-sm text-cyan-400">Analyzing your fit for this job...</p>
+          </div>
+        );
+      }
+      if (status === "complete" && result?.success) {
+        return (
+          <div className="my-4">
+            <div className="mb-2 text-sm text-gray-400">
+              Assessment for <span className="text-white font-medium">{result.job_title}</span> at <span className="text-cyan-400">{result.job_company}</span>
+            </div>
+            <JobMatchInline
+              matchScore={result.match_score}
+              recommendation={result.recommendation}
+              matchedSkills={result.matched_skills || []}
+              missingSkills={result.missing_skills || []}
+            />
+            {result.missing_skills?.length > 0 && (
+              <div className="mt-3 text-sm text-gray-400">
+                <span className="text-red-400">Skills to develop:</span> {result.missing_skills.join(", ")}
+              </div>
+            )}
+            {result.bonus_skills?.length > 0 && (
+              <div className="mt-1 text-sm text-gray-400">
+                <span className="text-purple-400">Bonus skills you have:</span> {result.bonus_skills.join(", ")}
+              </div>
+            )}
+          </div>
+        );
+      }
+      if (status === "complete" && !result?.success) {
+        return (
+          <div className="p-3 rounded-lg bg-yellow-500/20 border border-yellow-500/30">
+            <p className="text-sm text-yellow-300">{result?.message || "Could not assess job fit"}</p>
           </div>
         );
       }

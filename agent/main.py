@@ -26,7 +26,7 @@ from pydantic_ai import Agent, RunContext
 from pydantic_ai.ag_ui import StateDeps
 from pydantic_ai.models.google import GoogleModel
 
-from tools.job_search import search_jobs, get_available_categories, get_available_countries
+from tools.job_search import search_jobs, get_available_categories, get_available_countries, get_job_by_id
 from tools.company_lookup import lookup_company
 from tools.user_context import (
     get_user_profile, save_user_profile,
@@ -175,6 +175,8 @@ agent = Agent(
         | "I'm based in London" | save_location_preference |
         | "I have 5 years experience" | save_experience_level |
         | "Is my profile complete?" | check_profile_completeness |
+        | "Am I a good fit for this job?" | assess_job_fit |
+        | "Assess my fit" / job match | assess_job_fit |
 
         ## PAGE CONTEXT AWARENESS
         ALWAYS call get_current_page when the user asks about jobs or content.
@@ -713,6 +715,123 @@ def show_user_profile_graph(ctx: RunContext[StateDeps[AppState]]) -> dict:
             "nodes": nodes,
             "links": links
         }
+    }
+
+
+@agent.tool
+def assess_job_fit(ctx: RunContext[StateDeps[AppState]], job_id: str) -> dict:
+    """Assess how well the user's skills match a specific job's requirements.
+
+    Returns a match score, matched skills, missing skills, and recommendations.
+    Use this when user asks "Am I a good fit?" or clicks "Assess My Fit" on a job.
+
+    Args:
+        job_id: The ID of the job to assess against
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Assessing job fit: job={job_id}, user={user_id}", file=sys.stderr)
+
+    # Get job details
+    job = get_job_by_id(job_id)
+    if not job:
+        return {"success": False, "message": f"Job {job_id} not found"}
+
+    # Get user's skills
+    profile = get_profile_items(user_id)
+    if not profile.get("found"):
+        return {
+            "success": False,
+            "message": "No profile data. Tell me about your skills first!",
+            "job_title": job.title,
+            "job_company": job.company
+        }
+
+    user_skills = [s["value"].lower() for s in profile.get("items", {}).get("skill", [])]
+    job_skills = [s.lower() for s in (job.skills or [])]
+
+    if not user_skills:
+        return {
+            "success": False,
+            "message": "You haven't added any skills yet. What skills do you have?",
+            "job_title": job.title,
+            "job_company": job.company,
+            "job_requires": job.skills
+        }
+
+    if not job_skills:
+        return {
+            "success": True,
+            "message": "This job doesn't list specific skills - you might be a good fit!",
+            "job_title": job.title,
+            "job_company": job.company,
+            "match_score": 75,
+            "recommendation": "apply"
+        }
+
+    # Calculate match - fuzzy matching for similar skills
+    matched = []
+    missing = []
+    bonus = []
+
+    for job_skill in job_skills:
+        found = False
+        for user_skill in user_skills:
+            # Exact match or substring match
+            if job_skill == user_skill or job_skill in user_skill or user_skill in job_skill:
+                matched.append(job_skill)
+                found = True
+                break
+        if not found:
+            missing.append(job_skill)
+
+    # Find bonus skills (user has but job doesn't require)
+    for user_skill in user_skills:
+        is_bonus = True
+        for job_skill in job_skills:
+            if job_skill == user_skill or job_skill in user_skill or user_skill in job_skill:
+                is_bonus = False
+                break
+        if is_bonus:
+            bonus.append(user_skill)
+
+    # Calculate match score
+    if len(job_skills) > 0:
+        match_score = int((len(matched) / len(job_skills)) * 100)
+    else:
+        match_score = 75
+
+    # Generate recommendation
+    if match_score >= 80:
+        recommendation = "strong_match"
+        recommendation_text = "You're a strong match! Apply with confidence."
+    elif match_score >= 50:
+        recommendation = "good_match"
+        recommendation_text = "Good fit! Consider highlighting your matching skills."
+    elif match_score >= 25:
+        recommendation = "partial_match"
+        recommendation_text = "Partial match. You could upskill or emphasize transferable skills."
+    else:
+        recommendation = "stretch"
+        recommendation_text = "This would be a stretch role. Consider gaining more relevant skills first."
+
+    return {
+        "success": True,
+        "type": "job_assessment",
+        "job_id": job_id,
+        "job_title": job.title,
+        "job_company": job.company,
+        "job_location": job.location,
+        "match_score": match_score,
+        "matched_skills": matched,
+        "missing_skills": missing,
+        "bonus_skills": bonus,
+        "recommendation": recommendation,
+        "recommendation_text": recommendation_text,
+        "total_required": len(job_skills),
+        "total_matched": len(matched)
     }
 
 
