@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { authClient } from '@/app/lib/auth/client';
 
 interface NavItem {
   label: string;
@@ -59,6 +60,9 @@ export function UnifiedHeader({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const currentSite = SITE_CONFIG[activeSite];
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
+  const firstName = user?.name?.split(' ')[0];
 
   // Check if a nav item is active based on current path
   const isNavItemActive = (href: string) => {
@@ -104,8 +108,32 @@ export function UnifiedHeader({
             ))}
           </div>
 
-          {/* Desktop CTA + Mobile menu toggle */}
+          {/* Desktop CTA + Auth + Mobile menu toggle */}
           <div className="flex items-center gap-4">
+            {/* Auth button */}
+            {!isPending && (
+              user ? (
+                <div className="hidden sm:flex items-center gap-3">
+                  <span className="text-sm text-gray-300">
+                    Hey, <span className="text-cyan-400 font-medium">{firstName}</span>
+                  </span>
+                  <button
+                    onClick={() => authClient.signOut()}
+                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="hidden sm:block text-sm text-gray-300 hover:text-cyan-400 transition-colors"
+                >
+                  Sign In
+                </Link>
+              )
+            )}
+
             <Link
               href={ctaHref}
               className="hidden sm:block bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-2 px-6 rounded btn-shine transition-all"
@@ -149,7 +177,34 @@ export function UnifiedHeader({
                 {item.label}
               </Link>
             ))}
-            <div className="pt-2 px-4">
+            <div className="pt-2 px-4 space-y-2">
+              {/* Mobile Auth */}
+              {!isPending && (
+                user ? (
+                  <div className="flex items-center justify-between py-2">
+                    <span className="text-sm text-gray-300">
+                      Hey, <span className="text-cyan-400 font-medium">{firstName}</span>
+                    </span>
+                    <button
+                      onClick={() => {
+                        authClient.signOut();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="text-sm text-gray-400 hover:text-white transition-colors"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full text-center border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-medium py-2 px-6 rounded transition-all"
+                  >
+                    Sign In
+                  </Link>
+                )
+              )}
               <Link
                 href={ctaHref}
                 onClick={() => setMobileMenuOpen(false)}

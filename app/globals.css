@@ -7,6 +7,14 @@
   --neon-cyan: #00f0ff;
   --neon-purple: #b026ff;
   --neon-pink: #ff2d95;
+  /* CopilotKit CSS Variables - Esports Theme */
+  --copilot-kit-background-color: rgba(10, 10, 15, 0.95);
+  --copilot-kit-primary-color: #22d3ee;
+  --copilot-kit-contrast-color: #ffffff;
+  --copilot-kit-secondary-color: rgba(20, 20, 30, 0.9);
+  --copilot-kit-secondary-contrast-color: #e5e5e5;
+  --copilot-kit-separator-color: rgba(34, 211, 238, 0.2);
+  --copilot-kit-muted-color: rgba(168, 85, 247, 0.5);
 }
 
 @theme inline {
@@ -24,15 +32,727 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Fix CopilotKit "Powered by" contrast issue for accessibility */
-.poweredBy {
-  /* Option 1: Hide it entirely (cleanest for accessibility) */
+/* ================================================================
+   ESPORTS-THEMED COPILOTKIT STYLING
+   ================================================================ */
+
+/* Style "Powered by CopilotKit" bar - make it black */
+.poweredBy,
+[class*="poweredBy"],
+[class*="PoweredBy"] {
+  background: #0a0a14 !important;
+  background-color: #0a0a14 !important;
+  color: rgba(255, 255, 255, 0.3) !important;
+  border-top: 1px solid rgba(34, 211, 238, 0.2) !important;
+}
+
+.poweredBy a,
+[class*="poweredBy"] a {
+  color: rgba(34, 211, 238, 0.5) !important;
+}
+
+/* Hide the diamond activity indicator in header */
+[class*="ActivityIndicator"],
+[class*="activityIndicator"],
+[class*="activity-indicator"],
+.copilotKitHeader [class*="dot"],
+.copilotKitHeader [class*="indicator"],
+.copilotKitHeader svg[class*="diamond"],
+.copilotKitHeaderActivityDot {
   display: none !important;
 }
 
-/* Alternative: If you want to keep it visible with better contrast, use this instead:
-.poweredBy {
-  color: #ffffff !important;
-  opacity: 0.8 !important;
+/* Main Window - Dark with neon border */
+.copilotKitWindow {
+  background: linear-gradient(135deg, rgba(10, 10, 20, 0.98) 0%, rgba(20, 10, 30, 0.98) 100%) !important;
+  border: 1px solid rgba(34, 211, 238, 0.3) !important;
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.15),
+    0 0 40px rgba(168, 85, 247, 0.1),
+    inset 0 0 60px rgba(34, 211, 238, 0.03) !important;
+  backdrop-filter: blur(10px) !important;
 }
+
+/* Sidebar - FULL HEIGHT, no gaps for white to show */
+.copilotKitSidebar {
+  background: #0a0a14 !important;
+  background-color: #0a0a14 !important;
+  border-left: 3px solid #22d3ee !important;
+  box-shadow:
+    -5px 0 30px rgba(34, 211, 238, 0.2),
+    -10px 0 60px rgba(168, 85, 247, 0.15) !important;
+  animation: sidebarBorderPulse 3s ease-in-out infinite !important;
+  position: relative;
+  height: 100vh !important;
+  min-height: 100vh !important;
+}
+
+/* Window fills entire sidebar */
+.copilotKitWindow {
+  background: #0a0a14 !important;
+  background-color: #0a0a14 !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Chat container fills window */
+.copilotKitChat {
+  background: #0a0a14 !important;
+  background-color: #0a0a14 !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+/* Messages area expands to fill space */
+.copilotKitMessages {
+  flex: 1 !important;
+  min-height: 0 !important;
+}
+
+@keyframes sidebarBorderPulse {
+  0%, 100% {
+    border-left-color: #22d3ee;
+    box-shadow: -5px 0 30px rgba(34, 211, 238, 0.2), -10px 0 60px rgba(168, 85, 247, 0.15);
+  }
+  33% {
+    border-left-color: #a855f7;
+    box-shadow: -5px 0 40px rgba(168, 85, 247, 0.3), -10px 0 80px rgba(34, 211, 238, 0.2);
+  }
+  66% {
+    border-left-color: #ff00aa;
+    box-shadow: -5px 0 35px rgba(255, 0, 170, 0.25), -10px 0 70px rgba(168, 85, 247, 0.2);
+  }
+}
+
+/* Header - Animated gradient with neon border */
+.copilotKitHeader {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.15) 0%, rgba(168, 85, 247, 0.2) 50%, rgba(34, 211, 238, 0.15) 100%) !important;
+  background-size: 200% 100% !important;
+  animation: headerGradientMove 4s ease-in-out infinite !important;
+  border-bottom: 2px solid transparent !important;
+  border-image: linear-gradient(90deg, #22d3ee, #a855f7, #ff00aa, #a855f7, #22d3ee) 1 !important;
+  padding: 16px !important;
+  position: relative;
+}
+
+@keyframes headerGradientMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Animated border glow under header */
+.copilotKitHeader::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #22d3ee, #a855f7, #ff00aa, #a855f7, #22d3ee);
+  background-size: 200% 100%;
+  animation: headerBorderGlow 2s linear infinite;
+}
+
+@keyframes headerBorderGlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.copilotKitHeader h1,
+.copilotKitHeader span,
+.copilotKitHeader div {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 15px rgba(34, 211, 238, 0.6), 0 0 30px rgba(168, 85, 247, 0.3) !important;
+}
+
+/* Messages area - enhanced with particle effect */
+.copilotKitMessages {
+  background: rgba(10, 10, 20, 0.3) !important;
+  padding: 16px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating particles effect in messages */
+.copilotKitMessages::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(34, 211, 238, 0.4), transparent),
+    radial-gradient(2px 2px at 80% 20%, rgba(168, 85, 247, 0.4), transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(34, 211, 238, 0.3), transparent),
+    radial-gradient(2px 2px at 60% 50%, rgba(168, 85, 247, 0.3), transparent),
+    radial-gradient(1px 1px at 90% 80%, rgba(34, 211, 238, 0.5), transparent),
+    radial-gradient(1px 1px at 10% 90%, rgba(168, 85, 247, 0.5), transparent);
+  background-size: 100% 100%;
+  animation: floatingParticles 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+@keyframes floatingParticles {
+  0% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-10px) translateX(5px); }
+  50% { transform: translateY(-5px) translateX(-5px); }
+  75% { transform: translateY(-15px) translateX(3px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+/* Ensure messages are above particles */
+.copilotKitMessages > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* User messages - Cyan theme with glow */
+.copilotKitUserMessage {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.25) 0%, rgba(34, 211, 238, 0.15) 100%) !important;
+  border: 1px solid rgba(34, 211, 238, 0.5) !important;
+  color: #ffffff !important;
+  border-radius: 16px 16px 4px 16px !important;
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.15),
+    inset 0 0 20px rgba(34, 211, 238, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  animation: userMessageGlow 3s ease-in-out infinite !important;
+}
+
+@keyframes userMessageGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.15), inset 0 0 20px rgba(34, 211, 238, 0.05); }
+  50% { box-shadow: 0 0 30px rgba(34, 211, 238, 0.25), inset 0 0 25px rgba(34, 211, 238, 0.08); }
+}
+
+/* Assistant messages - Purple theme with pulse */
+.copilotKitAssistantMessage {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%) !important;
+  border: 1px solid rgba(168, 85, 247, 0.4) !important;
+  color: #f0f0f0 !important;
+  border-radius: 16px 16px 16px 4px !important;
+  box-shadow:
+    0 0 20px rgba(168, 85, 247, 0.15),
+    inset 0 0 20px rgba(168, 85, 247, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  animation: assistantMessageGlow 4s ease-in-out infinite !important;
+}
+
+@keyframes assistantMessageGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.15), inset 0 0 20px rgba(168, 85, 247, 0.05); }
+  50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.25), inset 0 0 30px rgba(168, 85, 247, 0.08); }
+}
+
+/* ================================================================
+   INPUT AREA - FULLY DARK WITH NEON GLOW EFFECTS
+   AGGRESSIVELY TARGET ALL WHITE BACKGROUNDS
+   ================================================================ */
+
+.copilotKitInput,
+.copilotKitInput *,
+.copilotKitInput > *,
+.copilotKitInput > div,
+.copilotKitInput > div > *,
+.copilotKitInput form,
+.copilotKitInput form > * {
+  background: #0a0a14 !important;
+  background-color: #0a0a14 !important;
+}
+
+.copilotKitInput {
+  border-top: 2px solid rgba(34, 211, 238, 0.5) !important;
+  padding: 16px 16px 20px 16px !important;
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+/* Animated neon line at top of input area */
+.copilotKitInput::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #22d3ee, #a855f7, #ff00aa, #a855f7, #22d3ee);
+  background-size: 200% 100%;
+  animation: inputTopGlow 3s linear infinite;
+  z-index: 10;
+}
+
+@keyframes inputTopGlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* The actual text input */
+.copilotKitInput input,
+.copilotKitInput textarea {
+  background: rgba(15, 15, 30, 0.95) !important;
+  background-color: rgba(15, 15, 30, 0.95) !important;
+  border: 2px solid rgba(34, 211, 238, 0.5) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  padding: 14px 18px !important;
+  font-size: 15px !important;
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.copilotKitInput input:focus,
+.copilotKitInput textarea:focus {
+  border-color: #22d3ee !important;
+  box-shadow:
+    0 0 25px rgba(34, 211, 238, 0.4),
+    0 0 50px rgba(168, 85, 247, 0.2),
+    inset 0 0 20px rgba(34, 211, 238, 0.05) !important;
+  outline: none !important;
+}
+
+.copilotKitInput input::placeholder,
+.copilotKitInput textarea::placeholder {
+  color: rgba(34, 211, 238, 0.6) !important;
+}
+
+/* Remove any white from input controls wrapper */
+.copilotKitInputControls,
+.copilotKitInputControls * {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Dark background for sidebar content */
+.copilotKitSidebarContentWrapper {
+  background: #0a0a14 !important;
+}
+
+/* Ensure sidebar stays on top of main content */
+.copilotKitSidebar {
+  z-index: 9999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.copilotKitWindow {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.copilotKitChat {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  height: 100% !important;
+}
+
+.copilotKitMessages {
+  flex: 1 !important;
+  overflow-y: auto !important;
+}
+
+.copilotKitInput {
+  flex-shrink: 0 !important;
+}
+
+/* Send button - Pulsing neon glow */
+.copilotKitInputControls button,
+.copilotKitInput button[type="submit"] {
+  background: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #ff00aa 100%) !important;
+  background-size: 200% 200% !important;
+  border: none !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.4),
+    0 0 40px rgba(168, 85, 247, 0.2) !important;
+  transition: all 0.3s ease !important;
+  animation: sendButtonPulse 2s ease-in-out infinite, sendButtonGradient 3s ease infinite !important;
+}
+
+@keyframes sendButtonPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.6), 0 0 60px rgba(168, 85, 247, 0.4);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes sendButtonGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.copilotKitInputControls button:hover,
+.copilotKitInput button[type="submit"]:hover {
+  transform: scale(1.1) !important;
+  box-shadow:
+    0 0 35px rgba(34, 211, 238, 0.7),
+    0 0 70px rgba(168, 85, 247, 0.5),
+    0 0 100px rgba(255, 0, 170, 0.3) !important;
+  animation: none !important;
+}
+
+/* Open/Close button - Floating neon button */
+.copilotKitButton {
+  background: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%) !important;
+  border: none !important;
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.4),
+    0 0 40px rgba(168, 85, 247, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.copilotKitButton:hover {
+  transform: scale(1.1) !important;
+  box-shadow:
+    0 0 30px rgba(34, 211, 238, 0.6),
+    0 0 60px rgba(168, 85, 247, 0.4) !important;
+}
+
+/* Code blocks - Cyberpunk terminal look */
+.copilotKitCodeBlock {
+  background: rgba(5, 5, 15, 0.95) !important;
+  border: 1px solid rgba(34, 211, 238, 0.3) !important;
+  border-radius: 8px !important;
+}
+
+.copilotKitCodeBlockToolbar {
+  background: rgba(20, 20, 35, 0.9) !important;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.2) !important;
+}
+
+/* Markdown styling */
+.copilotKitMarkdown {
+  color: #e5e5e5 !important;
+}
+
+.copilotKitMarkdown a {
+  color: #22d3ee !important;
+  text-decoration: underline !important;
+}
+
+.copilotKitMarkdown a:hover {
+  color: #a855f7 !important;
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.5) !important;
+}
+
+.copilotKitMarkdown code {
+  background: rgba(34, 211, 238, 0.1) !important;
+  color: #22d3ee !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+}
+
+/* Activity indicator - Pulsing neon */
+.copilotKitActivityDot1,
+.copilotKitActivityDot2,
+.copilotKitActivityDot3 {
+  background: #22d3ee !important;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.5) !important;
+}
+
+/* Popup specific - Add glow around popup */
+.copilotKitPopup {
+  box-shadow:
+    0 5px 40px rgba(168, 85, 247, 0.3),
+    0 0 80px rgba(34, 211, 238, 0.15) !important;
+}
+
+/* Scrollbar styling for the chat */
+.copilotKitMessages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.copilotKitMessages::-webkit-scrollbar-track {
+  background: rgba(10, 10, 20, 0.5);
+}
+
+.copilotKitMessages::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #22d3ee, #a855f7);
+  border-radius: 3px;
+}
+
+.copilotKitMessages::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #22d3ee, #c084fc);
+}
+
+/* ================================================================
+   ANIMATED EFFECTS FOR ESPORTS FEEL
+   ================================================================ */
+
+/* Animated gradient border on sidebar */
+@keyframes copilotNeonPulse {
+  0%, 100% {
+    box-shadow:
+      -5px 0 30px rgba(168, 85, 247, 0.15),
+      inset 0 0 40px rgba(34, 211, 238, 0.02);
+  }
+  50% {
+    box-shadow:
+      -5px 0 40px rgba(34, 211, 238, 0.2),
+      inset 0 0 60px rgba(168, 85, 247, 0.03);
+  }
+}
+
+.copilotKitSidebar {
+  animation: copilotNeonPulse 4s ease-in-out infinite;
+}
+
+/* Animated header gradient */
+@keyframes copilotHeaderGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.copilotKitHeader {
+  background: linear-gradient(90deg,
+    rgba(34, 211, 238, 0.15) 0%,
+    rgba(168, 85, 247, 0.15) 25%,
+    rgba(34, 211, 238, 0.1) 50%,
+    rgba(168, 85, 247, 0.15) 75%,
+    rgba(34, 211, 238, 0.15) 100%) !important;
+  background-size: 200% 100% !important;
+  animation: copilotHeaderGradient 6s ease-in-out infinite !important;
+}
+
+/* Floating particles effect on messages (subtle) */
+@keyframes copilotParticle {
+  0% {
+    transform: translateY(100%) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100%) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.copilotKitMessages::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 2px;
+  height: 2px;
+  background: #22d3ee;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #22d3ee;
+  animation: copilotParticle 8s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.copilotKitMessages::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 20%;
+  width: 2px;
+  height: 2px;
+  background: #a855f7;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #a855f7;
+  animation: copilotParticle 10s linear infinite 2s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure messages content is above particles */
+.copilotKitMessages > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================================
+   VIDEO BACKGROUND OPTION (using CSS)
+   To enable: Add class "copilot-video-bg" to parent wrapper
+   ================================================================ */
+
+/*
+   NOTE: For actual video background, you can wrap CopilotSidebar
+   in a div with class "copilot-video-wrapper" and add a video element.
+   Example structure:
+
+   <div className="copilot-video-wrapper">
+     <video autoPlay muted loop playsInline className="copilot-bg-video">
+       <source src="..." type="video/mp4" />
+     </video>
+     <CopilotSidebar>...</CopilotSidebar>
+   </div>
 */
+
+.copilot-video-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.copilot-bg-video {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px; /* Sidebar width */
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0.12;
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* Make sidebar content visible above video */
+.copilot-video-wrapper .copilotKitSidebar {
+  z-index: 50 !important;
+}
+
+.copilot-video-wrapper .copilotKitWindow {
+  background: rgba(10, 10, 20, 0.92) !important;
+}
+
+/* ================================================================
+   ESPORTS SIDEBAR - BACKGROUND IMAGE ON MESSAGES (like lost.london)
+   ================================================================ */
+
+/* Default: Image background on messages area */
+.copilotKitMessages {
+  background-image:
+    linear-gradient(to bottom, rgba(10, 10, 20, 0.85), rgba(15, 10, 25, 0.9)),
+    url('https://image.mux.com/QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI/thumbnail.webp?time=2&width=800') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: local !important;
+}
+
+/* Input area - dark, NO WHITE */
+.copilotKitInput {
+  background: linear-gradient(180deg, rgba(10, 10, 20, 0.95), rgba(15, 10, 25, 0.98)) !important;
+}
+
+/* Sidebar container */
+.copilotKitSidebar {
+  background-color: rgba(10, 10, 20, 0.98) !important;
+}
+
+/* Header */
+.copilotKitHeader {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1), rgba(34, 211, 238, 0.1)) !important;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.3) !important;
+}
+
+/* Animated neon border glow */
+.copilotKitSidebar {
+  border-left: 2px solid #22d3ee !important;
+  box-shadow: -3px 0 20px rgba(34, 211, 238, 0.3), -3px 0 40px rgba(168, 85, 247, 0.15) !important;
+}
+
+/* Background type selector dropdown */
+.bg-type-selector {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  z-index: 10000;
+  background: rgba(10, 10, 20, 0.95);
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #22d3ee;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.bg-type-selector:hover {
+  border-color: #22d3ee;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+}
+
+.bg-type-selector option {
+  background: #0a0a14;
+  color: #fff;
+}
+
+/* ================================================================
+   BACKGROUND TYPE CLASSES (applied via dropdown)
+   ================================================================ */
+
+/* IMAGE BACKGROUND */
+.sidebar-bg-image .copilotKitMessages {
+  background-image:
+    linear-gradient(to bottom, rgba(10, 10, 20, 0.75), rgba(15, 10, 25, 0.85)),
+    url('https://image.mux.com/QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI/thumbnail.webp?time=2&width=800') !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* VIDEO BACKGROUND - uses poster image as CSS can't do video */
+.sidebar-bg-video .copilotKitMessages {
+  background-image:
+    linear-gradient(to bottom, rgba(10, 10, 20, 0.7), rgba(15, 10, 25, 0.8)),
+    url('https://image.mux.com/QeCiSMO9ZeptbSh02kbUCenrNIpwR02X0202Lcxz700HqYvI/animated.gif?width=600') !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* THREE.JS BACKGROUND - animated gradient pattern */
+.sidebar-bg-threejs .copilotKitMessages {
+  background:
+    linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+    linear-gradient(45deg, rgba(34, 211, 238, 0.1) 0%, transparent 50%),
+    rgba(10, 10, 20, 0.95) !important;
+  background-size: 400% 400% !important;
+  animation: threejsGradient 8s ease infinite !important;
+}
+
+@keyframes threejsGradient {
+  0%, 100% { background-position: 0% 50%, 100% 50%, 50% 0%, 0% 0%; }
+  25% { background-position: 50% 0%, 50% 100%, 100% 50%, 0% 0%; }
+  50% { background-position: 100% 50%, 0% 50%, 50% 100%, 0% 0%; }
+  75% { background-position: 50% 100%, 50% 0%, 0% 50%, 0% 0%; }
+}
+
+/* Add scanline effect for threejs */
+.sidebar-bg-threejs .copilotKitMessages::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(34, 211, 238, 0.03) 2px,
+    rgba(34, 211, 238, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* GRADIENT ONLY */
+.sidebar-bg-gradient .copilotKitMessages {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 20, 0.98) 0%,
+    rgba(20, 15, 35, 0.95) 30%,
+    rgba(15, 10, 25, 0.98) 70%,
+    rgba(10, 10, 20, 0.98) 100%
+  ) !important;
+}

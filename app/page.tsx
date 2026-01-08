@@ -16,6 +16,33 @@ const CopilotSidebar = dynamic(
   { ssr: false }
 );
 
+
+// Three.js Career Showcase - lazy loaded
+const ThreeCareerShowcase = dynamic(
+  () => import("./components/ThreeCareerShowcase").then(mod => mod.ThreeCareerShowcase),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[500px] flex items-center justify-center bg-gradient-to-b from-gray-900 to-black">
+        <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    )
+  }
+);
+
+// Three.js Spotlight Walk - lazy loaded
+const ThreeSpotlightWalk = dynamic(
+  () => import("./components/ThreeSpotlightWalk").then(mod => mod.ThreeSpotlightWalk),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[500px] flex items-center justify-center bg-gradient-to-b from-black to-gray-900">
+        <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    )
+  }
+);
+
 // Dynamic imports for heavy components
 const GamerHero = dynamic(
   () => import("./components/GamerHero").then(mod => mod.GamerHero),
@@ -48,6 +75,10 @@ const PopularSearches = dynamic(
 const AnimatedTagline = dynamic(
   () => import("./components/AnimatedTagline").then(mod => ({ default: mod.AnimatedTagline })),
   { loading: () => <div className="mb-8 h-[60px] sm:h-[72px] md:h-[88px] lg:h-[104px]" /> }
+);
+const AnimatedSectionHeader = dynamic(
+  () => import("./components/AnimatedSectionHeader").then(mod => ({ default: mod.AnimatedSectionHeader })),
+  { loading: () => <div className="h-24" /> }
 );
 const NewsSection = dynamic(
   () => import("./components/NewsSection").then(mod => ({ default: mod.NewsSection })),
@@ -369,9 +400,16 @@ export default function Home() {
         <section className="py-24 bg-[#0a0a0f]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-black mb-8 text-center">
-                Your Esports Recruitment Agency for <span className="text-cyan-400">Gaming Careers</span>
-              </h2>
+              <div className="mb-8">
+                <AnimatedSectionHeader
+                  text="Your Esports Recruitment Agency for Gaming Careers"
+                  highlightText="Gaming Careers"
+                  firstName={firstName}
+                  personalizedText="Your Esports Partner for Gaming Careers, {name}"
+                  theme="cyan"
+                  showUnderline={false}
+                />
+              </div>
               <div className="mb-8 p-4 rounded-xl bg-gradient-to-r from-cyan-900/20 to-purple-900/20 border border-cyan-500/30">
                 <p className="text-sm text-gray-400 text-center mb-3"><strong className="text-cyan-400">Trusted Industry Sources:</strong></p>
                 <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -394,12 +432,24 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Three.js Transition - Spotlight Walk */}
+        <section className="py-8 bg-gradient-to-b from-[#0a0a0f] via-black to-[#0d0d15] overflow-hidden">
+          <ThreeSpotlightWalk />
+        </section>
+
         {/* Featured Jobs */}
         <section id="esports-jobs" className="py-24 bg-[#0d0d15]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-4">Real <span className="text-cyan-400">Esports Jobs</span> from Our Esports Recruitment Agency</h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">Live job listings aggregated from LinkedIn, company career pages, and public job boards. Apply direct to employers.</p>
+            <div className="mb-16">
+              <AnimatedSectionHeader
+                text="Real Esports Jobs from Our Recruitment Agency"
+                highlightText="Esports Jobs"
+                firstName={firstName}
+                personalizedText="Real Esports Jobs for {name}"
+                subtitle="Live job listings aggregated from LinkedIn, company career pages, and public job boards. Apply direct to employers."
+                personalizedSubtitle="Live listings just for you, {name}. Apply direct to employers."
+                theme="cyan"
+              />
             </div>
 
             {/* Featured Video Job */}
@@ -502,9 +552,16 @@ export default function Home() {
         {/* Job Categories */}
         <section id="categories" className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-4">Gaming Job <span className="text-purple-400">Categories</span></h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">Explore career opportunities across every area of the esports and gaming industry.</p>
+            <div className="mb-16">
+              <AnimatedSectionHeader
+                text="Gaming Job Categories"
+                highlightText="Categories"
+                firstName={firstName}
+                personalizedText="Explore Job Categories, {name}"
+                subtitle="Explore career opportunities across every area of the esports and gaming industry."
+                personalizedSubtitle="Find your perfect role across esports and gaming, {name}."
+                theme="purple"
+              />
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {jobCategories.map((category, index) => (
@@ -523,12 +580,37 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Three.js Career Journey Showcase */}
+        <section className="py-16 bg-gradient-to-b from-black via-gray-900/50 to-black overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-8">
+              <AnimatedSectionHeader
+                text="Your Career Journey"
+                highlightText="Career Journey"
+                firstName={firstName}
+                personalizedText="{name}'s Career Journey"
+                subtitle="From starting out to going pro - visualize your path in esports"
+                personalizedSubtitle="From where you are now to going pro - we'll help you get there, {name}"
+                theme="rainbow"
+              />
+            </div>
+            <ThreeCareerShowcase />
+          </div>
+        </section>
+
         {/* Career Paths */}
         <section id="careers" className="py-24 animated-gradient">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-4">Gaming <span className="text-cyan-400">Career Paths</span></h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">Whether you want to compete, create, broadcast, or build businesses, there is an esports career for you.</p>
+            <div className="mb-16">
+              <AnimatedSectionHeader
+                text="Gaming Career Paths"
+                highlightText="Career Paths"
+                firstName={firstName}
+                personalizedText="{name}'s Gaming Career Paths"
+                subtitle="Whether you want to compete, create, broadcast, or build businesses, there is an esports career for you."
+                personalizedSubtitle="Whether you want to compete, create, broadcast, or build businesses, {name} - there's a path for you."
+                theme="cyan"
+              />
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               {careerPaths.map((path, index) => (
@@ -552,9 +634,13 @@ export default function Home() {
         {/* Industry Statistics */}
         <section className="py-24 bg-[#0a0a0f]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-4">Industry <span className="text-purple-400">Growth</span></h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">The esports job market is expanding rapidly with new opportunities every day.</p>
+            <div className="mb-16">
+              <AnimatedSectionHeader
+                text="Industry Growth"
+                highlightText="Growth"
+                subtitle="The esports job market is expanding rapidly with new opportunities every day."
+                theme="purple"
+              />
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               {industryStats.map((item, index) => (
@@ -570,9 +656,15 @@ export default function Home() {
         {/* YouTube Videos Section */}
         <section className="py-24 bg-[#0d0d15]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-black mb-4">Learn About <span className="text-cyan-400">Gaming Careers</span></h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">Watch these videos to learn what it&apos;s like to work in esports and how to break into the industry.</p>
+            <div className="mb-12">
+              <AnimatedSectionHeader
+                text="Learn About Gaming Careers"
+                highlightText="Gaming Careers"
+                firstName={firstName}
+                personalizedText="Learn About Gaming Careers, {name}"
+                subtitle="Watch these videos to learn what it's like to work in esports and how to break into the industry."
+                theme="cyan"
+              />
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               {esportsCareerVideos.map((video) => (
@@ -641,9 +733,16 @@ export default function Home() {
         {/* How It Works */}
         <section className="py-24 bg-[#0d0d15]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-4">How to Land Your <span className="text-cyan-400">Dream Role</span></h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">Follow these steps to find and apply for esports jobs that match your skills and passion.</p>
+            <div className="mb-16">
+              <AnimatedSectionHeader
+                text="How to Land Your Dream Role"
+                highlightText="Dream Role"
+                firstName={firstName}
+                personalizedText="How to Land Your Dream Role, {name}"
+                subtitle="Follow these steps to find and apply for esports jobs that match your skills and passion."
+                personalizedSubtitle="Here's your roadmap to landing that dream esports job, {name}."
+                theme="cyan"
+              />
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {[

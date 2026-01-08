@@ -1,7 +1,17 @@
 'use client'
 
-// This file contains ONLY Three.js code - loaded separately from VideoHero
-// This enables true lazy loading of the heavy 3D libraries
+/**
+ * Three.js Hero Scene - Animated 3D Character
+ *
+ * Built with three.js by mrdoob (Ricardo Cabello)
+ * https://github.com/mrdoob/three.js - MIT License
+ *
+ * Model: Soldier.glb from Mixamo (https://www.mixamo.com)
+ * React Three Fiber: https://docs.pmnd.rs/react-three-fiber
+ *
+ * This file contains ONLY Three.js code - loaded separately from VideoHero
+ * This enables true lazy loading of the heavy 3D libraries
+ */
 
 import { Suspense, useRef, useEffect, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
