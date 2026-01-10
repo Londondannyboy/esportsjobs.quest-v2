@@ -27,8 +27,8 @@ const SITE_CONFIG = {
     logoText: 'EP',
   },
   jobs: {
-    name: 'ESPORTS RECRUITMENT',
-    logoText: 'ER',
+    name: 'MVP ACTOR',
+    logoText: 'MVP',
   },
   news: {
     name: 'ESPORTS NEWS',
@@ -39,7 +39,7 @@ const SITE_CONFIG = {
 const SITE_TABS = [
   { id: 'events' as const, label: 'Events', href: 'https://esportsevent.quest' },
   { id: 'production' as const, label: 'Production', href: 'https://esportsproduction.quest' },
-  { id: 'jobs' as const, label: 'Jobs', href: 'https://mvp.actor' },
+  { id: 'jobs' as const, label: 'MVP Actor', href: 'https://mvp.actor' },
   { id: 'news' as const, label: 'News', href: 'https://esportsnews.quest' },
 ];
 
