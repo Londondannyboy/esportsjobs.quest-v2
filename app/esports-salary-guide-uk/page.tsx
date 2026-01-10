@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-salary-guide-uk",
-      url: "https://esportsjobs.quest/esports-salary-guide-uk",
+      "@id": "https://mvp.actor/esports-salary-guide-uk",
+      url: "https://mvp.actor/esports-salary-guide-uk",
       name: "Esports Salary Guide UK 2025 | What Do Esports Jobs Pay?",
       description: "Complete UK esports salary guide for 2025. Salaries for coaches, analysts, marketers, broadcasters and more.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://esportsjobs.quest/esports-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "Salary Guide", item: "https://esportsjobs.quest/esports-salary-guide-uk" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://mvp.actor/esports-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "Salary Guide", item: "https://mvp.actor/esports-salary-guide-uk" }
       ]
     },
     {
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   title: "Esports Salary UK 💰 2025 Pay Guide",
   description: "📊 Esports salary UK guide 2025 - what do esports jobs pay? Salaries for coaches, analysts, marketers & broadcasters. Know your worth in gaming.",
   keywords: "esports salary uk, esports jobs pay, gaming salaries",
-  alternates: { canonical: "https://esportsjobs.quest/esports-salary-guide-uk" },
+  alternates: { canonical: "https://mvp.actor/esports-salary-guide-uk" },
 };
 
 const salaries = [

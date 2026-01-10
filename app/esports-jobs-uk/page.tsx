@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Esports Jobs UK 🇬🇧 British Gaming Careers",
     description: "🇬🇧 Esports jobs UK - browse coaching, marketing & production roles at top British gaming organisations.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-jobs-uk",
+    url: "https://mvp.actor/esports-jobs-uk",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "🇬🇧 Esports jobs UK - browse roles at top British gaming organisations.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-jobs-uk",
+    canonical: "https://mvp.actor/esports-jobs-uk",
   },
 };
 
@@ -163,7 +163,7 @@ export default function EsportsJobsUK() {
     "@type": "WebPage",
     name: "Esports Jobs UK - Complete Guide 2025",
     description: "Comprehensive guide to finding esports jobs in the UK, including salaries, top companies, and career paths.",
-    url: "https://esportsjobs.quest/esports-jobs-uk",
+    url: "https://mvp.actor/esports-jobs-uk",
     mainEntity: {
       "@type": "FAQPage",
       mainEntity: faqs.map((faq) => ({
@@ -178,8 +178,8 @@ export default function EsportsJobsUK() {
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://esportsjobs.quest/esports-jobs-uk" },
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://mvp.actor/esports-jobs-uk" },
       ],
     },
   };

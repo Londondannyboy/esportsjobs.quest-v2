@@ -153,7 +153,7 @@ agent = Agent(
     model=GoogleModel('gemini-2.0-flash'),
     deps_type=StateDeps[AppState],
     system_prompt=dedent("""
-        You are an enthusiastic AI assistant for EsportsJobs.quest, helping users find careers in esports and gaming.
+        You are an enthusiastic AI career coach for MVP Actor, helping users build their gaming and esports careers.
 
         ## CRITICAL: ALWAYS USE YOUR TOOLS!
         You MUST use tools to answer ALL questions. NEVER make up information.
@@ -170,10 +170,14 @@ agent = Agent(
         | "Tell me about [company]" | lookup_esports_company |
         | "Find/show jobs" | search_esports_jobs |
         | "Save this job" | save_job_to_favorites |
-        | "I know Python" / skills | save_user_skill |
-        | "Looking for CTO roles" | save_role_preference |
-        | "I'm based in London" | save_location_preference |
-        | "I have 5 years experience" | save_experience_level |
+        | "I know Python" / skills | save_user_skill (→ Repo) |
+        | "Looking for CTO roles" | save_role_preference (→ Repo) |
+        | "I'm based in London" | save_location_preference (→ Repo) |
+        | "I have 5 years experience" | save_experience_level (→ Velo) |
+        | "My why is..." / purpose | save_career_mission (→ Trinity) |
+        | "I value teamwork" | save_user_values (→ Trinity) |
+        | "In 5 years I want..." | save_long_term_vision (→ Trinity) |
+        | "My career path was..." | save_career_timeline (→ Velo) |
         | "Is my profile complete?" | check_profile_completeness |
         | "Check my characters" | check_character_completion |
         | "Which characters are done?" | check_character_completion |
@@ -190,28 +194,42 @@ agent = Agent(
         Example: User on "esports-jobs-london" page asks "show me jobs"
         → Use search_esports_jobs with country filter for UK/London
 
-        ## CHARACTER-BASED PROFILE SYSTEM
+        ## CHARACTER-BASED PROFILE SYSTEM (Updated Jan 2025)
         Users build their profile through 4 characters. Guide them to complete each:
 
-        ### REPO - Your Foundation (Cyan)
-        - **What it tracks**: Location, Target Role
-        - **Questions**: "Where are you based?" → "What role are you looking for?"
-        - **Complete message**: "Repo is set - your foundation is solid!"
+        ### REPO - Your Foundation (Cyan) 🏛️
+        - **What it tracks**: Location, Target Role, Skills (need 3+)
+        - **Stages**: Ungrounded → Planted → Rooted → Anchored
+        - **Questions**:
+          1. "Where are you based?" (save_location_preference)
+          2. "What role are you targeting?" (save_role_preference)
+          3. "What are your top 3 skills?" (save_user_skill - call 3 times)
+        - **Complete message**: "🏛️ REPO UNLOCKED! Your foundation is SOLID!"
 
-        ### TRINITY - Your Identity (Purple)
-        - **What it tracks**: Skills (need 2+), Career Goal
-        - **Questions**: "What are your top 2-3 skills?" → "What's your career goal?"
-        - **Complete message**: "Trinity unlocked - I know your strengths!"
+        ### TRINITY - Your Soul (Purple) 🔮
+        - **What it tracks**: Career Mission (why), Values, Long-term Vision
+        - **Stages**: Searching → Awakening → Enlightened
+        - **Questions**:
+          1. "What's your 'why'? What drives you in your career?" (save_career_mission)
+          2. "What values guide your work?" (save_user_values)
+          3. "Where do you see yourself in 5-10 years?" (save_long_term_vision)
+        - **Complete message**: "🔮 TRINITY AWAKENED! Your purpose is CLEAR!"
+        - **Note**: Trinity is about PURPOSE, not skills (skills moved to Repo)
 
-        ### VELO - Your Velocity (Pink)
-        - **What it tracks**: Years of Experience, Career History
-        - **Questions**: "How many years of experience do you have?" → "Tell me about your career path"
-        - **Complete message**: "Velo activated - your momentum is clear!"
+        ### VELO - Your Journey (Pink) 🚀
+        - **What it tracks**: Years of Experience, Career Timeline
+        - **Stages**: Standing Still → Walking → Running → Flying
+        - **Questions**:
+          1. "How many years of experience do you have?" (save_experience_level)
+          2. "Tell me about your career journey - key milestones?" (save_career_timeline)
+        - **Complete message**: "🚀 VELO ACTIVATED! Your momentum is UNSTOPPABLE!"
 
-        ### REACH - Your Network (Gold)
-        - **What it tracks**: Saved Jobs, Profile Visibility
-        - **Always complete** - optional character for expansion
-        - **Message**: "Reach expanded - you're connected!"
+        ### REACH - Your Network (Gold) 🌐
+        - **What it tracks**: Connections, Messages, Coaches
+        - **Stages**: Solo → Connected → Networked
+        - **Always complete** - but encourage networking
+        - **Message**: "🌐 REACH EXPANDED! You're connected!"
+        - **Features**: Messaging, Coach directory (coming soon)
 
         ## ONBOARDING FLOW
         For NEW users, guide them through characters in order:
@@ -219,14 +237,16 @@ agent = Agent(
         1. **Check status first**: Call check_character_completion at START
         2. **Guide sequentially**: Repo → Trinity → Velo → Ready to search!
         3. **Skip completed**: If a character is done, move to the next
-        4. **Celebrate**: When all complete: "All characters unlocked! Let's find your perfect role! 🏆"
+        4. **Celebrate**: When all complete: "🏆 ALL CHARACTERS UNLOCKED! Let's find your perfect role!"
 
         ### SAVING DATA
         When user mentions info, save it SILENTLY then confirm briefly:
-        - "I know Python" → save_user_skill("Python") → "Got it, Python added to Trinity!"
+        - "I know Python" → save_user_skill("Python") → "Got it, Python added to Repo!"
         - "I'm in London" → save_location_preference("London") → "London set for Repo!"
-        - "Looking for marketing" → save_role_preference("Marketing") → "Marketing role locked in!"
+        - "Looking for CTO" → save_role_preference("CTO") → "CTO role locked in for Repo!"
         - "5 years experience" → save_experience_level(5) → "5 years noted for Velo!"
+        - "I want to lead teams" → save_career_mission("Lead engineering teams") → "Purpose captured for Trinity!"
+        - "I value collaboration" → save_user_values("Collaboration") → "Value added to Trinity!"
 
         ### AUTOMATIC DETECTION
         - Call check_character_completion at START of conversation
@@ -614,6 +634,147 @@ def save_experience_level(ctx: RunContext[StateDeps[AppState]], years: int) -> d
     return result
 
 
+# =====
+# Trinity (Soul/Purpose) Tools - NEW Jan 2025
+# =====
+
+@agent.tool
+def save_career_mission(ctx: RunContext[StateDeps[AppState]], mission: str) -> dict:
+    """Save user's career mission - their 'why'. This goes to Trinity character.
+
+    Call this when user shares WHY they do what they do, their purpose, or career mission.
+    Examples: "I want to help teams succeed", "My mission is to democratize esports"
+
+    Args:
+        mission: The user's career mission/purpose statement
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Saving career mission for user {user_id}: {mission[:50]}...", file=sys.stderr)
+
+    result = save_profile_item(
+        user_id=user_id,
+        item_type="career_mission",
+        value=mission,
+        confirmed=True
+    )
+
+    if result.get("success"):
+        return {
+            "success": True,
+            "message": f"Your purpose is captured: \"{mission[:50]}...\"",
+            "character": "Trinity",
+            "field": "career_mission"
+        }
+    return result
+
+
+@agent.tool
+def save_user_values(ctx: RunContext[StateDeps[AppState]], value: str) -> dict:
+    """Save a core value to user's profile. This goes to Trinity character.
+
+    Call this when user mentions values important to them.
+    Examples: "I value collaboration", "Integrity is important to me", "I believe in teamwork"
+
+    Args:
+        value: A core value (e.g., "Collaboration", "Integrity", "Innovation")
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Saving value '{value}' for user {user_id}", file=sys.stderr)
+
+    result = save_profile_item(
+        user_id=user_id,
+        item_type="values",
+        value=value,
+        confirmed=True
+    )
+
+    if result.get("success"):
+        return {
+            "success": True,
+            "message": f"Added '{value}' to your core values",
+            "character": "Trinity",
+            "field": "values"
+        }
+    return result
+
+
+@agent.tool
+def save_long_term_vision(ctx: RunContext[StateDeps[AppState]], vision: str) -> dict:
+    """Save user's long-term career vision (5-10 years). This goes to Trinity character.
+
+    Call this when user shares where they see themselves in the future.
+    Examples: "In 5 years I want to lead a team", "My long-term goal is to start my own agency"
+
+    Args:
+        vision: The user's long-term career vision
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Saving long-term vision for user {user_id}: {vision[:50]}...", file=sys.stderr)
+
+    result = save_profile_item(
+        user_id=user_id,
+        item_type="long_term_vision",
+        value=vision,
+        confirmed=True
+    )
+
+    if result.get("success"):
+        return {
+            "success": True,
+            "message": f"Vision captured: \"{vision[:50]}...\"",
+            "character": "Trinity",
+            "field": "long_term_vision"
+        }
+    return result
+
+
+@agent.tool
+def save_career_timeline(ctx: RunContext[StateDeps[AppState]], milestone: str, year: str = None) -> dict:
+    """Save a career milestone to user's timeline. This goes to Velo character.
+
+    Call this when user shares a career milestone, past job, or significant achievement.
+    Examples: "I worked at Riot Games", "I was promoted to lead", "Started my career at ESL"
+
+    Args:
+        milestone: Description of the career milestone
+        year: Optional year when this occurred (e.g., "2022")
+    """
+    user_id = get_effective_user_id(ctx.deps.state.user)
+    if not user_id:
+        return {"success": False, "message": "User not logged in"}
+
+    print(f"[Tool] Saving career milestone for user {user_id}: {milestone}", file=sys.stderr)
+
+    metadata = {"year": year} if year else None
+
+    result = save_profile_item(
+        user_id=user_id,
+        item_type="career_timeline",
+        value=milestone,
+        metadata=metadata,
+        confirmed=True
+    )
+
+    if result.get("success"):
+        year_note = f" ({year})" if year else ""
+        return {
+            "success": True,
+            "message": f"Added to your journey: {milestone}{year_note}",
+            "character": "Velo",
+            "field": "career_timeline"
+        }
+    return result
+
+
 @agent.tool
 def check_profile_completeness(ctx: RunContext[StateDeps[AppState]]) -> dict:
     """Check how complete the user's profile is.
@@ -946,8 +1107,8 @@ ag_ui_app = agent.to_ag_ui(deps=StateDeps(AppState()))
 # Main FastAPI App
 # =====
 main_app = FastAPI(
-    title="Esports Jobs Agent",
-    description="AI agent for finding esports jobs - Pydantic AI with AG-UI",
+    title="MVP Actor Agent",
+    description="MVP Actor AI Career Coach - Pydantic AI with AG-UI",
     version="2.0.0"
 )
 
@@ -1024,14 +1185,14 @@ async def startup_event():
 # Health check
 @main_app.get("/health")
 async def health():
-    return {"status": "ok", "agent": "esports-jobs", "version": "2.0"}
+    return {"status": "ok", "agent": "mvp-actor", "version": "2.0"}
 
 
 @main_app.get("/")
 async def root():
     return {
         "status": "ok",
-        "agent": "esports-jobs",
+        "agent": "mvp-actor",
         "endpoints": ["/agui (AG-UI for CopilotKit)", "/chat/completions (CLM for Hume)", "/health"]
     }
 

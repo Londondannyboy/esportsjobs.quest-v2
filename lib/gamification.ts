@@ -48,6 +48,7 @@ export function calculateXP(
   breakdown.push({ category: 'Account Created', xp: 50, description: 'Welcome bonus' });
   total += 50;
 
+  // ===== REPO (Foundation) =====
   // Location (50 XP)
   if (items.location && items.location.length > 0) {
     breakdown.push({ category: 'Location Set', xp: 50, description: 'Foundation established' });
@@ -60,7 +61,7 @@ export function calculateXP(
     total += 75;
   }
 
-  // Skills (50 XP each, max 250)
+  // Skills - now part of Repo (50 XP each, max 250)
   const skillCount = items.skill?.length || 0;
   if (skillCount > 0) {
     const skillXP = Math.min(skillCount * 50, 250);
@@ -72,21 +73,59 @@ export function calculateXP(
     total += skillXP;
   }
 
-  // Career Goal (100 XP)
-  if (items.career_goal && items.career_goal.length > 0) {
+  // ===== TRINITY (Soul/Purpose) =====
+  // Career Mission (100 XP) - new field
+  if (items.career_mission && items.career_mission.length > 0) {
+    breakdown.push({ category: 'Career Mission', xp: 100, description: 'Purpose discovered' });
+    total += 100;
+  }
+
+  // Legacy fallback: Career Goal (100 XP)
+  if (!items.career_mission && items.career_goal && items.career_goal.length > 0) {
     breakdown.push({ category: 'Career Goal', xp: 100, description: 'Vision articulated' });
     total += 100;
   }
 
+  // Values (25 XP each, max 75)
+  const valuesCount = items.values?.length || 0;
+  if (valuesCount > 0) {
+    const valuesXP = Math.min(valuesCount * 25, 75);
+    breakdown.push({
+      category: 'Values',
+      xp: valuesXP,
+      description: `${valuesCount} core value${valuesCount > 1 ? 's' : ''} defined`
+    });
+    total += valuesXP;
+  }
+
+  // Long Term Vision (75 XP)
+  if (items.long_term_vision && items.long_term_vision.length > 0) {
+    breakdown.push({ category: 'Long Term Vision', xp: 75, description: 'Future envisioned' });
+    total += 75;
+  }
+
+  // ===== VELO (Journey) =====
   // Experience Years (75 XP)
   if (items.experience_years && items.experience_years.length > 0) {
     breakdown.push({ category: 'Experience', xp: 75, description: 'Journey tracked' });
     total += 75;
   }
 
-  // Career History (25 XP each, max 100)
+  // Career Timeline - new field (25 XP each, max 100)
+  const timelineCount = items.career_timeline?.length || 0;
+  if (timelineCount > 0) {
+    const timelineXP = Math.min(timelineCount * 25, 100);
+    breakdown.push({
+      category: 'Career Timeline',
+      xp: timelineXP,
+      description: `${timelineCount} milestone${timelineCount > 1 ? 's' : ''} recorded`
+    });
+    total += timelineXP;
+  }
+
+  // Legacy fallback: Career History
   const historyCount = items.career_history?.length || 0;
-  if (historyCount > 0) {
+  if (historyCount > 0 && timelineCount === 0) {
     const historyXP = Math.min(historyCount * 25, 100);
     breakdown.push({
       category: 'Career History',
@@ -94,6 +133,12 @@ export function calculateXP(
       description: `${historyCount} milestone${historyCount > 1 ? 's' : ''} recorded`
     });
     total += historyXP;
+  }
+
+  // Career Context (50 XP)
+  if (items.career_context && items.career_context.length > 0) {
+    breakdown.push({ category: 'Career Context', xp: 50, description: 'Learnings captured' });
+    total += 50;
   }
 
   // Saved Jobs (20 XP each, max 200)
@@ -176,11 +221,12 @@ export interface Achievement {
   icon: string;
   rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
   color: string;
+  relatedCharacter?: CharacterName; // For badge click navigation
   check: (items: ProfileItems, savedJobsCount: number, assessmentsCount: number) => boolean;
 }
 
 export const ACHIEVEMENTS: Achievement[] = [
-  // Profile Achievements
+  // ===== REPO (Foundation) Achievements =====
   {
     id: 'first_steps',
     name: 'First Steps',
@@ -188,6 +234,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: '👣',
     rarity: 'common',
     color: '#6b7280',
+    relatedCharacter: 'Repo',
     check: (items) => (items.location?.length || 0) > 0,
   },
   {
@@ -197,6 +244,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: '🎯',
     rarity: 'common',
     color: '#6b7280',
+    relatedCharacter: 'Repo',
     check: (items) => (items.role?.length || 0) > 0,
   },
   {
@@ -206,6 +254,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: '🧩',
     rarity: 'uncommon',
     color: '#22c55e',
+    relatedCharacter: 'Repo',
     check: (items) => (items.skill?.length || 0) >= 3,
   },
   {
@@ -215,28 +264,9 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: '🎭',
     rarity: 'rare',
     color: '#3b82f6',
+    relatedCharacter: 'Repo',
     check: (items) => (items.skill?.length || 0) >= 5,
   },
-  {
-    id: 'visionary',
-    name: 'Visionary',
-    description: 'Set a career goal',
-    icon: '🔮',
-    rarity: 'uncommon',
-    color: '#22c55e',
-    check: (items) => (items.career_goal?.length || 0) > 0,
-  },
-  {
-    id: 'veteran',
-    name: 'Veteran',
-    description: 'Have 5+ years experience',
-    icon: '🎖️',
-    rarity: 'rare',
-    color: '#3b82f6',
-    check: (items) => parseInt(items.experience_years?.[0]?.value || '0') >= 5,
-  },
-
-  // Character Achievements
   {
     id: 'repo_unlocked',
     name: 'Foundation Solid',
@@ -244,22 +274,78 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: '🏛️',
     rarity: 'uncommon',
     color: '#22d3ee',
+    relatedCharacter: 'Repo',
     check: (items) => {
       const completions = getAllCharacterCompletions(items);
       return completions.find(c => c.name === 'Repo')?.isComplete || false;
     },
   },
+
+  // ===== TRINITY (Soul/Purpose) Achievements =====
+  {
+    id: 'mission_defined',
+    name: 'Mission Defined',
+    description: 'Define your career mission',
+    icon: '🎯',
+    rarity: 'uncommon',
+    color: '#a855f7',
+    relatedCharacter: 'Trinity',
+    check: (items) => (items.career_mission?.length || 0) > 0 || (items.career_goal?.length || 0) > 0,
+  },
+  {
+    id: 'values_set',
+    name: 'Values Champion',
+    description: 'Define your core values',
+    icon: '💎',
+    rarity: 'uncommon',
+    color: '#a855f7',
+    relatedCharacter: 'Trinity',
+    check: (items) => (items.values?.length || 0) >= 1,
+  },
+  {
+    id: 'visionary',
+    name: 'Visionary',
+    description: 'Set your long-term vision',
+    icon: '🔮',
+    rarity: 'rare',
+    color: '#a855f7',
+    relatedCharacter: 'Trinity',
+    check: (items) => (items.long_term_vision?.length || 0) > 0,
+  },
   {
     id: 'trinity_unlocked',
-    name: 'Identity Revealed',
+    name: 'Soul Awakened',
     description: 'Complete the Trinity character',
     icon: '🔮',
     rarity: 'rare',
     color: '#a855f7',
+    relatedCharacter: 'Trinity',
     check: (items) => {
       const completions = getAllCharacterCompletions(items);
       return completions.find(c => c.name === 'Trinity')?.isComplete || false;
     },
+  },
+
+  // ===== VELO (Journey) Achievements =====
+  {
+    id: 'veteran',
+    name: 'Veteran',
+    description: 'Have 5+ years experience',
+    icon: '🎖️',
+    rarity: 'rare',
+    color: '#ff00aa',
+    relatedCharacter: 'Velo',
+    check: (items) => parseInt(items.experience_years?.[0]?.value || '0') >= 5,
+  },
+  {
+    id: 'journey_tracker',
+    name: 'Journey Tracker',
+    description: 'Add career milestones to your timeline',
+    icon: '📍',
+    rarity: 'uncommon',
+    color: '#ff00aa',
+    relatedCharacter: 'Velo',
+    check: (items) => (items.career_timeline?.length || items.career_history?.length || 0) >= 2,
   },
   {
     id: 'velo_unlocked',
@@ -268,29 +354,22 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: '🚀',
     rarity: 'rare',
     color: '#ff00aa',
+    relatedCharacter: 'Velo',
     check: (items) => {
       const completions = getAllCharacterCompletions(items);
       return completions.find(c => c.name === 'Velo')?.isComplete || false;
     },
   },
-  {
-    id: 'all_characters',
-    name: 'Full Squad',
-    description: 'Unlock all 4 characters',
-    icon: '👑',
-    rarity: 'epic',
-    color: '#f59e0b',
-    check: (items) => getOverallCompletion(items) === 100,
-  },
 
-  // Activity Achievements
+  // ===== REACH (Network) Achievements =====
   {
     id: 'job_hunter',
     name: 'Job Hunter',
     description: 'Save your first job',
     icon: '📌',
     rarity: 'common',
-    color: '#6b7280',
+    color: '#ffd700',
+    relatedCharacter: 'Reach',
     check: (_, savedJobsCount) => savedJobsCount >= 1,
   },
   {
@@ -299,9 +378,12 @@ export const ACHIEVEMENTS: Achievement[] = [
     description: 'Save 5 jobs',
     icon: '🔍',
     rarity: 'uncommon',
-    color: '#22c55e',
+    color: '#ffd700',
+    relatedCharacter: 'Reach',
     check: (_, savedJobsCount) => savedJobsCount >= 5,
   },
+
+  // ===== Activity Achievements =====
   {
     id: 'strategic_player',
     name: 'Strategic Player',
@@ -309,6 +391,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: '📊',
     rarity: 'rare',
     color: '#3b82f6',
+    relatedCharacter: 'Reach',
     check: (_, __, assessmentsCount) => assessmentsCount >= 3,
   },
   {
@@ -318,7 +401,19 @@ export const ACHIEVEMENTS: Achievement[] = [
     icon: '📈',
     rarity: 'epic',
     color: '#f59e0b',
+    relatedCharacter: 'Reach',
     check: (_, __, assessmentsCount) => assessmentsCount >= 10,
+  },
+
+  // ===== Ultimate Achievements =====
+  {
+    id: 'all_characters',
+    name: 'Full Squad',
+    description: 'Unlock all 4 characters',
+    icon: '👑',
+    rarity: 'epic',
+    color: '#f59e0b',
+    check: (items) => getOverallCompletion(items) === 100,
   },
 
   // Legendary
@@ -368,36 +463,36 @@ export const CHARACTER_DIALOGUES: CharacterDialogue[] = [
   {
     character: 'Repo',
     messages: [
-      { condition: 'empty', text: "Where in the world are you? Let's establish your base of operations!" },
-      { condition: 'partial', text: "Good start! Now tell me what role you're targeting..." },
-      { condition: 'complete', text: "Your foundation is SOLID. I know exactly where you stand!" },
+      { condition: 'empty', text: "Where are you based? What role do you seek? What skills do you bring? Let's build your foundation!" },
+      { condition: 'partial', text: "Good start! Add your location, target role, and at least 3 skills to anchor yourself." },
+      { condition: 'complete', text: "🏛️ ANCHORED! Your foundation is SOLID - location, role, and skills all set!" },
       { condition: 'default', text: "I am Repo, guardian of your foundation." },
     ],
   },
   {
     character: 'Trinity',
     messages: [
-      { condition: 'empty', text: "Show me your skills, warrior! What powers do you possess?" },
-      { condition: 'partial', text: "Impressive skills! But what's your ultimate goal?" },
-      { condition: 'complete', text: "I see your TRUE identity now. Your skills are legendary!" },
-      { condition: 'default', text: "I am Trinity, keeper of your identity." },
+      { condition: 'empty', text: "What drives you? What's your 'why'? Tell me your career mission to awaken your soul!" },
+      { condition: 'partial', text: "Your purpose is emerging. Share your values and vision to reach enlightenment." },
+      { condition: 'complete', text: "🔮 ENLIGHTENED! Your purpose is CLEAR - I see your mission, values, and vision!" },
+      { condition: 'default', text: "I am Trinity, keeper of your soul." },
     ],
   },
   {
     character: 'Velo',
     messages: [
-      { condition: 'empty', text: "How long have you been in the game? Your experience matters!" },
-      { condition: 'partial', text: "Good momentum! Track your career milestones to boost velocity!" },
-      { condition: 'complete', text: "MAXIMUM VELOCITY! Your career trajectory is UNSTOPPABLE!" },
-      { condition: 'default', text: "I am Velo, master of momentum." },
+      { condition: 'empty', text: "How long have you been on your journey? Share your experience and career milestones!" },
+      { condition: 'partial', text: "Building momentum! Track your career timeline to show your journey." },
+      { condition: 'complete', text: "🚀 FLYING! Your journey is UNSTOPPABLE - experience and timeline mapped!" },
+      { condition: 'default', text: "I am Velo, master of your journey." },
     ],
   },
   {
     character: 'Reach',
     messages: [
-      { condition: 'empty', text: "Your network is your net worth! Start saving jobs you're interested in." },
-      { condition: 'partial', text: "Nice connections! Keep assessing jobs to expand your reach." },
-      { condition: 'complete', text: "Your reach extends FAR and WIDE! Opportunities await!" },
+      { condition: 'empty', text: "Your network is your superpower! Connect with coaches and recruiters to expand your reach." },
+      { condition: 'partial', text: "Growing connections! Save jobs, send messages, and build your professional network." },
+      { condition: 'complete', text: "🌐 NETWORKED! Your reach extends far - connections, coaches, and opportunities await!" },
       { condition: 'default', text: "I am Reach, architect of your network." },
     ],
   },

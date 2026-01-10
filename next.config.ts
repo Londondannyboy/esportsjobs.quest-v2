@@ -31,6 +31,34 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Route restructuring: /esports-jobs → /jobs (preserve SEO with redirects)
+  async redirects() {
+    return [
+      // Old route structure redirects
+      {
+        source: '/esports-jobs',
+        destination: '/jobs',
+        permanent: true,
+      },
+      {
+        source: '/esports-jobs/:path*',
+        destination: '/jobs/:path*',
+        permanent: true,
+      },
+      // Career guides redirect
+      {
+        source: '/esports-career-guide/:path*',
+        destination: '/career-guide/:path*',
+        permanent: true,
+      },
+      // Salary guides redirect
+      {
+        source: '/esports-salary-guide/:path*',
+        destination: '/salary-guide/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

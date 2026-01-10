@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Esports Analyst Jobs 📊 Data & Strategy",
   description: "🎯 Esports analyst jobs for data-driven gaming professionals. Career paths, salary guide, required skills and how to break into esports analytics.",
   keywords: "esports analyst jobs, esports data analyst",
-  alternates: { canonical: "https://esportsjobs.quest/esports-analyst-careers" },
+  alternates: { canonical: "https://mvp.actor/esports-analyst-careers" },
 };
 
 const jsonLd = {
@@ -17,12 +17,12 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-analyst-careers",
-      "url": "https://esportsjobs.quest/esports-analyst-careers",
+      "@id": "https://mvp.actor/esports-analyst-careers",
+      "url": "https://mvp.actor/esports-analyst-careers",
       "name": "Esports Analyst Careers | Data & Strategy Jobs",
       "description": "Become an esports analyst. Guide to analyst careers, data analysis in gaming, salaries, and how to break into esports analytics.",
       "isPartOf": {
-        "@id": "https://esportsjobs.quest/#website"
+        "@id": "https://mvp.actor/#website"
       }
     },
     {
@@ -77,19 +77,19 @@ const jsonLd = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://esportsjobs.quest"
+          "item": "https://mvp.actor"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Esports Careers",
-          "item": "https://esportsjobs.quest/esports-careers"
+          "item": "https://mvp.actor/esports-careers"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Analyst Careers",
-          "item": "https://esportsjobs.quest/esports-analyst-careers"
+          "item": "https://mvp.actor/esports-analyst-careers"
         }
       ]
     }

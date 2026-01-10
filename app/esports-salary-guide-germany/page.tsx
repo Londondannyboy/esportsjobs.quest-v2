@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-salary-guide-germany",
-      url: "https://esportsjobs.quest/esports-salary-guide-germany",
+      "@id": "https://mvp.actor/esports-salary-guide-germany",
+      url: "https://mvp.actor/esports-salary-guide-germany",
       name: "Esports Salary Guide Germany 2025 | Gaming Industry Pay",
       description: "Complete guide to esports and gaming salaries in Germany. Salary ranges for Berlin, Cologne, and Hamburg gaming jobs.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Germany Salary Guide", item: "https://esportsjobs.quest/esports-salary-guide-germany" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Germany Salary Guide", item: "https://mvp.actor/esports-salary-guide-germany" }
       ]
     }
   ]
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   title: "Esports Salary Guide Germany 2025 | Gaming Industry Pay",
   description: "🚀 Complete guide to esports and gaming salaries in Germany. Salary ranges for Berlin, Cologne, and Hamburg. ESL, Freaks 4U, and publisher roles.",
   keywords: "esports salary germany, gaming jobs salary berlin, esl salary, german esports pay, gaming industry germany wages",
-  alternates: { canonical: "https://esportsjobs.quest/esports-salary-guide-germany" },
+  alternates: { canonical: "https://mvp.actor/esports-salary-guide-germany" },
 };
 
 const salaryRanges = [

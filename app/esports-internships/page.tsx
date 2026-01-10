@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-internships",
-      url: "https://esportsjobs.quest/esports-internships",
+      "@id": "https://mvp.actor/esports-internships",
+      url: "https://mvp.actor/esports-internships",
       name: "Esports Internships | Gaming Industry Placements",
       description: "Find esports internships at Riot Games, publishers, and esports organisations. Start your gaming career with hands-on industry experience.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Internships", item: "https://esportsjobs.quest/esports-internships" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Internships", item: "https://mvp.actor/esports-internships" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Internships | Gaming Industry Placements 2025",
   description: "🚀 Find esports internships at Riot Games, publishers, and esports orgs. Start your gaming career with hands-on industry experience and mentorship.",
   keywords: "esports internships, gaming internships, riot games internship, esports work experience, gaming industry placements, esports graduate jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-internships" },
+  alternates: { canonical: "https://mvp.actor/esports-internships" },
 };
 
 const publisherInternships = [

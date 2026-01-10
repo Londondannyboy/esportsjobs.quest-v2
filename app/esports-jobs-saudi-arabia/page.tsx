@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-saudi-arabia",
-      url: "https://esportsjobs.quest/esports-jobs-saudi-arabia",
+      "@id": "https://mvp.actor/esports-jobs-saudi-arabia",
+      url: "https://mvp.actor/esports-jobs-saudi-arabia",
       name: "Esports Jobs Saudi Arabia | Gaming Careers in KSA",
       description: "Find esports jobs in Saudi Arabia. Gaming careers at the Esports World Cup, Savvy Games Group, and organisations in the Middle East's biggest gaming market.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Saudi Arabia", item: "https://esportsjobs.quest/esports-jobs-saudi-arabia" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Saudi Arabia", item: "https://mvp.actor/esports-jobs-saudi-arabia" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Saudi Arabia 🇸🇦 Gaming Careers in KSA | Esports World Cup",
   description: "🚀 Find esports jobs in Saudi Arabia. Gaming careers at the Esports World Cup, Savvy Games Group. $37B investment creating 39,000 jobs by 2030.",
   keywords: "esports jobs saudi arabia, gaming jobs ksa, esports world cup jobs, savvy games careers, riyadh esports jobs, middle east gaming jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-saudi-arabia" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-saudi-arabia" },
 };
 
 const majorCompanies = [

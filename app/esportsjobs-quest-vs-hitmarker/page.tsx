@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "EsportsJobs.quest vs Hitmarker 2025 | Esports Job Board Comparison",
     description: "Detailed comparison of EsportsJobs.quest and Hitmarker for esports job seekers and employers.",
     type: "website",
-    url: "https://esportsjobs.quest/esportsjobs-quest-vs-hitmarker",
+    url: "https://mvp.actor/esportsjobs-quest-vs-hitmarker",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Which esports job board is right for you? Full comparison inside.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esportsjobs-quest-vs-hitmarker",
+    canonical: "https://mvp.actor/esportsjobs-quest-vs-hitmarker",
   },
 };
 
@@ -165,7 +165,7 @@ export default function ComparisonPage() {
     publisher: {
       "@type": "Organization",
       name: "EsportsJobs.quest",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
     },
     datePublished: "2024-12-30",
     dateModified: "2024-12-30",

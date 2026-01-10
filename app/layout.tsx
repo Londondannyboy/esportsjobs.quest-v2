@@ -19,42 +19,42 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://esportsjobs.quest/#website",
-      name: "Esports Recruitment Agency Quest",
-      alternateName: ["Esports Jobs Quest", "Esports Recruitment Agency"],
-      url: "https://esportsjobs.quest",
-      description: "Esports recruitment agency aggregating real esports jobs from across the gaming industry. Find job listings for pro players, coaches, content creators, and gaming professionals.",
+      "@id": "https://mvp.actor/#website",
+      name: "MVP Actor",
+      alternateName: ["MVP Actor", "Go MVP Quest"],
+      url: "https://mvp.actor",
+      description: "AI-powered career platform for gaming and esports professionals. Build your profile, connect with coaches, and find your perfect role in the industry.",
       publisher: {
-        "@id": "https://esportsjobs.quest/#organization"
+        "@id": "https://mvp.actor/#organization"
       },
       potentialAction: {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: "https://esportsjobs.quest/?q={search_term_string}",
+          urlTemplate: "https://mvp.actor/?q={search_term_string}",
         },
         "query-input": "required name=search_term_string",
       },
     },
     {
       "@type": "Organization",
-      "@id": "https://esportsjobs.quest/#organization",
-      name: "Esports Recruitment Agency Quest",
-      alternateName: ["Esports Jobs Quest", "Esports Recruitment Agency"],
-      url: "https://esportsjobs.quest",
+      "@id": "https://mvp.actor/#organization",
+      name: "MVP Actor",
+      alternateName: ["MVP Actor", "Go MVP Quest"],
+      url: "https://mvp.actor",
       logo: {
         "@type": "ImageObject",
-        "@id": "https://esportsjobs.quest/#logo",
-        url: "https://esportsjobs.quest/web-app-manifest-512x512.png",
-        contentUrl: "https://esportsjobs.quest/web-app-manifest-512x512.png",
+        "@id": "https://mvp.actor/#logo",
+        url: "https://mvp.actor/web-app-manifest-512x512.png",
+        contentUrl: "https://mvp.actor/web-app-manifest-512x512.png",
         width: 512,
         height: 512,
-        caption: "Esports Recruitment Agency Quest"
+        caption: "MVP Actor"
       },
       image: {
-        "@id": "https://esportsjobs.quest/#logo"
+        "@id": "https://mvp.actor/#logo"
       },
-      description: "Global esports recruitment agency aggregating real esports jobs from across the gaming industry in competitive gaming, streaming, content creation, and esports organisations.",
+      description: "AI-powered career platform helping gaming and esports professionals build their profile, connect with coaches, and land their dream roles.",
       areaServed: [
         { "@type": "Country", name: "United States" },
         { "@type": "Country", name: "United Kingdom" },
@@ -63,45 +63,42 @@ const jsonLd = {
         { "@type": "Country", name: "Germany" }
       ],
       knowsAbout: [
-        "Esports Recruitment Agency",
-        "Esports Jobs",
-        "Gaming Careers",
-        "Esports Recruitment",
-        "Gaming Industry Jobs",
-        "Pro Player Opportunities",
-        "Esports Coach Jobs",
-        "Content Creator Jobs",
-        "Tournament Organiser Jobs"
+        "Career Development",
+        "Gaming Jobs",
+        "Esports Careers",
+        "Career Coaching",
+        "Professional Networking",
+        "AI Career Guidance",
+        "Job Matching"
       ],
       founder: {
-        "@id": "https://esportsjobs.quest/#dankeegan"
+        "@id": "https://mvp.actor/#dankeegan"
       },
       employee: {
-        "@id": "https://esportsjobs.quest/#dankeegan"
+        "@id": "https://mvp.actor/#dankeegan"
       },
     },
     {
       "@type": "Person",
-      "@id": "https://esportsjobs.quest/#dankeegan",
+      "@id": "https://mvp.actor/#dankeegan",
       name: "Dan Keegan",
-      jobTitle: "Founder & Esports Industry Expert",
+      jobTitle: "Founder",
       description: "Esports and video games industry professional with over 20 years of experience in competitive gaming, esports operations, and talent acquisition.",
       image: {
         "@type": "ImageObject",
-        url: "https://esportsjobs.quest/dan-keegan.webp",
+        url: "https://mvp.actor/dan-keegan.webp",
         width: 400,
         height: 400
       },
       worksFor: {
-        "@id": "https://esportsjobs.quest/#organization"
+        "@id": "https://mvp.actor/#organization"
       },
       knowsAbout: [
         "Esports",
         "Video Games Industry",
-        "Esports Recruitment",
+        "Career Development",
         "Gaming Careers",
         "Competitive Gaming",
-        "Esports Operations",
         "Talent Acquisition"
       ],
       expertise: "20+ years in video games and esports industry"
@@ -110,43 +107,37 @@ const jsonLd = {
 };
 
 export const metadata: Metadata = {
-  title: "Esports Recruitment Agency 🎮 Gaming Talent Experts",
+  title: "MVP Actor | AI Career Platform for Gaming & Esports",
   description:
-    "🎮 Esports recruitment agency connecting gaming talent with top organisations. Leading esports recruiters for coaching, marketing & management roles. Browse jobs and apply direct to employers. Your trusted esports recruiter.",
-  authors: [{ name: "Dan Keegan", url: "https://esportsjobs.quest" }],
+    "Build your gaming career with AI. MVP Actor helps you discover your strengths, connect with coaches, and find your perfect role in esports and gaming. Your career journey starts here.",
+  authors: [{ name: "Dan Keegan", url: "https://mvp.actor" }],
   keywords: [
-    "esports recruitment agency",
-    "esports recruiter",
-    "esports recruiters",
+    "gaming careers",
     "esports jobs",
-    "esports recruitment",
+    "career coaching",
+    "AI career platform",
+    "gaming job board",
     "esports careers",
-    "gaming jobs",
-    "esports job board",
-    "pro gaming jobs",
-    "esports coach jobs",
-    "content creator jobs",
-    "streamer jobs",
-    "tournament organiser jobs",
-    "esports management jobs",
-    "gaming industry careers",
-    "esports analyst jobs",
-    "shoutcaster jobs",
-    "esports marketing jobs",
+    "career development",
+    "gaming industry",
+    "professional networking",
+    "career guidance",
+    "job matching",
+    "gaming recruitment",
   ],
   robots: "index, follow",
   openGraph: {
-    title: "Esports Recruitment Agency 🎮 Gaming Talent Experts",
+    title: "MVP Actor | AI Career Platform for Gaming & Esports",
     description:
-      "🎮 Esports recruitment agency connecting gaming talent with top organisations. Leading esports recruiters for coaching, marketing & management. Apply direct to employers.",
-    siteName: "Esports Recruitment Agency Quest",
+      "Build your gaming career with AI. Discover your strengths, connect with coaches, and find your perfect role in esports and gaming.",
+    siteName: "MVP Actor",
     locale: "en",
     images: [
       {
-        url: "https://esportsjobs.quest/og-image.png",
+        url: "https://mvp.actor/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Esports Recruitment Agency - Esports Jobs and Gaming Careers",
+        alt: "MVP Actor - AI Career Platform for Gaming & Esports",
         type: "image/png",
       },
     ],
@@ -154,16 +145,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Esports Recruitment Agency 🎮 Gaming Talent Experts",
+    title: "MVP Actor | AI Career Platform for Gaming & Esports",
     description:
-      "🎮 Esports recruitment agency connecting gaming talent with top organisations. Leading esports recruiters. Apply direct to employers.",
-    images: ["https://esportsjobs.quest/og-image.png"],
+      "Build your gaming career with AI. Discover your strengths, connect with coaches, and find your perfect role.",
+    images: ["https://mvp.actor/og-image.png"],
   },
   appleWebApp: {
-    title: "Esports Recruitment Agency Quest",
+    title: "MVP Actor",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest",
+    canonical: "https://mvp.actor",
   },
 };
 

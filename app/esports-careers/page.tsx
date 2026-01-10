@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Esports Careers 🚀 Complete Guide",
     description: "🎯 Esports careers guide covering coaching, broadcasting, marketing & management paths.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-careers",
+    url: "https://mvp.actor/esports-careers",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "🎯 Esports careers guide covering all paths into the industry.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-careers",
+    canonical: "https://mvp.actor/esports-careers",
   },
 };
 
@@ -303,7 +303,7 @@ export default function EsportsCareers() {
     "@type": "WebPage",
     name: "Esports Careers - Complete Pathway Guide 2025",
     description: "Comprehensive guide to esports career paths including coaching, broadcasting, marketing, and management.",
-    url: "https://esportsjobs.quest/esports-careers",
+    url: "https://mvp.actor/esports-careers",
     mainEntity: {
       "@type": "FAQPage",
       mainEntity: faqs.map((faq) => ({
@@ -318,8 +318,8 @@ export default function EsportsCareers() {
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://esportsjobs.quest/esports-careers" },
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://mvp.actor/esports-careers" },
       ],
     },
   };

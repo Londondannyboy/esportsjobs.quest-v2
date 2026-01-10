@@ -303,8 +303,8 @@ export default function ContactPage() {
                 <div className="text-center pt-4 border-t border-gray-700">
                   <p className="text-gray-400 text-sm">
                     Prefer email? Contact us directly at{" "}
-                    <a href="mailto:hello@esportsjobs.quest" className="text-cyan-400 hover:underline">
-                      hello@esportsjobs.quest
+                    <a href="mailto:hello@mvp.actor" className="text-cyan-400 hover:underline">
+                      hello@mvp.actor
                     </a>
                   </p>
                 </div>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Aardvark Swift Alternative for Esports Careers 2025",
     description: "Compare Aardvark Swift and EsportsJobs.quest for gaming and esports careers.",
     type: "website",
-    url: "https://esportsjobs.quest/aardvark-swift-alternative",
+    url: "https://mvp.actor/aardvark-swift-alternative",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Find the right platform for your esports career.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/aardvark-swift-alternative",
+    canonical: "https://mvp.actor/aardvark-swift-alternative",
   },
 };
 
@@ -144,7 +144,7 @@ export default function AardvarkAlternativePage() {
     publisher: {
       "@type": "Organization",
       name: "EsportsJobs.quest",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
     },
     datePublished: "2024-12-30",
     dateModified: "2024-12-30",

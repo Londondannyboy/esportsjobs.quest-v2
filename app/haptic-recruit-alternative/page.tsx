@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Haptic Recruit Alternative for Esports Jobs 2025",
     description: "Compare Haptic Recruit and EsportsJobs.quest for gaming and esports careers.",
     type: "website",
-    url: "https://esportsjobs.quest/haptic-recruit-alternative",
+    url: "https://mvp.actor/haptic-recruit-alternative",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Find the right platform for your esports career.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/haptic-recruit-alternative",
+    canonical: "https://mvp.actor/haptic-recruit-alternative",
   },
 };
 
@@ -135,7 +135,7 @@ export default function HapticAlternativePage() {
     publisher: {
       "@type": "Organization",
       name: "EsportsJobs.quest",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
     },
     datePublished: "2024-12-30",
     dateModified: "2024-12-30",

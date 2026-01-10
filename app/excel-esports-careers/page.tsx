@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/excel-esports-careers",
-      url: "https://esportsjobs.quest/excel-esports-careers",
+      "@id": "https://mvp.actor/excel-esports-careers",
+      url: "https://mvp.actor/excel-esports-careers",
       name: "Excel Esports Careers & Jobs UK | Work at Excel",
       description: "Find jobs at Excel Esports, the UK's leading League of Legends organisation. Careers in esports, content, marketing, and operations in London.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Top Companies UK", item: "https://esportsjobs.quest/top-esports-companies-uk" },
-        { "@type": "ListItem", position: 3, name: "Excel Esports", item: "https://esportsjobs.quest/excel-esports-careers" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Top Companies UK", item: "https://mvp.actor/top-esports-companies-uk" },
+        { "@type": "ListItem", position: 3, name: "Excel Esports", item: "https://mvp.actor/excel-esports-careers" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Excel Esports Careers 🇬🇧 Work at Excel UK",
   description: "🎮 Excel Esports careers - jobs at the UK's LEC team. Coaching, content, marketing & operations roles in London. British esports jobs.",
   keywords: "excel esports careers, excel esports jobs, work at excel, excel esports uk, lec jobs uk",
-  alternates: { canonical: "https://esportsjobs.quest/excel-esports-careers" },
+  alternates: { canonical: "https://mvp.actor/excel-esports-careers" },
 };
 
 const departments = [

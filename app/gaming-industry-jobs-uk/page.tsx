@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/gaming-industry-jobs-uk",
-      url: "https://esportsjobs.quest/gaming-industry-jobs-uk",
+      "@id": "https://mvp.actor/gaming-industry-jobs-uk",
+      url: "https://mvp.actor/gaming-industry-jobs-uk",
       name: "Gaming Industry Jobs UK | Complete Guide 2025",
       description: "Find gaming industry jobs across the UK. From game development to publishing, QA to marketing.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Gaming Jobs UK", item: "https://esportsjobs.quest/gaming-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "Industry Overview", item: "https://esportsjobs.quest/gaming-industry-jobs-uk" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Gaming Jobs UK", item: "https://mvp.actor/gaming-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "Industry Overview", item: "https://mvp.actor/gaming-industry-jobs-uk" }
       ]
     },
     {
@@ -79,10 +79,10 @@ export const metadata: Metadata = {
     title: "Gaming Industry Jobs UK 🎮 All Sectors",
     description: "🕹️ Gaming industry jobs UK - development, publishing, QA & marketing roles.",
     type: "website",
-    url: "https://esportsjobs.quest/gaming-industry-jobs-uk",
+    url: "https://mvp.actor/gaming-industry-jobs-uk",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/gaming-industry-jobs-uk",
+    canonical: "https://mvp.actor/gaming-industry-jobs-uk",
   },
 };
 

@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-salary-guide-australia",
-      url: "https://esportsjobs.quest/esports-salary-guide-australia",
+      "@id": "https://mvp.actor/esports-salary-guide-australia",
+      url: "https://mvp.actor/esports-salary-guide-australia",
       name: "Esports Salary Guide Australia 2025 | Gaming Industry Pay",
       description: "Complete guide to esports and gaming salaries in Australia. Salary ranges for Sydney, Melbourne, and Brisbane gaming jobs.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Australia Salary Guide", item: "https://esportsjobs.quest/esports-salary-guide-australia" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Australia Salary Guide", item: "https://mvp.actor/esports-salary-guide-australia" }
       ]
     }
   ]
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   title: "Esports Salary Guide Australia 2025 | Gaming Industry Pay",
   description: "🚀 Complete guide to esports and gaming salaries in Australia. Salary ranges for Sydney, Melbourne, and Brisbane. ESL Australia, publishers, and orgs.",
   keywords: "esports salary australia, gaming jobs salary sydney, australian esports pay, gaming industry australia wages, melbourne gaming jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-salary-guide-australia" },
+  alternates: { canonical: "https://mvp.actor/esports-salary-guide-australia" },
 };
 
 const salaryRanges = [

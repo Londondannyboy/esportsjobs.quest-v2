@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Japan 🇯🇵 Gaming Careers in Tokyo",
   description: "🚀 Find esports jobs in Japan. Gaming careers at Sony, Nintendo, Capcom, and Japanese esports organisations. Tokyo gaming opportunities.",
   keywords: "esports jobs japan, gaming jobs tokyo, japanese esports careers, sony gaming jobs, capcom careers",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-japan" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-japan" },
 };
 
 const majorCompanies = [

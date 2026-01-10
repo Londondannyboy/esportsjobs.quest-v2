@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-edinburgh",
-      url: "https://esportsjobs.quest/esports-jobs-edinburgh",
+      "@id": "https://mvp.actor/esports-jobs-edinburgh",
+      url: "https://mvp.actor/esports-jobs-edinburgh",
       name: "Esports Jobs Edinburgh | Gaming Careers Scotland",
       description: "Find esports jobs in Edinburgh. Gaming careers at Rockstar North, esports roles, and video game industry opportunities in Scotland.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "UK Esports Jobs", item: "https://esportsjobs.quest/esports-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "Edinburgh", item: "https://esportsjobs.quest/esports-jobs-edinburgh" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "UK Esports Jobs", item: "https://mvp.actor/esports-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "Edinburgh", item: "https://mvp.actor/esports-jobs-edinburgh" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Edinburgh 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Gaming Careers Scotland",
   description: "🚀 Find esports jobs in Edinburgh. Gaming careers at Rockstar North, esports roles, and video game industry opportunities in Scotland.",
   keywords: "esports jobs edinburgh, gaming jobs edinburgh, rockstar north jobs, game developer jobs scotland, esports careers scotland",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-edinburgh" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-edinburgh" },
 };
 
 const roleTypes = [

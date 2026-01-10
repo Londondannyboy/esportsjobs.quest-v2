@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { CharacterSection, ProfileItem } from '../CharacterSection';
-import { CHARACTERS, getCharacterCompletion, type ProfileItems } from '@/lib/character-config';
+import { CHARACTERS, getCharacterCompletion, getCompletionMessage, type ProfileItems } from '@/lib/character-config';
 
 const VeloTimelineGraph = dynamic(
   () => import('../graphs').then(mod => mod.VeloTimelineGraph),
@@ -19,10 +19,13 @@ export function VeloCharacter({ profileItems }: VeloCharacterProps) {
   const completion = getCharacterCompletion(VELO_CONFIG, profileItems);
 
   const experienceYears = profileItems.experience_years?.[0];
-  const careerHistory = profileItems.career_history || [];
+  // Support both new career_timeline and legacy career_history
+  const careerTimeline = profileItems.career_timeline || profileItems.career_history || [];
+  const careerContext = profileItems.career_context?.[0];
 
   return (
     <CharacterSection
+      id="character-velo"
       name="Velo"
       title={VELO_CONFIG.title}
       subtitle={VELO_CONFIG.subtitle}
@@ -32,11 +35,12 @@ export function VeloCharacter({ profileItems }: VeloCharacterProps) {
       gradient={VELO_CONFIG.gradient}
       isComplete={completion.isComplete}
       completionPercent={completion.percent}
+      stage={completion.stage.name}
     >
       {/* Velocity Timeline Graph */}
       <VeloTimelineGraph
         experienceYears={experienceYears?.value}
-        careerHistory={careerHistory}
+        careerHistory={careerTimeline}
         className="mb-6"
       />
 
@@ -47,11 +51,11 @@ export function VeloCharacter({ profileItems }: VeloCharacterProps) {
         isComplete={!!experienceYears}
       />
 
-      {careerHistory.length > 0 ? (
+      {careerTimeline.length > 0 ? (
         <div>
-          <div className="text-sm text-gray-500 mb-2">Career Path</div>
+          <div className="text-sm text-gray-500 mb-2">Career Journey</div>
           <div className="flex items-center gap-2 flex-wrap">
-            {careerHistory.map((item, i) => (
+            {careerTimeline.map((item, i) => (
               <div key={i} className="flex items-center">
                 <span
                   className="px-3 py-1 text-sm rounded-full border"
@@ -63,7 +67,7 @@ export function VeloCharacter({ profileItems }: VeloCharacterProps) {
                 >
                   {item.value}
                 </span>
-                {i < careerHistory.length - 1 && (
+                {i < careerTimeline.length - 1 && (
                   <span className="mx-2 text-gray-600">→</span>
                 )}
               </div>
@@ -72,16 +76,24 @@ export function VeloCharacter({ profileItems }: VeloCharacterProps) {
         </div>
       ) : (
         <ProfileItem
-          label="Career Path"
+          label="Career Journey"
           value={undefined}
           color={VELO_CONFIG.color}
         />
       )}
 
+      {/* Career Context - What you learned */}
+      {careerContext && (
+        <div className="mt-4 p-3 rounded-lg bg-pink-500/5 border border-pink-500/20">
+          <div className="text-sm text-gray-500 mb-1">What I&apos;ve Learned</div>
+          <div className="text-gray-300">{careerContext.value}</div>
+        </div>
+      )}
+
       {!completion.isComplete && completion.missing.length > 0 && (
         <div className="mt-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
           <div className="text-sm text-gray-400">
-            <span className="text-yellow-400">To complete Velo:</span>{' '}
+            <span className="text-yellow-400">To activate Velo:</span>{' '}
             Add your {completion.missing.join(' and ')}
           </div>
         </div>
@@ -90,7 +102,7 @@ export function VeloCharacter({ profileItems }: VeloCharacterProps) {
       {completion.isComplete && (
         <div className="mt-4 p-3 rounded-lg bg-pink-500/10 border border-pink-500/30">
           <div className="text-sm text-pink-400">
-            Velo activated - your momentum is clear!
+            {getCompletionMessage('Velo')}
           </div>
         </div>
       )}

@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/counter-strike-jobs",
-      url: "https://esportsjobs.quest/counter-strike-jobs",
+      "@id": "https://mvp.actor/counter-strike-jobs",
+      url: "https://mvp.actor/counter-strike-jobs",
       name: "Counter-Strike Jobs | CS2 Esports Careers",
       description: "Find Counter-Strike 2 esports jobs. Careers at Valve, ESL, BLAST, and CS2 esports organisations worldwide.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Counter-Strike", item: "https://esportsjobs.quest/counter-strike-jobs" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Counter-Strike", item: "https://mvp.actor/counter-strike-jobs" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Counter-Strike Jobs 🎮 CS2 Esports Careers | ESL, BLAST",
   description: "🚀 Find Counter-Strike 2 esports jobs. Careers at ESL, BLAST, Valve, and CS2 teams like FaZe, NaVi, G2. Coaching, broadcast, production roles.",
   keywords: "counter-strike jobs, cs2 esports careers, esl jobs, blast jobs, csgo jobs, cs2 coaching jobs",
-  alternates: { canonical: "https://esportsjobs.quest/counter-strike-jobs" },
+  alternates: { canonical: "https://mvp.actor/counter-strike-jobs" },
 };
 
 const tournamentOperators = [

@@ -9,18 +9,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-marketing-careers",
-      url: "https://esportsjobs.quest/esports-marketing-careers",
+      "@id": "https://mvp.actor/esports-marketing-careers",
+      url: "https://mvp.actor/esports-marketing-careers",
       name: "Esports Marketing Careers | Marketing Jobs Guide",
       description: "Build your esports marketing career. Guide to marketing roles, salaries, and opportunities in UK esports.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://esportsjobs.quest/esports-careers" },
-        { "@type": "ListItem", position: 3, name: "Marketing", item: "https://esportsjobs.quest/esports-marketing-careers" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://mvp.actor/esports-careers" },
+        { "@type": "ListItem", position: 3, name: "Marketing", item: "https://mvp.actor/esports-marketing-careers" }
       ]
     },
     {
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   title: "Esports Marketing Jobs 📢 Gaming Marketing",
   description: "🚀 Esports marketing jobs at gaming organisations. Roles from coordinator to CMO, career paths, and how to build your esports marketing career.",
   keywords: "esports marketing jobs, gaming marketing jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-marketing-careers" },
+  alternates: { canonical: "https://mvp.actor/esports-marketing-careers" },
 };
 
 const roles = [

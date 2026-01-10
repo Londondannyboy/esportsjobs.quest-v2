@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-canada",
-      url: "https://esportsjobs.quest/esports-jobs-canada",
+      "@id": "https://mvp.actor/esports-jobs-canada",
+      url: "https://mvp.actor/esports-jobs-canada",
       name: "Esports Jobs Canada | Gaming Careers in Canada",
       description: "Find esports jobs in Canada. Gaming careers in Vancouver, Toronto, and Montreal at major studios and esports organisations.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Canada", item: "https://esportsjobs.quest/esports-jobs-canada" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Canada", item: "https://mvp.actor/esports-jobs-canada" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Canada 🇨🇦 Gaming Careers in Canada",
   description: "🚀 Find esports jobs in Canada. Gaming careers in Vancouver, Toronto, Montreal at major studios and esports organisations.",
   keywords: "esports jobs canada, gaming jobs vancouver, esports jobs toronto, ea canada careers, canadian esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-canada" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-canada" },
 };
 
 const majorCities = [

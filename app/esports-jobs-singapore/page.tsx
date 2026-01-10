@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-singapore",
-      url: "https://esportsjobs.quest/esports-jobs-singapore",
+      "@id": "https://mvp.actor/esports-jobs-singapore",
+      url: "https://mvp.actor/esports-jobs-singapore",
       name: "Esports Jobs Singapore | Gaming Careers in Singapore",
       description: "Find esports jobs in Singapore. Gaming careers at Riot Games SEA, Garena, Razer and esports organisations in Southeast Asia's esports hub.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Singapore", item: "https://esportsjobs.quest/esports-jobs-singapore" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Singapore", item: "https://mvp.actor/esports-jobs-singapore" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Singapore 🇸🇬 Gaming Careers SEA",
   description: "🚀 Find esports jobs in Singapore. Gaming careers at Riot Games SEA, Garena, Razer and esports organisations in Southeast Asia's esports hub.",
   keywords: "esports jobs singapore, gaming jobs singapore, riot games sea jobs, garena jobs, razer careers, esports careers asia, sea esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-singapore" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-singapore" },
 };
 
 const majorCompanies = [

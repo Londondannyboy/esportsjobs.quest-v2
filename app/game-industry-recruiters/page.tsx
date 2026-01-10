@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Game Industry Recruiters 🎯 Top Agencies",
     description: "🎮 Game industry recruiters - compare top gaming & esports recruitment agencies.",
     type: "website",
-    url: "https://esportsjobs.quest/game-industry-recruiters",
+    url: "https://mvp.actor/game-industry-recruiters",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "🎮 Game industry recruiters - compare top gaming & esports recruitment agencies.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/game-industry-recruiters",
+    canonical: "https://mvp.actor/game-industry-recruiters",
   },
 };
 
@@ -177,19 +177,19 @@ export default function GameIndustryRecruiters() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://esportsjobs.quest/game-industry-recruiters#webpage",
-        url: "https://esportsjobs.quest/game-industry-recruiters",
+        "@id": "https://mvp.actor/game-industry-recruiters#webpage",
+        url: "https://mvp.actor/game-industry-recruiters",
         name: "Game Industry Recruiters | Top Gaming & Esports Recruitment Agencies",
         description: "Find the best game industry recruiters and gaming recruitment agencies for your career.",
-        isPartOf: { "@id": "https://esportsjobs.quest/#website" },
-        breadcrumb: { "@id": "https://esportsjobs.quest/game-industry-recruiters#breadcrumb" },
+        isPartOf: { "@id": "https://mvp.actor/#website" },
+        breadcrumb: { "@id": "https://mvp.actor/game-industry-recruiters#breadcrumb" },
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://esportsjobs.quest/game-industry-recruiters#breadcrumb",
+        "@id": "https://mvp.actor/game-industry-recruiters#breadcrumb",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-          { "@type": "ListItem", position: 2, name: "Game Industry Recruiters", item: "https://esportsjobs.quest/game-industry-recruiters" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+          { "@type": "ListItem", position: 2, name: "Game Industry Recruiters", item: "https://mvp.actor/game-industry-recruiters" },
         ],
       },
       {

@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     title: "Post Esports Jobs | Hire Gaming Professionals",
     description:
       "Post your esports job and reach thousands of qualified gaming professionals.",
-    url: "https://esportsjobs.quest/contact",
+    url: "https://mvp.actor/contact",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/contact",
+    canonical: "https://mvp.actor/contact",
   },
 };
 

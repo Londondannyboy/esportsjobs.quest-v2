@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-usa",
-      url: "https://esportsjobs.quest/esports-jobs-usa",
+      "@id": "https://mvp.actor/esports-jobs-usa",
+      url: "https://mvp.actor/esports-jobs-usa",
       name: "Esports Jobs USA | Gaming Careers in America",
       description: "Find esports jobs across the United States. Gaming careers at Riot Games, Activision, major esports organisations and tournament operators in North America.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "USA", item: "https://esportsjobs.quest/esports-jobs-usa" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "USA", item: "https://mvp.actor/esports-jobs-usa" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs USA 🇺🇸 Gaming Careers in America",
   description: "🚀 Find esports jobs across the United States. Gaming careers at Riot Games, Activision, and major esports organisations. Browse American esports opportunities.",
   keywords: "esports jobs usa, esports careers america, gaming jobs united states, riot games careers, esports jobs north america, us esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-usa" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-usa" },
 };
 
 const majorCities = [

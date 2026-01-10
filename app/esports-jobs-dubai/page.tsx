@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-dubai",
-      url: "https://esportsjobs.quest/esports-jobs-dubai",
+      "@id": "https://mvp.actor/esports-jobs-dubai",
+      url: "https://mvp.actor/esports-jobs-dubai",
       name: "Esports Jobs Dubai & UAE | Gaming Careers in Emirates",
       description: "Find esports jobs in Dubai and the UAE. Gaming careers at Galaxy Racer, YaLLa Esports, and organisations in the Middle East's gaming hub.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Dubai", item: "https://esportsjobs.quest/esports-jobs-dubai" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Dubai", item: "https://mvp.actor/esports-jobs-dubai" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Dubai & UAE 🇦🇪 Gaming Careers in Emirates",
   description: "🚀 Find esports jobs in Dubai and UAE. Gaming careers at Galaxy Racer, YaLLa Esports. Tax-free salaries in the Middle East gaming hub.",
   keywords: "esports jobs dubai, gaming jobs uae, esports careers dubai, galaxy racer jobs, middle east esports jobs, abu dhabi gaming",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-dubai" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-dubai" },
 };
 
 const majorCompanies = [

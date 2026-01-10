@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Esports News UK | Industry Updates & Career News",
     description: "Stay updated with the latest esports industry news relevant to UK professionals and job seekers.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-news",
+    url: "https://mvp.actor/esports-news",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Latest esports industry news for UK professionals.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-news",
+    canonical: "https://mvp.actor/esports-news",
   },
 };
 
@@ -31,11 +31,11 @@ export default function EsportsNewsPage() {
     "@type": "CollectionPage",
     name: "Esports News UK",
     description: "Latest esports industry news for UK professionals and job seekers",
-    url: "https://esportsjobs.quest/esports-news",
+    url: "https://mvp.actor/esports-news",
     publisher: {
       "@type": "Organization",
       name: "EsportsJobs.quest",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
     },
     mainEntity: {
       "@type": "ItemList",
@@ -49,7 +49,7 @@ export default function EsportsNewsPage() {
           description: article.excerpt,
           datePublished: article.date,
           image: article.image,
-          url: `https://esportsjobs.quest/esports-news/${article.slug}`,
+          url: `https://mvp.actor/esports-news/${article.slug}`,
         },
       })),
     },

@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/cloud9-careers",
-      url: "https://esportsjobs.quest/cloud9-careers",
+      "@id": "https://mvp.actor/cloud9-careers",
+      url: "https://mvp.actor/cloud9-careers",
       name: "Cloud9 Careers & Jobs | Work at Cloud9",
       description: "Find jobs at Cloud9, North America's premier esports organisation. Careers in esports, content, marketing, and operations in Los Angeles.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Top Companies", item: "https://esportsjobs.quest/top-esports-companies-uk" },
-        { "@type": "ListItem", position: 3, name: "Cloud9", item: "https://esportsjobs.quest/cloud9-careers" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Top Companies", item: "https://mvp.actor/top-esports-companies-uk" },
+        { "@type": "ListItem", position: 3, name: "Cloud9", item: "https://mvp.actor/cloud9-careers" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Cloud9 Careers ☁️ Work at Cloud9",
   description: "🎮 Cloud9 careers - jobs at North America's premier esports org. Coaching, content, marketing & operations roles in Los Angeles.",
   keywords: "cloud9 careers, cloud9 jobs, work at cloud9, c9 jobs, cloud9 esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/cloud9-careers" },
+  alternates: { canonical: "https://mvp.actor/cloud9-careers" },
 };
 
 const departments = [

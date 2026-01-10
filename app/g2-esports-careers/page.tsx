@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/g2-esports-careers",
-      url: "https://esportsjobs.quest/g2-esports-careers",
+      "@id": "https://mvp.actor/g2-esports-careers",
+      url: "https://mvp.actor/g2-esports-careers",
       name: "G2 Esports Careers & Jobs | Work at G2",
       description: "Find jobs at G2 Esports, Europe's most entertaining esports organisation. Careers in esports, content, marketing, and operations in Berlin.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Top Companies", item: "https://esportsjobs.quest/top-esports-companies-uk" },
-        { "@type": "ListItem", position: 3, name: "G2 Esports", item: "https://esportsjobs.quest/g2-esports-careers" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Top Companies", item: "https://mvp.actor/top-esports-companies-uk" },
+        { "@type": "ListItem", position: 3, name: "G2 Esports", item: "https://mvp.actor/g2-esports-careers" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "G2 Esports Careers 🔴 Work at G2",
   description: "🎮 G2 Esports careers - jobs at Europe's most entertaining esports org. Coaching, content, marketing & operations roles in Berlin.",
   keywords: "g2 esports careers, g2 jobs, work at g2, g2 esports jobs, g2army",
-  alternates: { canonical: "https://esportsjobs.quest/g2-esports-careers" },
+  alternates: { canonical: "https://mvp.actor/g2-esports-careers" },
 };
 
 const departments = [

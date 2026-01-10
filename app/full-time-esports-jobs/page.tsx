@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/full-time-esports-jobs",
-      url: "https://esportsjobs.quest/full-time-esports-jobs",
+      "@id": "https://mvp.actor/full-time-esports-jobs",
+      url: "https://mvp.actor/full-time-esports-jobs",
       name: "Full-Time Esports Jobs | Permanent Gaming Careers",
       description: "Find full-time esports jobs with benefits, career progression, and job security in the gaming industry.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Full-Time", item: "https://esportsjobs.quest/full-time-esports-jobs" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Full-Time", item: "https://mvp.actor/full-time-esports-jobs" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Full-Time Esports Jobs | Permanent Gaming Careers",
   description: "🚀 Find full-time esports jobs with benefits, career progression, and stability. Permanent positions at publishers, esports orgs, and gaming companies.",
   keywords: "full time esports jobs, permanent gaming jobs, esports careers, gaming industry jobs, esports benefits, gaming career progression",
-  alternates: { canonical: "https://esportsjobs.quest/full-time-esports-jobs" },
+  alternates: { canonical: "https://mvp.actor/full-time-esports-jobs" },
 };
 
 const fullTimeRoles = [

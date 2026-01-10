@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-sydney",
-      url: "https://esportsjobs.quest/esports-jobs-sydney",
+      "@id": "https://mvp.actor/esports-jobs-sydney",
+      url: "https://mvp.actor/esports-jobs-sydney",
       name: "Esports Jobs Sydney | Gaming Careers Australia",
       description: "Find esports jobs in Sydney and Australia. Gaming careers at ESL Australia, Chiefs Esports, ORDER and major Oceanic esports organisations.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Sydney", item: "https://esportsjobs.quest/esports-jobs-sydney" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Sydney", item: "https://mvp.actor/esports-jobs-sydney" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Sydney 🇦🇺 Gaming Careers Australia",
   description: "🚀 Find esports jobs in Sydney and Australia. Gaming careers at ESL Australia, Chiefs Esports, ORDER and major Oceanic esports organisations.",
   keywords: "esports jobs sydney, gaming jobs australia, oce esports jobs, australian esports careers, chiefs esports jobs, order esports",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-sydney" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-sydney" },
 };
 
 const majorCompanies = [

@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/part-time-esports-jobs",
-      url: "https://esportsjobs.quest/part-time-esports-jobs",
+      "@id": "https://mvp.actor/part-time-esports-jobs",
+      url: "https://mvp.actor/part-time-esports-jobs",
       name: "Part-Time Esports Jobs | Flexible Gaming Work",
       description: "Find part-time esports jobs with flexible hours. Freelance and contract gaming roles for students and professionals.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Part-Time", item: "https://esportsjobs.quest/part-time-esports-jobs" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Part-Time", item: "https://mvp.actor/part-time-esports-jobs" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Part-Time Esports Jobs | Flexible Gaming Work",
   description: "🚀 Find part-time esports jobs with flexible hours. Freelance gaming work, weekend events, and contract positions in the esports industry.",
   keywords: "part time esports jobs, freelance gaming jobs, esports contract work, flexible esports careers, weekend esports jobs, esports side hustle",
-  alternates: { canonical: "https://esportsjobs.quest/part-time-esports-jobs" },
+  alternates: { canonical: "https://mvp.actor/part-time-esports-jobs" },
 };
 
 const partTimeRoles = [

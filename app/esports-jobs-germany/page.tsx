@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-germany",
-      url: "https://esportsjobs.quest/esports-jobs-germany",
+      "@id": "https://mvp.actor/esports-jobs-germany",
+      url: "https://mvp.actor/esports-jobs-germany",
       name: "Esports Jobs Germany | Gaming Careers in Deutschland",
       description: "Find esports jobs in Germany. Gaming careers in Berlin, Cologne, and Munich at ESL, Riot Games EMEA, and major European esports organisations.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Germany", item: "https://esportsjobs.quest/esports-jobs-germany" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Germany", item: "https://mvp.actor/esports-jobs-germany" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Germany 🇩🇪 Gaming Careers in Deutschland",
   description: "🚀 Find esports jobs in Germany. Gaming careers in Berlin, Cologne at ESL, Riot Games EMEA. Browse German esports opportunities.",
   keywords: "esports jobs germany, esports jobs berlin, esports jobs cologne, esl careers, gaming jobs deutschland, european esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-germany" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-germany" },
 };
 
 const majorCities = [

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Esports Agency UK | Leading Gaming Industry Specialists",
     description: "Looking for an esports agency? We connect gaming talent with leading organisations across gaming and esports.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-agency",
+    url: "https://mvp.actor/esports-agency",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Looking for an esports agency? We connect gaming talent with leading organisations.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-agency",
+    canonical: "https://mvp.actor/esports-agency",
   },
 };
 
@@ -123,7 +123,7 @@ export default function EsportsAgency() {
         "@type": "WebPage",
         name: "Esports Agency UK",
         description: "Leading esports agency providing recruitment, talent connection, and industry expertise for the gaming industry.",
-        url: "https://esportsjobs.quest/esports-agency",
+        url: "https://mvp.actor/esports-agency",
       },
       {
         "@type": "FAQPage",

@@ -9,18 +9,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-broadcaster-careers",
-      url: "https://esportsjobs.quest/esports-broadcaster-careers",
+      "@id": "https://mvp.actor/esports-broadcaster-careers",
+      url: "https://mvp.actor/esports-broadcaster-careers",
       name: "Esports Broadcaster Careers | Casting & Hosting Jobs",
       description: "Become an esports broadcaster, caster or host. Guide to broadcast careers, how to start casting, and jobs in esports production.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://esportsjobs.quest/esports-careers" },
-        { "@type": "ListItem", position: 3, name: "Broadcasting", item: "https://esportsjobs.quest/esports-broadcaster-careers" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://mvp.actor/esports-careers" },
+        { "@type": "ListItem", position: 3, name: "Broadcasting", item: "https://mvp.actor/esports-broadcaster-careers" }
       ]
     },
     {
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   title: "Esports Caster Jobs 🎙️ Broadcasting Careers",
   description: "🎬 Esports caster jobs and broadcasting careers. From freelance casting to lead talent. Complete guide to becoming an esports broadcaster.",
   keywords: "esports caster jobs, esports broadcaster jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-broadcaster-careers" },
+  alternates: { canonical: "https://mvp.actor/esports-broadcaster-careers" },
 };
 
 const roles = [

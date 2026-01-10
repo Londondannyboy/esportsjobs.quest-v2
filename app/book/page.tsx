@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Book a Call | Esports Recruitment Agency',
     description: 'Schedule a free 30-minute call with our esports recruitment experts.',
-    images: ['https://esportsjobs.quest/og-image.png'],
+    images: ['https://mvp.actor/og-image.png'],
   },
 }
 
@@ -186,13 +186,13 @@ export default function BookPage() {
               Contact Form
             </Link>
             <a
-              href="mailto:hello@esportsjobs.quest"
+              href="mailto:hello@mvp.actor"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-700 hover:border-cyan-500 text-white rounded-lg transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5" />
               </svg>
-              hello@esportsjobs.quest
+              hello@mvp.actor
             </a>
           </div>
         </div>

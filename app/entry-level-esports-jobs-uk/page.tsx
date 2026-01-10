@@ -12,10 +12,10 @@ export const metadata: Metadata = {
     title: "Entry Level Esports Jobs 🌟 Start Your Career",
     description: "🎮 Entry level esports jobs - no experience required for many roles.",
     type: "website",
-    url: "https://esportsjobs.quest/entry-level-esports-jobs-uk",
+    url: "https://mvp.actor/entry-level-esports-jobs-uk",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/entry-level-esports-jobs-uk",
+    canonical: "https://mvp.actor/entry-level-esports-jobs-uk",
   },
 };
 
@@ -171,38 +171,38 @@ export default function EntryLevelEsportsJobsUK() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://esportsjobs.quest/entry-level-esports-jobs-uk",
-        url: "https://esportsjobs.quest/entry-level-esports-jobs-uk",
+        "@id": "https://mvp.actor/entry-level-esports-jobs-uk",
+        url: "https://mvp.actor/entry-level-esports-jobs-uk",
         name: "Entry Level Esports Jobs UK | Start Your Gaming Career",
         description: "Find entry level esports jobs in the UK. No experience required for many roles. Start your gaming industry career with internships, junior positions & graduate schemes.",
         isPartOf: {
-          "@id": "https://esportsjobs.quest/#website"
+          "@id": "https://mvp.actor/#website"
         },
         breadcrumb: {
-          "@id": "https://esportsjobs.quest/entry-level-esports-jobs-uk#breadcrumb"
+          "@id": "https://mvp.actor/entry-level-esports-jobs-uk#breadcrumb"
         }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://esportsjobs.quest/entry-level-esports-jobs-uk#breadcrumb",
+        "@id": "https://mvp.actor/entry-level-esports-jobs-uk#breadcrumb",
         itemListElement: [
           {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://esportsjobs.quest"
+            item: "https://mvp.actor"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Esports Jobs UK",
-            item: "https://esportsjobs.quest/esports-jobs-uk"
+            item: "https://mvp.actor/esports-jobs-uk"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Entry Level Esports Jobs UK",
-            item: "https://esportsjobs.quest/entry-level-esports-jobs-uk"
+            item: "https://mvp.actor/entry-level-esports-jobs-uk"
           }
         ]
       },

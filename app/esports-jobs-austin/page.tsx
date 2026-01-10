@@ -8,19 +8,19 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-austin",
-      url: "https://esportsjobs.quest/esports-jobs-austin",
+      "@id": "https://mvp.actor/esports-jobs-austin",
+      url: "https://mvp.actor/esports-jobs-austin",
       name: "Esports Jobs Austin | Gaming Careers in Texas",
       description: "Find esports jobs in Austin, Texas. Gaming careers at emerging studios and esports organisations in Texas's tech hub.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "USA", item: "https://esportsjobs.quest/esports-jobs-usa" },
-        { "@type": "ListItem", position: 4, name: "Austin", item: "https://esportsjobs.quest/esports-jobs-austin" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "USA", item: "https://mvp.actor/esports-jobs-usa" },
+        { "@type": "ListItem", position: 4, name: "Austin", item: "https://mvp.actor/esports-jobs-austin" }
       ]
     },
     {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Austin 🤠 Gaming Careers in Texas",
   description: "🚀 Find esports jobs in Austin, Texas. Gaming careers at emerging studios and esports organisations in Texas's growing tech hub.",
   keywords: "esports jobs austin, gaming jobs texas, esports careers austin, rooster teeth jobs, texas gaming jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-austin" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-austin" },
 };
 
 const majorCompanies = [

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs France 🇫🇷 Gaming Careers in Paris",
   description: "🚀 Find esports jobs in France. Gaming careers at Ubisoft, Team Vitality, Karmine Corp. Paris esports opportunities.",
   keywords: "esports jobs france, gaming jobs paris, team vitality jobs, karmine corp careers, ubisoft esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-france" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-france" },
 };
 
 const majorCompanies = [

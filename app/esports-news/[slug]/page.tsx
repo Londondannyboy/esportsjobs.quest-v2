@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: article.title,
       description: article.excerpt,
       type: "article",
-      url: `https://esportsjobs.quest/esports-news/${article.slug}`,
+      url: `https://mvp.actor/esports-news/${article.slug}`,
       images: [
         {
           url: article.image,
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: [article.image],
     },
     alternates: {
-      canonical: `https://esportsjobs.quest/esports-news/${article.slug}`,
+      canonical: `https://mvp.actor/esports-news/${article.slug}`,
     },
   };
 }
@@ -87,20 +87,20 @@ export default async function NewsArticlePage({ params }: PageProps) {
     author: {
       "@type": "Organization",
       name: article.author,
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
     },
     publisher: {
       "@type": "Organization",
       name: "EsportsJobs.quest",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
       logo: {
         "@type": "ImageObject",
-        url: "https://esportsjobs.quest/icon.png",
+        url: "https://mvp.actor/icon.png",
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://esportsjobs.quest/esports-news/${article.slug}`,
+      "@id": `https://mvp.actor/esports-news/${article.slug}`,
     },
     articleSection: article.category,
     keywords: article.tags.join(", "),
@@ -115,19 +115,19 @@ export default async function NewsArticlePage({ params }: PageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://esportsjobs.quest",
+        item: "https://mvp.actor",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Esports News",
-        item: "https://esportsjobs.quest/esports-news",
+        item: "https://mvp.actor/esports-news",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: article.title,
-        item: `https://esportsjobs.quest/esports-news/${article.slug}`,
+        item: `https://mvp.actor/esports-news/${article.slug}`,
       },
     ],
   };
@@ -303,7 +303,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
         <section className="py-8">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <ShareButtons
-              url={`https://esportsjobs.quest/esports-news/${article.slug}`}
+              url={`https://mvp.actor/esports-news/${article.slug}`}
               title={article.title}
             />
           </div>

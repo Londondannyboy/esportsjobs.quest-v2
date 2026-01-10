@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-manchester",
-      url: "https://esportsjobs.quest/esports-jobs-manchester",
+      "@id": "https://mvp.actor/esports-jobs-manchester",
+      url: "https://mvp.actor/esports-jobs-manchester",
       name: "Esports Jobs Manchester | Gaming Careers in Manchester",
       description: "Find esports jobs in Manchester. Gaming careers, esports roles, and video game industry opportunities in the Manchester area.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "UK Esports Jobs", item: "https://esportsjobs.quest/esports-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "Manchester", item: "https://esportsjobs.quest/esports-jobs-manchester" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "UK Esports Jobs", item: "https://mvp.actor/esports-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "Manchester", item: "https://mvp.actor/esports-jobs-manchester" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Manchester 🎮 Gaming Careers Manchester",
   description: "🚀 Find esports jobs in Manchester. Gaming careers, esports roles, and video game industry opportunities in Manchester and the North West.",
   keywords: "esports jobs manchester, gaming jobs manchester, esports careers manchester, video game jobs manchester",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-manchester" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-manchester" },
 };
 
 const roleTypes = [

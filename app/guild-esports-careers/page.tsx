@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/guild-esports-careers",
-      url: "https://esportsjobs.quest/guild-esports-careers",
+      "@id": "https://mvp.actor/guild-esports-careers",
+      url: "https://mvp.actor/guild-esports-careers",
       name: "Guild Esports Careers & Jobs UK | Work at Guild",
       description: "Find jobs at Guild Esports, the David Beckham-backed UK esports organisation. Careers in esports, content, marketing, and academy programmes.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Top Companies UK", item: "https://esportsjobs.quest/top-esports-companies-uk" },
-        { "@type": "ListItem", position: 3, name: "Guild Esports", item: "https://esportsjobs.quest/guild-esports-careers" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Top Companies UK", item: "https://mvp.actor/top-esports-companies-uk" },
+        { "@type": "ListItem", position: 3, name: "Guild Esports", item: "https://mvp.actor/guild-esports-careers" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Guild Esports Careers 🏰 Work at Guild UK",
   description: "🎮 Guild Esports careers - jobs at David Beckham's UK esports org. Coaching, content, academy & operations roles in London.",
   keywords: "guild esports careers, guild esports jobs, work at guild, david beckham esports, guild esports uk",
-  alternates: { canonical: "https://esportsjobs.quest/guild-esports-careers" },
+  alternates: { canonical: "https://mvp.actor/guild-esports-careers" },
 };
 
 const departments = [

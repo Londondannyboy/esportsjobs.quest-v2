@@ -25,6 +25,7 @@ const CharacterSpeechBubble = dynamic(
 );
 
 interface CharacterSectionProps {
+  id?: string; // Custom DOM id for scroll targeting
   name: CharacterName;
   title: string;
   subtitle: string;
@@ -34,10 +35,12 @@ interface CharacterSectionProps {
   gradient: string;
   isComplete: boolean;
   completionPercent: number;
+  stage?: string; // Current stage name (e.g., "Planted", "Awakening")
   children: ReactNode; // Profile data content
 }
 
 export function CharacterSection({
+  id,
   name,
   title,
   subtitle,
@@ -47,6 +50,7 @@ export function CharacterSection({
   gradient,
   isComplete,
   completionPercent,
+  stage,
   children,
 }: CharacterSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -80,6 +84,8 @@ export function CharacterSection({
   };
 
   const getStatusLabel = () => {
+    // Use stage name if provided, otherwise fall back to generic status
+    if (stage) return stage.toUpperCase();
     if (isComplete) return 'COMPLETE';
     if (completionPercent > 0) return 'IN PROGRESS';
     return 'NOT STARTED';
@@ -96,7 +102,7 @@ export function CharacterSection({
 
   return (
     <section
-      id={`section-${name.toLowerCase()}`}
+      id={id || `character-${name.toLowerCase()}`}
       ref={sectionRef}
       className={`
         relative min-h-[500px] py-16 px-4 md:px-8

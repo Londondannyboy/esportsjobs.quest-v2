@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-leeds",
-      url: "https://esportsjobs.quest/esports-jobs-leeds",
+      "@id": "https://mvp.actor/esports-jobs-leeds",
+      url: "https://mvp.actor/esports-jobs-leeds",
       name: "Esports Jobs Leeds | Gaming Careers in Leeds",
       description: "Find esports jobs in Leeds. Gaming careers, esports roles, and video game industry opportunities in Leeds and Yorkshire.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "UK Esports Jobs", item: "https://esportsjobs.quest/esports-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "Leeds", item: "https://esportsjobs.quest/esports-jobs-leeds" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "UK Esports Jobs", item: "https://mvp.actor/esports-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "Leeds", item: "https://mvp.actor/esports-jobs-leeds" }
       ]
     },
     {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Leeds 🎮 Gaming Careers Yorkshire",
   description: "🚀 Find esports jobs in Leeds. Gaming careers, esports roles, and video game industry opportunities in Leeds and Yorkshire.",
   keywords: "esports jobs leeds, gaming jobs leeds, esports careers yorkshire, video game jobs leeds",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-leeds" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-leeds" },
 };
 
 const roleTypes = [

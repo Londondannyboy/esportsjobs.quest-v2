@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/fnatic-careers",
-      url: "https://esportsjobs.quest/fnatic-careers",
+      "@id": "https://mvp.actor/fnatic-careers",
+      url: "https://mvp.actor/fnatic-careers",
       name: "Fnatic Careers & Jobs UK | Work at Fnatic",
       description: "Find jobs at Fnatic, the UK's leading esports organisation. Careers in coaching, content, marketing, operations and more.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Top Companies UK", item: "https://esportsjobs.quest/top-esports-companies-uk" },
-        { "@type": "ListItem", position: 3, name: "Fnatic", item: "https://esportsjobs.quest/fnatic-careers" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Top Companies UK", item: "https://mvp.actor/top-esports-companies-uk" },
+        { "@type": "ListItem", position: 3, name: "Fnatic", item: "https://mvp.actor/fnatic-careers" }
       ]
     },
     {
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   title: "Fnatic Careers 🦊 Work at Fnatic",
   description: "🎮 Fnatic careers - jobs at one of esports' biggest brands. Coaching, content, marketing & operations roles at the legendary organisation.",
   keywords: "fnatic careers, fnatic jobs, work at fnatic",
-  alternates: { canonical: "https://esportsjobs.quest/fnatic-careers" },
+  alternates: { canonical: "https://mvp.actor/fnatic-careers" },
 };
 
 const departments = [

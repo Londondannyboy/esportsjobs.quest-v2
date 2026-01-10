@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Spain 🇪🇸 Gaming Careers in Madrid & Barcelona",
   description: "🚀 Find esports jobs in Spain. Gaming careers at MAD Lions, Giants Gaming. Madrid and Barcelona esports opportunities.",
   keywords: "esports jobs spain, gaming jobs madrid, esports jobs barcelona, mad lions careers, giants gaming jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-spain" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-spain" },
 };
 
 const majorCompanies = [

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Brazil 🇧🇷 Gaming Careers in São Paulo",
   description: "🚀 Find esports jobs in Brazil. Gaming careers at LOUD, FURIA, MIBR. São Paulo esports opportunities in Latin America's biggest market.",
   keywords: "esports jobs brazil, gaming jobs são paulo, loud esports careers, furia jobs, brazilian esports jobs, cblol jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-brazil" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-brazil" },
 };
 
 const majorCompanies = [

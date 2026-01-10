@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/british-esports-jobs",
-      url: "https://esportsjobs.quest/british-esports-jobs",
+      "@id": "https://mvp.actor/british-esports-jobs",
+      url: "https://mvp.actor/british-esports-jobs",
       name: "British Esports Jobs | Work at British Esports Association",
       description: "Find jobs at British Esports, the national body for esports in the UK. Careers in education, events, policy and esports development.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Top Companies UK", item: "https://esportsjobs.quest/top-esports-companies-uk" },
-        { "@type": "ListItem", position: 3, name: "British Esports", item: "https://esportsjobs.quest/british-esports-jobs" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Top Companies UK", item: "https://mvp.actor/top-esports-companies-uk" },
+        { "@type": "ListItem", position: 3, name: "British Esports", item: "https://mvp.actor/british-esports-jobs" }
       ]
     },
     {
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   title: "British Esports Jobs 🇬🇧 National Body Careers",
   description: "🎮 British Esports jobs - careers at the national body for esports. Education, events, policy & esports development roles.",
   keywords: "british esports jobs, british esports association careers",
-  alternates: { canonical: "https://esportsjobs.quest/british-esports-jobs" },
+  alternates: { canonical: "https://mvp.actor/british-esports-jobs" },
 };
 
 const areas = [

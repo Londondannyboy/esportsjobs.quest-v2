@@ -355,7 +355,7 @@ For a complete breakdown, see our [UK Esports Salary Guide](/esports-salary-guid
     readTime: "5 min read",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=600&fit=crop",
     source: "EsportsJobs.quest",
-    sourceUrl: "https://esportsjobs.quest/esports-salary-guide-uk",
+    sourceUrl: "https://mvp.actor/esports-salary-guide-uk",
     author: "EsportsJobs.quest",
     tags: ["Salaries", "UK", "Career Development", "Compensation"],
   },

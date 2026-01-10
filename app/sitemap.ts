@@ -3,7 +3,7 @@ import { newsArticles } from "../lib/news-data";
 import { esportsJobs } from "../lib/jobs-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://esportsjobs.quest";
+  const baseUrl = "https://mvp.actor";
   const now = new Date();
 
   // Define all pages with their priorities and change frequencies

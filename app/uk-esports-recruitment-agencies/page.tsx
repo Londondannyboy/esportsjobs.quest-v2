@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "UK Esports Recruitment Agencies & Job Boards Compared 2025",
     description: "Compare UK esports recruitment agencies and job boards to find your next gaming career opportunity.",
     type: "website",
-    url: "https://esportsjobs.quest/uk-esports-recruitment-agencies",
+    url: "https://mvp.actor/uk-esports-recruitment-agencies",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Find the best UK esports recruitment agencies and job boards.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/uk-esports-recruitment-agencies",
+    canonical: "https://mvp.actor/uk-esports-recruitment-agencies",
   },
 };
 
@@ -31,7 +31,7 @@ const recruitmentOptions = {
     {
       name: "EsportsJobs.quest",
       type: "Job Board + Recruitment Agency",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
       focus: "UK & European esports careers",
       description: "Specialist UK esports recruitment with both job board and full agency services. Run by industry professionals with 20+ years experience.",
       ukFocus: true,
@@ -263,7 +263,7 @@ export default function UKEsportsRecruitmentAgencies() {
     publisher: {
       "@type": "Organization",
       name: "EsportsJobs.quest",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
     },
     datePublished: "2024-12-30",
     dateModified: "2024-12-30",

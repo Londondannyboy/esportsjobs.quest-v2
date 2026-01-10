@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-salary-guide-usa",
-      url: "https://esportsjobs.quest/esports-salary-guide-usa",
+      "@id": "https://mvp.actor/esports-salary-guide-usa",
+      url: "https://mvp.actor/esports-salary-guide-usa",
       name: "Esports Salary Guide USA 2025 | Gaming Industry Salaries",
       description: "Comprehensive esports and gaming salary guide for the United States. Salary ranges for esports producers, coaches, marketers, and more in 2025.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "USA Salary Guide", item: "https://esportsjobs.quest/esports-salary-guide-usa" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "USA Salary Guide", item: "https://mvp.actor/esports-salary-guide-usa" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Esports Salary Guide USA 2025 💰 Gaming Industry Salaries",
   description: "🚀 Complete esports salary guide for the USA. Salary ranges for producers, coaches, marketers, and all esports roles in America 2025.",
   keywords: "esports salary usa, gaming salary america, esports pay, how much do esports jobs pay, us gaming salaries 2025",
-  alternates: { canonical: "https://esportsjobs.quest/esports-salary-guide-usa" },
+  alternates: { canonical: "https://mvp.actor/esports-salary-guide-usa" },
 };
 
 const salaryData = [

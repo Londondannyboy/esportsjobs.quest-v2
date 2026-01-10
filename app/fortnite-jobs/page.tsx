@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/fortnite-jobs",
-      url: "https://esportsjobs.quest/fortnite-jobs",
+      "@id": "https://mvp.actor/fortnite-jobs",
+      url: "https://mvp.actor/fortnite-jobs",
       name: "Fortnite Jobs | FNCS Esports Careers",
       description: "Find Fortnite esports jobs. Careers at Epic Games, FNCS production, and Fortnite content creation.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Fortnite", item: "https://esportsjobs.quest/fortnite-jobs" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Fortnite", item: "https://mvp.actor/fortnite-jobs" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Fortnite Jobs 🎮 FNCS Esports Careers | Epic Games",
   description: "🚀 Find Fortnite esports jobs. Careers at Epic Games, FNCS production, content creation. Coaching and competitive Fortnite opportunities.",
   keywords: "fortnite jobs, fncs careers, epic games jobs, fortnite esports, fortnite coaching jobs, fortnite content creator jobs",
-  alternates: { canonical: "https://esportsjobs.quest/fortnite-jobs" },
+  alternates: { canonical: "https://mvp.actor/fortnite-jobs" },
 };
 
 const epicLocations = [

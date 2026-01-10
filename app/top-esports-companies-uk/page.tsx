@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/top-esports-companies-uk",
-      url: "https://esportsjobs.quest/top-esports-companies-uk",
+      "@id": "https://mvp.actor/top-esports-companies-uk",
+      url: "https://mvp.actor/top-esports-companies-uk",
       name: "Top Esports Companies UK 2025 | Who's Hiring?",
       description: "Directory of top esports companies in the UK. From Fnatic to British Esports, discover who's hiring.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://esportsjobs.quest/esports-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "Top Companies", item: "https://esportsjobs.quest/top-esports-companies-uk" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://mvp.actor/esports-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "Top Companies", item: "https://mvp.actor/top-esports-companies-uk" }
       ]
     },
     {
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   title: "Top Esports Companies UK 🏢 Who's Hiring",
   description: "Directory of top esports companies in the UK. From Fnatic to British Esports, discover who's hiring and where to apply for esports jobs.",
   keywords: "esports companies uk, uk esports organisations, gaming companies hiring uk, esports employers uk",
-  alternates: { canonical: "https://esportsjobs.quest/top-esports-companies-uk" },
+  alternates: { canonical: "https://mvp.actor/top-esports-companies-uk" },
 };
 
 const companies = [

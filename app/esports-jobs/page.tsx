@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Esports Jobs 🎮 Browse Gaming Careers",
     description: "🔥 Esports jobs in coaching, marketing, production & management. Browse open positions at top gaming organisations.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-jobs",
+    url: "https://mvp.actor/esports-jobs",
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description: "🔥 Esports jobs in coaching, marketing, production & management.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-jobs",
+    canonical: "https://mvp.actor/esports-jobs",
   },
 };
 
@@ -44,7 +44,7 @@ const jobsPageSchema = {
   "@type": "WebPage",
   name: "Esports Jobs - Find Gaming Industry Careers",
   description: "Browse esports jobs in coaching, marketing, production, content creation and management roles.",
-  url: "https://esportsjobs.quest/esports-jobs",
+  url: "https://mvp.actor/esports-jobs",
   mainEntity: {
     "@type": "ItemList",
     name: "Esports Job Listings",

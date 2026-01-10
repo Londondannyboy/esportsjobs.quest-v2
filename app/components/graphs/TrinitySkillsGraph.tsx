@@ -3,9 +3,11 @@
 /**
  * Trinity Skills Graph - 3D constellation of user's skills
  * Shows skills as nodes connected by category/relationship
+ *
+ * Now used by REPO character (skills moved from Trinity in Jan 2025)
  */
 
-import { useMemo } from 'react';
+import { useMemo, useRef, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 const ForceGraph3D = dynamic(() => import('react-force-graph-3d'), {
@@ -29,6 +31,7 @@ interface TrinitySkillsGraphProps {
   skills: Skill[];
   careerGoal?: string;
   className?: string;
+  onNodeAdded?: () => void; // Callback when a new node animation completes
 }
 
 // Skill category mappings for creating connections
@@ -63,7 +66,36 @@ const CATEGORY_COLORS: Record<string, string> = {
   general: '#94a3b8',     // gray
 };
 
-export function TrinitySkillsGraph({ skills, careerGoal, className = '' }: TrinitySkillsGraphProps) {
+export function TrinitySkillsGraph({ skills, careerGoal, className = '', onNodeAdded }: TrinitySkillsGraphProps) {
+  // Track previous skill count for detecting new additions
+  const prevSkillCountRef = useRef(skills?.length || 0);
+  const [newNodeId, setNewNodeId] = useState<string | null>(null);
+  const [showAddAnimation, setShowAddAnimation] = useState(false);
+
+  // Detect when new skills are added
+  useEffect(() => {
+    const currentCount = skills?.length || 0;
+    const prevCount = prevSkillCountRef.current;
+
+    if (currentCount > prevCount && currentCount > 0) {
+      // New skill was added - trigger animation
+      const newSkillIndex = currentCount - 1;
+      setNewNodeId(`skill_${newSkillIndex}`);
+      setShowAddAnimation(true);
+
+      // Call callback after animation
+      const timer = setTimeout(() => {
+        setShowAddAnimation(false);
+        setNewNodeId(null);
+        onNodeAdded?.();
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
+
+    prevSkillCountRef.current = currentCount;
+  }, [skills?.length, onNodeAdded]);
+
   const graphData = useMemo(() => {
     if (!skills || skills.length === 0) {
       return { nodes: [], links: [] };
@@ -140,19 +172,33 @@ export function TrinitySkillsGraph({ skills, careerGoal, className = '' }: Trini
     );
   }
 
+  // Get the newly added skill name for the notification
+  const newSkillName = newNodeId && skills?.length > 0
+    ? skills[parseInt(newNodeId.split('_')[1])]?.value
+    : null;
+
   return (
-    <div className={`bg-purple-900/20 rounded-xl overflow-hidden ${className}`}>
+    <div className={`bg-cyan-900/20 rounded-xl overflow-hidden relative ${className}`}>
+      {/* New Skill Added Animation Banner */}
+      {showAddAnimation && newSkillName && (
+        <div className="absolute top-2 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+          <div className="px-4 py-2 rounded-full bg-cyan-500/30 border border-cyan-500 text-cyan-300 text-sm font-medium shadow-lg shadow-cyan-500/20">
+            + {newSkillName} added!
+          </div>
+        </div>
+      )}
+
       <div className="h-[300px]">
         <ForceGraph3D
           graphData={graphData}
           nodeLabel={(node: object) => {
             const n = node as { name: string; type: string };
-            return n.type === 'center' ? 'Your Identity' : n.name;
+            return n.type === 'center' ? 'Your Foundation' : n.name;
           }}
           nodeColor={(node: object) => (node as { color: string }).color}
           nodeRelSize={6}
           nodeVal={(node: object) => (node as { val: number }).val}
-          linkColor={() => 'rgba(168, 85, 247, 0.3)'}
+          linkColor={() => 'rgba(34, 211, 238, 0.3)'}
           linkWidth={1.5}
           backgroundColor="rgba(0, 0, 0, 0)"
           enableNodeDrag={true}
@@ -162,7 +208,7 @@ export function TrinitySkillsGraph({ skills, careerGoal, className = '' }: Trini
       </div>
 
       {/* Legend */}
-      <div className="px-4 py-3 border-t border-purple-500/20">
+      <div className="px-4 py-3 border-t border-cyan-500/20">
         <div className="flex flex-wrap gap-3 justify-center text-xs">
           {Object.entries(CATEGORY_COLORS).slice(0, 6).map(([cat, color]) => (
             <div key={cat} className="flex items-center gap-1">

@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/league-of-legends-jobs",
-      url: "https://esportsjobs.quest/league-of-legends-jobs",
+      "@id": "https://mvp.actor/league-of-legends-jobs",
+      url: "https://mvp.actor/league-of-legends-jobs",
       name: "League of Legends Jobs | LoL Esports Careers",
       description: "Find League of Legends esports jobs. Careers at Riot Games, LEC, LCS teams, and LoL esports organisations worldwide.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "League of Legends", item: "https://esportsjobs.quest/league-of-legends-jobs" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "League of Legends", item: "https://mvp.actor/league-of-legends-jobs" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "League of Legends Jobs 🎮 LoL Esports Careers | Riot Games",
   description: "🚀 Find League of Legends esports jobs. Careers at Riot Games, LEC, LCS teams like G2, Fnatic, Cloud9, T1. LoL coaching, analyst, broadcast roles.",
   keywords: "league of legends jobs, lol esports careers, riot games jobs, lec jobs, lcs jobs, lol coaching jobs, esports analyst lol",
-  alternates: { canonical: "https://esportsjobs.quest/league-of-legends-jobs" },
+  alternates: { canonical: "https://mvp.actor/league-of-legends-jobs" },
 };
 
 const riotLocations = [

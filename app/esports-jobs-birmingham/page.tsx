@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-birmingham",
-      url: "https://esportsjobs.quest/esports-jobs-birmingham",
+      "@id": "https://mvp.actor/esports-jobs-birmingham",
+      url: "https://mvp.actor/esports-jobs-birmingham",
       name: "Esports Jobs Birmingham | Gaming Careers in Birmingham",
       description: "Find esports jobs in Birmingham. Gaming careers, esports roles, and video game industry opportunities in the Birmingham and Midlands area.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "UK Esports Jobs", item: "https://esportsjobs.quest/esports-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "Birmingham", item: "https://esportsjobs.quest/esports-jobs-birmingham" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "UK Esports Jobs", item: "https://mvp.actor/esports-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "Birmingham", item: "https://mvp.actor/esports-jobs-birmingham" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Birmingham 🎮 Gaming Careers Midlands",
   description: "🚀 Find esports jobs in Birmingham. Gaming careers, esports roles, and video game industry opportunities in Birmingham and the Midlands.",
   keywords: "esports jobs birmingham, gaming jobs birmingham, esports careers midlands, video game jobs birmingham, insomnia gaming jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-birmingham" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-birmingham" },
 };
 
 const roleTypes = [

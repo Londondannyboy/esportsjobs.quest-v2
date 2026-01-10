@@ -35,11 +35,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: `${job.title} - ${job.company} | Esports Jobs`,
       description: `${job.type} position at ${job.company}. ${job.location}.`,
       type: "website",
-      url: `https://esportsjobs.quest/job/${job.id}`,
+      url: `https://mvp.actor/job/${job.id}`,
       images: [{ url: job.heroImage, alt: job.heroImageAlt }],
     },
     alternates: {
-      canonical: `https://esportsjobs.quest/job/${job.id}`,
+      canonical: `https://mvp.actor/job/${job.id}`,
     },
   };
 }

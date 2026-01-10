@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-los-angeles",
-      url: "https://esportsjobs.quest/esports-jobs-los-angeles",
+      "@id": "https://mvp.actor/esports-jobs-los-angeles",
+      url: "https://mvp.actor/esports-jobs-los-angeles",
       name: "Esports Jobs Los Angeles | Gaming Careers in LA",
       description: "Find esports jobs in Los Angeles. Gaming careers at Riot Games, Blizzard, Activision and major esports organisations in North America's esports capital.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Los Angeles", item: "https://esportsjobs.quest/esports-jobs-los-angeles" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Los Angeles", item: "https://mvp.actor/esports-jobs-los-angeles" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Los Angeles 🇺🇸 Gaming Careers LA",
   description: "🚀 Find esports jobs in Los Angeles. Gaming careers at Riot Games, Activision, and major esports organisations in North America's esports capital.",
   keywords: "esports jobs los angeles, gaming jobs la, riot games careers, activision jobs, 100 thieves jobs, esports careers usa, na esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-los-angeles" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-los-angeles" },
 };
 
 const majorCompanies = [

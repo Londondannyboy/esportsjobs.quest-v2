@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Esports Coach Jobs 🏆 Coaching Careers",
   description: "🎮 Esports coach jobs at top gaming organisations. Coaching careers guide with salary data, qualifications needed and how to become an esports coach.",
   keywords: "esports coach jobs, esports coaching careers",
-  alternates: { canonical: "https://esportsjobs.quest/esports-coach-careers" },
+  alternates: { canonical: "https://mvp.actor/esports-coach-careers" },
 };
 
 const jsonLd = {
@@ -17,38 +17,38 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-coach-careers",
-      "url": "https://esportsjobs.quest/esports-coach-careers",
+      "@id": "https://mvp.actor/esports-coach-careers",
+      "url": "https://mvp.actor/esports-coach-careers",
       "name": "Esports Coach Careers | Coaching Jobs Guide",
       "description": "Become an esports coach in the UK. Guide to coaching careers, salaries, qualifications and how to break into professional esports coaching.",
       "isPartOf": {
-        "@id": "https://esportsjobs.quest/#website"
+        "@id": "https://mvp.actor/#website"
       },
       "breadcrumb": {
-        "@id": "https://esportsjobs.quest/esports-coach-careers#breadcrumb"
+        "@id": "https://mvp.actor/esports-coach-careers#breadcrumb"
       }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://esportsjobs.quest/esports-coach-careers#breadcrumb",
+      "@id": "https://mvp.actor/esports-coach-careers#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://esportsjobs.quest"
+          "item": "https://mvp.actor"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Esports Careers",
-          "item": "https://esportsjobs.quest/esports-careers"
+          "item": "https://mvp.actor/esports-careers"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Coaching",
-          "item": "https://esportsjobs.quest/esports-coach-careers"
+          "item": "https://mvp.actor/esports-coach-careers"
         }
       ]
     },

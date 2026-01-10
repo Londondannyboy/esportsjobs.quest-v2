@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Esports Recruitment 🎮 UK Jobs & Agencies Guide",
     description: "Find esports recruitment opportunities in the UK. Search gaming jobs or discover specialist recruiters.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-recruitment",
+    url: "https://mvp.actor/esports-recruitment",
   },
   twitter: {
     card: "summary_large_image",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Find esports recruitment opportunities in the UK.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-recruitment",
+    canonical: "https://mvp.actor/esports-recruitment",
   },
 };
 
@@ -99,7 +99,7 @@ export default function EsportsRecruitment() {
     publisher: {
       "@type": "Organization",
       name: "EsportsJobs.quest",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
     },
   };
 

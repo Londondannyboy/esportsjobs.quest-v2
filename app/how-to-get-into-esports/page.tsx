@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     title: "How to Get Into Esports UK | Complete 2025 Career Guide",
     description: "Step-by-step guide to getting into esports in the UK with British Esports pathways, university courses, and job opportunities.",
     type: "website",
-    url: "https://esportsjobs.quest/how-to-get-into-esports",
-    images: [{ url: "https://esportsjobs.quest/og-image.png", width: 1200, height: 630 }],
+    url: "https://mvp.actor/how-to-get-into-esports",
+    images: [{ url: "https://mvp.actor/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Step-by-step guide to breaking into esports in the UK.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/how-to-get-into-esports",
+    canonical: "https://mvp.actor/how-to-get-into-esports",
   },
 };
 
@@ -264,9 +264,9 @@ export default function HowToGetIntoEsports() {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-          { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://esportsjobs.quest/esports-careers" },
-          { "@type": "ListItem", position: 3, name: "How to Get Into Esports", item: "https://esportsjobs.quest/how-to-get-into-esports" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+          { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://mvp.actor/esports-careers" },
+          { "@type": "ListItem", position: 3, name: "How to Get Into Esports", item: "https://mvp.actor/how-to-get-into-esports" },
         ],
       },
     ],

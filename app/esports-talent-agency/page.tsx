@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Esports Talent Agency Guide | Player & Creator Representation",
     description: "Complete guide to esports talent agencies. Learn how talent agencies work for pro players, streamers & creators.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-talent-agency",
+    url: "https://mvp.actor/esports-talent-agency",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Complete guide to esports talent agencies for pro players, streamers & creators.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-talent-agency",
+    canonical: "https://mvp.actor/esports-talent-agency",
   },
 };
 
@@ -174,7 +174,7 @@ export default function EsportsTalentAgency() {
         "@type": "WebPage",
         name: "Esports Talent Agency Guide",
         description: "Complete guide to esports talent agencies, player representation, and how they differ from recruitment agencies.",
-        url: "https://esportsjobs.quest/esports-talent-agency",
+        url: "https://mvp.actor/esports-talent-agency",
       },
       {
         "@type": "FAQPage",

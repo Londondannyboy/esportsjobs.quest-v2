@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-sweden",
-      url: "https://esportsjobs.quest/esports-jobs-sweden",
+      "@id": "https://mvp.actor/esports-jobs-sweden",
+      url: "https://mvp.actor/esports-jobs-sweden",
       name: "Esports Jobs Sweden | Gaming Careers in Sverige",
       description: "Find esports jobs in Sweden. Gaming careers at Paradox, DICE, Mojang, and Nordic esports organisations in Stockholm and beyond.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Sweden", item: "https://esportsjobs.quest/esports-jobs-sweden" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Sweden", item: "https://mvp.actor/esports-jobs-sweden" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Sweden 🇸🇪 Gaming Careers in Stockholm",
   description: "🚀 Find esports jobs in Sweden. Gaming careers at DICE, Mojang, Paradox, King. Stockholm is a global gaming hub.",
   keywords: "esports jobs sweden, gaming jobs stockholm, dice careers, mojang jobs, paradox interactive careers, swedish esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-sweden" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-sweden" },
 };
 
 const majorCompanies = [

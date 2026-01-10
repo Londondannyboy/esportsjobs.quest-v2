@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-london",
-      url: "https://esportsjobs.quest/esports-jobs-london",
+      "@id": "https://mvp.actor/esports-jobs-london",
+      url: "https://mvp.actor/esports-jobs-london",
       name: "Esports Jobs London | Gaming Careers in the Capital",
       description: "Find esports jobs in London. The UK's esports hub with Fnatic, Excel, Gfinity & more.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://esportsjobs.quest/esports-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "London", item: "https://esportsjobs.quest/esports-jobs-london" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://mvp.actor/esports-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "London", item: "https://mvp.actor/esports-jobs-london" }
       ]
     },
     {
@@ -79,10 +79,10 @@ export const metadata: Metadata = {
     title: "Esports Jobs London 📍 Gaming Capital",
     description: "🎮 Esports jobs London - the esports hub with Fnatic, Excel & Gfinity.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-jobs-london",
+    url: "https://mvp.actor/esports-jobs-london",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-jobs-london",
+    canonical: "https://mvp.actor/esports-jobs-london",
   },
 };
 

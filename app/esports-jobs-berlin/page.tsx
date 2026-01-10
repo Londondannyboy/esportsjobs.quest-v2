@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-berlin",
-      url: "https://esportsjobs.quest/esports-jobs-berlin",
+      "@id": "https://mvp.actor/esports-jobs-berlin",
+      url: "https://mvp.actor/esports-jobs-berlin",
       name: "Esports Jobs Berlin | Gaming Careers in Germany",
       description: "Find esports jobs in Berlin. Gaming careers at Riot Games EU, G2 Esports, ESL and major European esports organisations in Europe's esports capital.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Berlin", item: "https://esportsjobs.quest/esports-jobs-berlin" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Berlin", item: "https://mvp.actor/esports-jobs-berlin" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Berlin 🇩🇪 Gaming Careers Europe",
   description: "🚀 Find esports jobs in Berlin. Gaming careers at Riot Games EU, G2 Esports, ESL and major European esports organisations in Europe's esports capital.",
   keywords: "esports jobs berlin, gaming jobs germany, riot games eu jobs, g2 esports careers, esl jobs, lec jobs, european esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-berlin" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-berlin" },
 };
 
 const majorCompanies = [

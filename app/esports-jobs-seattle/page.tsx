@@ -8,19 +8,19 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-seattle",
-      url: "https://esportsjobs.quest/esports-jobs-seattle",
+      "@id": "https://mvp.actor/esports-jobs-seattle",
+      url: "https://mvp.actor/esports-jobs-seattle",
       name: "Esports Jobs Seattle | Gaming Careers in Washington",
       description: "Find esports jobs in Seattle. Gaming careers at Valve, Bungie, and major gaming studios in the Pacific Northwest.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "USA", item: "https://esportsjobs.quest/esports-jobs-usa" },
-        { "@type": "ListItem", position: 4, name: "Seattle", item: "https://esportsjobs.quest/esports-jobs-seattle" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "USA", item: "https://mvp.actor/esports-jobs-usa" },
+        { "@type": "ListItem", position: 4, name: "Seattle", item: "https://mvp.actor/esports-jobs-seattle" }
       ]
     },
     {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Seattle 🌲 Gaming Careers in Washington",
   description: "🚀 Find esports jobs in Seattle. Gaming careers at Valve, Bungie, and major studios in the Pacific Northwest.",
   keywords: "esports jobs seattle, gaming jobs seattle, valve careers, bungie jobs, washington gaming jobs, dota 2 jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-seattle" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-seattle" },
 };
 
 const majorCompanies = [

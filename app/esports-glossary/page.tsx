@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Esports Glossary | Gaming Terms & Definitions",
     description: "Essential esports vocabulary for career professionals and job seekers.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-glossary",
+    url: "https://mvp.actor/esports-glossary",
   },
   twitter: {
     card: "summary_large_image",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Essential esports terminology for your career.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-glossary",
+    canonical: "https://mvp.actor/esports-glossary",
   },
 };
 
@@ -230,12 +230,12 @@ export default function EsportsGlossaryPage() {
     "@type": "DefinedTermSet",
     name: "Esports Glossary",
     description: "Comprehensive glossary of esports and gaming industry terms",
-    url: "https://esportsjobs.quest/esports-glossary",
+    url: "https://mvp.actor/esports-glossary",
     hasDefinedTerm: glossaryTerms.map((term) => ({
       "@type": "DefinedTerm",
       name: term.term,
       description: term.definition,
-      inDefinedTermSet: "https://esportsjobs.quest/esports-glossary",
+      inDefinedTermSet: "https://mvp.actor/esports-glossary",
     })),
   };
 

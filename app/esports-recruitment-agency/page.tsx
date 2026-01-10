@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Esports Recruitment Agency 🎮 UK Gaming Recruiters Guide",
     description: "Find the best esports recruitment agencies in the UK. Compare specialist gaming recruiters.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-recruitment-agency",
+    url: "https://mvp.actor/esports-recruitment-agency",
   },
   twitter: {
     card: "summary_large_image",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "Find the best esports recruitment agencies in the UK.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-recruitment-agency",
+    canonical: "https://mvp.actor/esports-recruitment-agency",
   },
 };
 
@@ -110,7 +110,7 @@ export default function EsportsRecruitmentAgency() {
     publisher: {
       "@type": "Organization",
       name: "EsportsJobs.quest",
-      url: "https://esportsjobs.quest",
+      url: "https://mvp.actor",
     },
   };
 

@@ -23,7 +23,7 @@ const CROSS_LINK_CONFIG = {
     title: 'Hiring in Esports?',
     description: 'Post jobs to reach gaming industry professionals',
     cta: 'Post a Job',
-    href: 'https://esportsjobs.quest/contact',
+    href: 'https://mvp.actor/contact',
     gradient: 'from-green-900/30 to-cyan-900/30',
     border: 'border-green-500/20 hover:border-green-500/50',
   },

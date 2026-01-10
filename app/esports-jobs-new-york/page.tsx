@@ -8,19 +8,19 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-new-york",
-      url: "https://esportsjobs.quest/esports-jobs-new-york",
+      "@id": "https://mvp.actor/esports-jobs-new-york",
+      url: "https://mvp.actor/esports-jobs-new-york",
       name: "Esports Jobs New York | Gaming Careers in NYC",
       description: "Find esports jobs in New York City. Gaming careers in media, marketing, and esports organisations in the Big Apple.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "USA", item: "https://esportsjobs.quest/esports-jobs-usa" },
-        { "@type": "ListItem", position: 4, name: "New York", item: "https://esportsjobs.quest/esports-jobs-new-york" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "USA", item: "https://mvp.actor/esports-jobs-usa" },
+        { "@type": "ListItem", position: 4, name: "New York", item: "https://mvp.actor/esports-jobs-new-york" }
       ]
     },
     {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs New York 🗽 Gaming Careers in NYC",
   description: "🚀 Find esports jobs in New York City. Gaming careers in media, marketing, and esports organisations in NYC.",
   keywords: "esports jobs new york, gaming jobs nyc, esports careers new york, nyxl jobs, esports media jobs",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-new-york" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-new-york" },
 };
 
 const majorCompanies = [

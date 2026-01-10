@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-remote",
-      url: "https://esportsjobs.quest/esports-jobs-remote",
+      "@id": "https://mvp.actor/esports-jobs-remote",
+      url: "https://mvp.actor/esports-jobs-remote",
       name: "Remote Esports Jobs | Work From Home Gaming Careers",
       description: "Find remote esports jobs in the UK. Work from home in coaching, content, marketing & more.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://esportsjobs.quest/esports-jobs-uk" },
-        { "@type": "ListItem", position: 3, name: "Remote Jobs", item: "https://esportsjobs.quest/esports-jobs-remote" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs UK", item: "https://mvp.actor/esports-jobs-uk" },
+        { "@type": "ListItem", position: 3, name: "Remote Jobs", item: "https://mvp.actor/esports-jobs-remote" }
       ]
     },
     {
@@ -79,10 +79,10 @@ export const metadata: Metadata = {
     title: "Remote Esports Jobs 🏠 Work From Home",
     description: "🌍 Remote esports jobs - work from home in coaching, content, marketing & more.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-jobs-remote",
+    url: "https://mvp.actor/esports-jobs-remote",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-jobs-remote",
+    canonical: "https://mvp.actor/esports-jobs-remote",
   },
 };
 

@@ -17,7 +17,7 @@ interface UnifiedFooterProps {
   disclaimerText?: string;
 }
 
-// All pages on esportsjobs.quest for internal linking
+// All pages on mvp.actor for internal linking
 const ESPORTS_JOBS_PAGES = {
   jobs: [
     { label: 'All Esports Jobs', href: '/esports-jobs' },
@@ -122,7 +122,7 @@ const SITE_CONFIG = {
     copyright: 'Esports Production UK',
   },
   jobs: {
-    email: 'hello@esportsjobs.quest',
+    email: 'hello@mvp.actor',
     copyright: 'Esports Recruitment Agency Quest',
   },
   news: {

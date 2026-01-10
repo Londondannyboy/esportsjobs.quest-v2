@@ -1,4 +1,48 @@
-# EsportsJobs.quest v2 - Claude Code Documentation
+# MVP Actor (formerly EsportsJobs.quest) - Claude Code Documentation
+
+## CURRENT PROJECT: Two-Phase Moonshot
+
+**Phase 1: Rebrand to MVP Actor**
+- Primary domain: mvp.actor
+- Secondary: gomvp.quest (redirect)
+- Legacy: esportsjobs.quest (redirect)
+
+**Phase 2: Enhanced Gamification & Networking**
+- Refined 4-character system (Repo, Trinity, Velo, Reach)
+- LinkedIn-style messaging
+- Career coaching integration
+- Real-time AI → Graph updates
+
+See full plan: `.claude/plans/sharded-twirling-volcano.md`
+
+---
+
+## THE 4 CHARACTERS (Updated Jan 2025)
+
+| Character | Theme | Fields | Required | Stages |
+|-----------|-------|--------|----------|--------|
+| **REPO** | Foundation | location, role, skill | All + 3 skills | Ungrounded → Planted → Rooted → Anchored |
+| **TRINITY** | Soul/Purpose | career_mission, values, long_term_vision | mission | Searching → Awakening → Enlightened |
+| **VELO** | Journey | experience_years, career_timeline | years + timeline | Standing Still → Walking → Running → Flying |
+| **REACH** | Network | connections, messages, coach | None (always complete) | Solo → Connected → Networked |
+
+**Key Changes (Jan 2025):**
+- Skills moved from Trinity to Repo (Foundation now includes abilities)
+- Trinity now focuses on deep purpose (mission, values, vision)
+- Each character has progression stages
+- Reach now includes messaging and coach directory tabs
+
+### Character Stages
+Characters progress through stages as users complete fields. Stage names are shown in the UI status badge.
+
+### New Profile Item Types
+- `career_mission` - User's "why" (Trinity)
+- `values` - Core values (Trinity)
+- `long_term_vision` - 5-10 year vision (Trinity)
+- `career_timeline` - Career milestones with optional year (Velo)
+- `career_context` - What user learned from their journey (Velo)
+
+---
 
 ## BREAKTHROUGH: CopilotKit + Pydantic AI User Context (Jan 2025)
 
@@ -207,7 +251,8 @@ Key observations:
 
 | Service | URL |
 |---------|-----|
-| Frontend (Vercel) | https://esportsjobsquest-v2.vercel.app |
+| Frontend (Vercel) | https://mvp.actor (pending rebrand) |
+| Current Frontend | https://esportsjobsquest-v2.vercel.app |
 | Backend (Railway) | https://esports-v2-agent-production.up.railway.app |
 | AG-UI Endpoint | /agui/ |
 | CLM Endpoint | /chat/completions |
@@ -232,21 +277,104 @@ CLM_AUTH_SECRET=esports-clm-secret-2025
 ## Project Structure
 
 ```
-esportsjobs.quest-v2/
+esportsjobs.quest-v2/   →   mvp.actor (after rebrand)
 ├── app/                    # Next.js 15 frontend
 │   ├── page.tsx           # Main page with CopilotKit
+│   ├── profile/           # Profile page with 4 characters
+│   ├── components/
+│   │   ├── CharacterSection.tsx
+│   │   ├── CharacterModel.tsx     # 3D character rendering
+│   │   ├── characters/            # Repo, Trinity, Velo, Reach
+│   │   ├── graphs/                # ZEP network graphs
+│   │   └── gamification/          # XP, badges, levels
 │   ├── providers/         # CopilotProvider
-│   └── api/copilotkit/    # CopilotKit runtime route
+│   └── api/
+│       ├── copilotkit/    # CopilotKit runtime route
+│       ├── user-profile/  # Profile CRUD
+│       ├── connections/   # Networking (Phase 2)
+│       └── messages/      # Messaging (Phase 2)
 ├── agent/                  # Pydantic AI backend
 │   ├── main.py            # FastAPI app with AG-UI + CLM
-│   └── tools/             # Job search, company lookup
+│   └── tools/             # Job search, user context, profile
+├── lib/
+│   ├── character-config.ts # 4 characters definitions
+│   └── gamification.ts     # XP, levels, badges
+├── public/
+│   └── models/Soldier.glb  # 3D character model
 └── CLAUDE.md              # This file
 ```
 
 ## Database (Neon PostgreSQL)
 
+### App Database (esportsjobs)
 Tables:
-- `jobs` - Esports job listings with title, company, location, category, etc.
+- `jobs` - Job listings with title, company, location, category
+- `user_profile_items` - Flexible profile data (location, skills, etc.)
+- `connections` - User connections (Phase 2)
+- `messages` - Direct messages (Phase 2)
+
+### Central Auth Database (quest-users)
+- Shared authentication across all Quest apps
+- `neon_auth.users_sync` - User accounts
+
+## Gamification Components (Jan 2025)
+
+### Celebration Components
+Located in `app/components/gamification/`:
+
+| Component | Purpose |
+|-----------|---------|
+| `BadgeUnlockToast` | Toast notification when achievement unlocked |
+| `XPNotification` | Floating +XP animation |
+| `CharacterUnlockCelebration` | Full-screen celebration when character completed |
+| `Confetti` | Canvas-based confetti animation |
+
+### Usage
+```tsx
+import { useCharacterCelebration, useXPNotifications } from '@/app/components/gamification';
+
+// In your component:
+const { activeCharacter, showCelebration, handleComplete } = useCharacterCelebration();
+const { notifications, showXPGain, removeNotification } = useXPNotifications();
+
+// Trigger celebrations:
+showCelebration('Repo');  // Full screen character unlock
+showXPGain(100, 'Skill added');  // Floating XP notification
+```
+
+### Badge Click Actions
+- **Locked badges** → Open modal with requirement + "Start Working Towards This!" CTA
+- **Unlocked badges** → Scroll to related character section with highlight animation
+
+### Real-time Graph Animations
+`TrinitySkillsGraph` (now used by Repo) detects new skills and shows:
+- "+" banner animation
+- Node highlight effect
+- Callback when animation completes
+
+---
+
+## New API Routes (Jan 2025)
+
+### Connections API (`/api/connections`)
+- `GET` - List user's connections
+- `POST` - Send connection request
+- `PATCH` - Accept/reject connection
+- `DELETE` - Remove connection
+
+### Messages API (`/api/messages`)
+- `GET` - Get conversation or inbox
+- `POST` - Send message (requires connection)
+- `PATCH` - Mark messages as read
+- `DELETE` - Delete your message
+
+### Database Tables
+Run `scripts/create-networking-tables.sql` to create:
+- `connections` - User-to-user connections with status
+- `messages` - Direct messages with conversation threading
+- `user_types` - User type (seeker/coach/recruiter) + verification
+
+---
 
 ## Key Learnings
 

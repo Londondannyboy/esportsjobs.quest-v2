@@ -8,39 +8,39 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/gaming-tester-jobs-uk",
-      "url": "https://esportsjobs.quest/gaming-tester-jobs-uk",
+      "@id": "https://mvp.actor/gaming-tester-jobs-uk",
+      "url": "https://mvp.actor/gaming-tester-jobs-uk",
       "name": "Gaming Tester Jobs UK | QA Careers Guide 2025",
       "description": "Find gaming tester jobs in the UK. QA testing is the most accessible entry into gaming. Learn requirements, salaries & top companies hiring game testers.",
       "isPartOf": {
         "@type": "WebSite",
-        "@id": "https://esportsjobs.quest/#website"
+        "@id": "https://mvp.actor/#website"
       },
       "breadcrumb": {
-        "@id": "https://esportsjobs.quest/gaming-tester-jobs-uk#breadcrumb"
+        "@id": "https://mvp.actor/gaming-tester-jobs-uk#breadcrumb"
       }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://esportsjobs.quest/gaming-tester-jobs-uk#breadcrumb",
+      "@id": "https://mvp.actor/gaming-tester-jobs-uk#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://esportsjobs.quest"
+          "item": "https://mvp.actor"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Gaming Jobs UK",
-          "item": "https://esportsjobs.quest/gaming-jobs-uk"
+          "item": "https://mvp.actor/gaming-jobs-uk"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Tester Jobs",
-          "item": "https://esportsjobs.quest/gaming-tester-jobs-uk"
+          "item": "https://mvp.actor/gaming-tester-jobs-uk"
         }
       ]
     },
@@ -101,10 +101,10 @@ export const metadata: Metadata = {
     title: "Game Tester Jobs UK 🎮 QA Careers",
     description: "🕹️ Game tester jobs UK - QA testing is the most accessible entry into gaming.",
     type: "website",
-    url: "https://esportsjobs.quest/gaming-tester-jobs-uk",
+    url: "https://mvp.actor/gaming-tester-jobs-uk",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/gaming-tester-jobs-uk",
+    canonical: "https://mvp.actor/gaming-tester-jobs-uk",
   },
 };
 

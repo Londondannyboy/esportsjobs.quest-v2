@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Esports Recruiting | Find Gaming Talent & Jobs",
     description: "Expert esports recruiting services connecting gaming talent with top organisations.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-recruiting",
+    url: "https://mvp.actor/esports-recruiting",
   },
   twitter: {
     card: "summary_large_image",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Expert esports recruiting connecting gaming talent with top organisations.",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-recruiting",
+    canonical: "https://mvp.actor/esports-recruiting",
   },
 };
 
@@ -156,7 +156,7 @@ export default function EsportsRecruiting() {
         provider: {
           "@type": "Organization",
           name: "EsportsJobs.quest",
-          url: "https://esportsjobs.quest",
+          url: "https://mvp.actor",
         },
         serviceType: "Recruitment",
         areaServed: "United Kingdom",

@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-jobs-seoul",
-      url: "https://esportsjobs.quest/esports-jobs-seoul",
+      "@id": "https://mvp.actor/esports-jobs-seoul",
+      url: "https://mvp.actor/esports-jobs-seoul",
       name: "Esports Jobs Seoul | Gaming Careers in Korea",
       description: "Find esports jobs in Seoul, Korea. Gaming careers at T1, Gen.G, DRX and major Korean esports organisations in the world's esports capital.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Seoul", item: "https://esportsjobs.quest/esports-jobs-seoul" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Seoul", item: "https://mvp.actor/esports-jobs-seoul" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Esports Jobs Seoul 🇰🇷 Gaming Careers Korea",
   description: "🚀 Find esports jobs in Seoul, Korea. Gaming careers at T1, Gen.G, DRX and major Korean esports organisations in the world's esports capital.",
   keywords: "esports jobs seoul, gaming jobs korea, t1 careers, gen.g jobs, korean esports jobs, lck jobs, esports careers korea",
-  alternates: { canonical: "https://esportsjobs.quest/esports-jobs-seoul" },
+  alternates: { canonical: "https://mvp.actor/esports-jobs-seoul" },
 };
 
 const majorCompanies = [

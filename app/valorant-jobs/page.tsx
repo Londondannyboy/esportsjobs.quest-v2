@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/valorant-jobs",
-      url: "https://esportsjobs.quest/valorant-jobs",
+      "@id": "https://mvp.actor/valorant-jobs",
+      url: "https://mvp.actor/valorant-jobs",
       name: "Valorant Jobs | VCT Esports Careers",
       description: "Find Valorant esports jobs. Careers at Riot Games, VCT teams, and Valorant esports organisations worldwide.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://esportsjobs.quest/esports-jobs" },
-        { "@type": "ListItem", position: 3, name: "Valorant", item: "https://esportsjobs.quest/valorant-jobs" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Jobs", item: "https://mvp.actor/esports-jobs" },
+        { "@type": "ListItem", position: 3, name: "Valorant", item: "https://mvp.actor/valorant-jobs" }
       ]
     },
     {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   title: "Valorant Jobs 🎮 VCT Esports Careers | Riot Games",
   description: "🚀 Find Valorant esports jobs. Careers at Riot Games VCT, Sentinels, 100 Thieves, Fnatic. Coaching, analyst, broadcast, content roles.",
   keywords: "valorant jobs, vct esports careers, riot games valorant jobs, valorant coaching jobs, esports analyst valorant",
-  alternates: { canonical: "https://esportsjobs.quest/valorant-jobs" },
+  alternates: { canonical: "https://mvp.actor/valorant-jobs" },
 };
 
 const vctRegions = [

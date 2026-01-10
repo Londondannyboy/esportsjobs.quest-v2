@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/team-liquid-careers",
-      url: "https://esportsjobs.quest/team-liquid-careers",
+      "@id": "https://mvp.actor/team-liquid-careers",
+      url: "https://mvp.actor/team-liquid-careers",
       name: "Team Liquid Careers & Jobs | Work at Team Liquid",
       description: "Find jobs at Team Liquid, one of the world's most successful esports organisations. Careers in esports, content, marketing, and operations.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Top Companies", item: "https://esportsjobs.quest/top-esports-companies-uk" },
-        { "@type": "ListItem", position: 3, name: "Team Liquid", item: "https://esportsjobs.quest/team-liquid-careers" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Top Companies", item: "https://mvp.actor/top-esports-companies-uk" },
+        { "@type": "ListItem", position: 3, name: "Team Liquid", item: "https://mvp.actor/team-liquid-careers" }
       ]
     },
     {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Team Liquid Careers 💧 Work at Team Liquid",
   description: "🎮 Team Liquid careers - jobs at one of esports' most successful organisations. Coaching, content, marketing & operations roles available.",
   keywords: "team liquid careers, team liquid jobs, work at team liquid, team liquid esports jobs",
-  alternates: { canonical: "https://esportsjobs.quest/team-liquid-careers" },
+  alternates: { canonical: "https://mvp.actor/team-liquid-careers" },
 };
 
 const departments = [

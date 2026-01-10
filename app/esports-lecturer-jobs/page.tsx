@@ -8,18 +8,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://esportsjobs.quest/esports-lecturer-jobs",
-      url: "https://esportsjobs.quest/esports-lecturer-jobs",
+      "@id": "https://mvp.actor/esports-lecturer-jobs",
+      url: "https://mvp.actor/esports-lecturer-jobs",
       name: "Esports Lecturer Jobs UK | Teaching Careers 2025",
       description: "Find esports lecturer jobs at UK universities and colleges. Teach the next generation of esports professionals.",
-      isPartOf: { "@id": "https://esportsjobs.quest/#website" }
+      isPartOf: { "@id": "https://mvp.actor/#website" }
     },
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://esportsjobs.quest" },
-        { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://esportsjobs.quest/esports-careers" },
-        { "@type": "ListItem", position: 3, name: "Lecturer Jobs", item: "https://esportsjobs.quest/esports-lecturer-jobs" }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://mvp.actor" },
+        { "@type": "ListItem", position: 2, name: "Esports Careers", item: "https://mvp.actor/esports-careers" },
+        { "@type": "ListItem", position: 3, name: "Lecturer Jobs", item: "https://mvp.actor/esports-lecturer-jobs" }
       ]
     },
     {
@@ -79,10 +79,10 @@ export const metadata: Metadata = {
     title: "Esports Lecturer Jobs 📚 Teaching Careers",
     description: "🎓 Esports lecturer jobs at universities and colleges.",
     type: "website",
-    url: "https://esportsjobs.quest/esports-lecturer-jobs",
+    url: "https://mvp.actor/esports-lecturer-jobs",
   },
   alternates: {
-    canonical: "https://esportsjobs.quest/esports-lecturer-jobs",
+    canonical: "https://mvp.actor/esports-lecturer-jobs",
   },
 };
 
