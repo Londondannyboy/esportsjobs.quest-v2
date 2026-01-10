@@ -1,19 +1,17 @@
 # MVP Actor (formerly EsportsJobs.quest) - Claude Code Documentation
 
-## CURRENT PROJECT: Two-Phase Moonshot
+## PROJECT STATUS: Jan 2025
 
-**Phase 1: Rebrand to MVP Actor**
-- Primary domain: mvp.actor
-- Secondary: gomvp.quest (redirect)
-- Legacy: esportsjobs.quest (redirect)
+### COMPLETED
+- **Phase 1 Rebrand**: Domain live at https://mvp.actor, all 86 files updated
+- **Phase 2 Gamification**: 4 characters refined, celebration components created and wired
+- **Frontend Deployed**: Vercel showing new branding
 
-**Phase 2: Enhanced Gamification & Networking**
-- Refined 4-character system (Repo, Trinity, Velo, Reach)
-- LinkedIn-style messaging
-- Career coaching integration
-- Real-time AI → Graph updates
+### PENDING (Manual Steps)
+1. **Railway Backend Redeploy** - Needs manual redeploy via Railway dashboard
+2. **Run Networking SQL** - Execute `scripts/create-networking-tables.sql` in Neon console
 
-See full plan: `.claude/plans/sharded-twirling-volcano.md`
+See detailed status: `Plan.md`
 
 ---
 
@@ -251,11 +249,11 @@ Key observations:
 
 | Service | URL |
 |---------|-----|
-| Frontend (Vercel) | https://mvp.actor (pending rebrand) |
-| Current Frontend | https://esportsjobsquest-v2.vercel.app |
+| Frontend (Vercel) | https://mvp.actor |
 | Backend (Railway) | https://esports-v2-agent-production.up.railway.app |
 | AG-UI Endpoint | /agui/ |
 | CLM Endpoint | /chat/completions |
+| Health Check | /health |
 
 ### Environment Variables (Railway)
 
