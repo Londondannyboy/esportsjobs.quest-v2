@@ -261,7 +261,7 @@ export default function Home() {
       if (status === "executing") {
         return <div className="p-3 rounded-lg bg-gray-800/50 border border-gray-700 animate-pulse"><p className="text-sm text-gray-400">Searching jobs...</p></div>;
       }
-      return null;
+      return <></>;
     },
   });
 
@@ -286,7 +286,7 @@ export default function Home() {
           </div>
         );
       }
-      return null;
+      return <></>;
     },
   });
 
@@ -310,7 +310,7 @@ export default function Home() {
           </div>
         );
       }
-      return null;
+      return <></>;
     },
   });
 
@@ -334,7 +334,7 @@ export default function Home() {
           </div>
         );
       }
-      return null;
+      return <></>;
     },
   });
 
@@ -359,7 +359,7 @@ export default function Home() {
           </div>
         );
       }
-      return null;
+      return <></>;
     },
   });
 
@@ -406,7 +406,7 @@ export default function Home() {
           </div>
         );
       }
-      return null;
+      return <></>;
     },
   });
 

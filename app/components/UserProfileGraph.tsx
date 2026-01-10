@@ -290,7 +290,7 @@ export function ProfileItemsList({
               className="group flex items-center gap-2 bg-purple-500/20 border border-purple-500/30 rounded-full px-3 py-1"
             >
               <span className="text-sm text-white">{skill.name}</span>
-              {skill.metadata?.proficiency && (
+              {skill.metadata?.proficiency !== undefined && (
                 <span className="text-xs text-purple-300">
                   ({String(skill.metadata.proficiency)})
                 </span>
