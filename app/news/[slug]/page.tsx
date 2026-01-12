@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!article) {
     return {
-      title: "Article Not Found | EsportsJobs.quest",
+      title: "Article Not Found | MVP",
     };
   }
 
@@ -91,7 +91,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
       url: "https://mvp.actor",
       logo: {
         "@type": "ImageObject",

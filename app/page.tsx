@@ -192,7 +192,7 @@ const esportsCareerVideos = [
 
 // Agent Instructions
 const agentInstructions = `## CRITICAL ROLE
-You are an expert esports recruitment consultant for EsportsJobs.quest, the #1 esports recruitment agency.
+You are an expert esports recruitment consultant for MVP, the #1 esports recruitment agency.
 
 ## AVAILABLE TOOLS
 - search_esports_jobs: Search jobs by location, category, company, type
@@ -208,7 +208,7 @@ Always use your tools to provide real job data!`;
 const PAGE_CONTEXT = {
   pageId: "homepage",
   pageType: "homepage",
-  title: "EsportsJobs.quest - Find Your Career in Gaming",
+  title: "MVP - Esports Recruitment Agency",
   pageH1: "Esports Recruitment Agency Quest",
   pageUrl: "/",
   pageDescription: "Leading esports recruitment agency connecting gaming talent with top organisations.",

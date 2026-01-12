@@ -1,11 +1,15 @@
-# MVP Actor (formerly EsportsJobs.quest) - Claude Code Documentation
+# MVP - Esports Recruitment Agency - Claude Code Documentation
+
+**Domain:** https://mvp.actor
+**Positioning:** The leading esports recruitment agency connecting top talent with gaming industry opportunities.
 
 ## PROJECT STATUS: Jan 2025
 
 ### COMPLETED
-- **Phase 1 Rebrand**: Domain live at https://mvp.actor, all 86 files updated
+- **Phase 1 Rebrand**: Domain live at https://mvp.actor, all files updated
 - **Phase 2 Gamification**: 4 characters refined, celebration components created and wired
-- **Frontend Deployed**: Vercel showing new branding
+- **Frontend Deployed**: Vercel showing new MVP branding
+- **SEO Update**: Meta titles, descriptions, JSON-LD schema updated for "Esports Recruitment Agency"
 
 ### PENDING (Manual Steps)
 1. **Railway Backend Redeploy** - Needs manual redeploy via Railway dashboard
@@ -275,7 +279,7 @@ CLM_AUTH_SECRET=esports-clm-secret-2025
 ## Project Structure
 
 ```
-esportsjobs.quest-v2/   →   mvp.actor (after rebrand)
+mvp.actor/                  # Esports Recruitment Agency
 ├── app/                    # Next.js 15 frontend
 │   ├── page.tsx           # Main page with CopilotKit
 │   ├── profile/           # Profile page with 4 characters

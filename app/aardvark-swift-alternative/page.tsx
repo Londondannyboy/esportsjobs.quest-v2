@@ -5,12 +5,12 @@ import { UnifiedFooter } from "../components/UnifiedFooter";
 
 // Target keywords: "aardvark swift alternative", "aardvark swift esports", "gaming recruitment agency alternative"
 export const metadata: Metadata = {
-  title: "Aardvark Swift Alternative for Esports Careers 2025 | EsportsJobs.quest",
-  description: "Aardvark Swift has 35+ years in gaming recruitment. For esports-specific roles with orgs, tournaments, and broadcasters, discover how EsportsJobs.quest complements your search.",
+  title: "Aardvark Swift Alternative for Esports Careers 2025 | MVP",
+  description: "Aardvark Swift has 35+ years in gaming recruitment. For esports-specific roles with orgs, tournaments, and broadcasters, discover how MVP complements your search.",
   keywords: "aardvark swift alternative, aardvark swift esports, gaming recruitment agency, esports jobs, game industry recruiters",
   openGraph: {
     title: "Aardvark Swift Alternative for Esports Careers 2025",
-    description: "Compare Aardvark Swift and EsportsJobs.quest for gaming and esports careers.",
+    description: "Compare Aardvark Swift and MVP for gaming and esports careers.",
     type: "website",
     url: "https://mvp.actor/aardvark-swift-alternative",
   },
@@ -74,7 +74,7 @@ const comparisonFeatures = [
 
 const platformDetails = {
   esportsjobs: {
-    name: "EsportsJobs.quest",
+    name: "MVP",
     founded: "2024",
     focus: "Esports organisations, tournaments, and competitive gaming",
     strengths: [
@@ -105,24 +105,24 @@ const platformDetails = {
 
 const faqs = [
   {
-    question: "What's the difference between Aardvark Swift and EsportsJobs.quest?",
-    answer: "Aardvark Swift is one of the most established names in gaming recruitment, founded in 1989 with 35+ years of experience placing talent at game development studios. EsportsJobs.quest focuses specifically on competitive esports—roles at esports organisations, tournament operators, and broadcast companies. Both serve gaming but in different sectors.",
+    question: "What's the difference between Aardvark Swift and MVP?",
+    answer: "Aardvark Swift is one of the most established names in gaming recruitment, founded in 1989 with 35+ years of experience placing talent at game development studios. MVP focuses specifically on competitive esports—roles at esports organisations, tournament operators, and broadcast companies. Both serve gaming but in different sectors.",
   },
   {
     question: "Is Aardvark Swift good for esports jobs?",
-    answer: "Aardvark Swift mentions esports among their services, but their primary expertise is in game development recruitment. For esports-specific roles like coaching, team management, broadcast production, or tournament operations, EsportsJobs.quest offers a more focused platform.",
+    answer: "Aardvark Swift mentions esports among their services, but their primary expertise is in game development recruitment. For esports-specific roles like coaching, team management, broadcast production, or tournament operations, MVP offers a more focused platform.",
   },
   {
     question: "Should I use both platforms?",
-    answer: "The gaming and esports industries are intertwined. Many professionals move between studio work and esports roles. Using Aardvark Swift for game development opportunities and EsportsJobs.quest for esports positions covers the full landscape of gaming careers.",
+    answer: "The gaming and esports industries are intertwined. Many professionals move between studio work and esports roles. Using Aardvark Swift for game development opportunities and MVP for esports positions covers the full landscape of gaming careers.",
   },
   {
     question: "Which platform has more experience?",
-    answer: "Aardvark Swift has 35+ years of recruitment experience, making them one of the longest-established gaming recruiters. EsportsJobs.quest is newer (2024) but is founded by someone with 20+ years of esports industry experience and focuses exclusively on competitive gaming.",
+    answer: "Aardvark Swift has 35+ years of recruitment experience, making them one of the longest-established gaming recruiters. MVP is newer (2024) but is founded by someone with 20+ years of esports industry experience and focuses exclusively on competitive gaming.",
   },
   {
     question: "Which has better UK coverage?",
-    answer: "Both have strong UK presence. Aardvark Swift started in the UK in 1989 and has expanded globally. EsportsJobs.quest focuses specifically on UK and European esports organisations. The best choice depends on whether you want game development or esports roles.",
+    answer: "Both have strong UK presence. Aardvark Swift started in the UK in 1989 and has expanded globally. MVP focuses specifically on UK and European esports organisations. The best choice depends on whether you want game development or esports roles.",
   },
   {
     question: "What's Search For A Star?",
@@ -135,15 +135,15 @@ export default function AardvarkAlternativePage() {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: "Aardvark Swift Alternative for Esports Careers 2025",
-    description: "Compare Aardvark Swift and EsportsJobs.quest for gaming and esports careers.",
+    description: "Compare Aardvark Swift and MVP for gaming and esports careers.",
     author: {
       "@type": "Person",
       name: "Dan Keegan",
-      jobTitle: "Founder, EsportsJobs.quest",
+      jobTitle: "Founder, MVP",
     },
     publisher: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
       url: "https://mvp.actor",
     },
     datePublished: "2024-12-30",
@@ -199,7 +199,7 @@ export default function AardvarkAlternativePage() {
                 <h2 className="text-lg font-semibold text-white mb-4">Quick Summary</h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-medium text-violet-400 mb-2">Choose EsportsJobs.quest for:</h3>
+                    <h3 className="font-medium text-violet-400 mb-2">Choose MVP for:</h3>
                     <ul className="text-slate-300 text-sm space-y-1">
                       <li>Esports organisation roles</li>
                       <li>Coaching, analysis, performance</li>
@@ -235,7 +235,7 @@ export default function AardvarkAlternativePage() {
                 <thead>
                   <tr className="border-b border-slate-700">
                     <th className="text-left py-4 px-4 text-slate-400 font-medium">Feature</th>
-                    <th className="text-center py-4 px-4 text-violet-400 font-medium">EsportsJobs.quest</th>
+                    <th className="text-center py-4 px-4 text-violet-400 font-medium">MVP</th>
                     <th className="text-center py-4 px-4 text-amber-400 font-medium">Aardvark Swift</th>
                   </tr>
                 </thead>
@@ -273,7 +273,7 @@ export default function AardvarkAlternativePage() {
             <h2 className="text-3xl font-bold text-white mb-10">Platform Deep Dive</h2>
 
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* EsportsJobs.quest */}
+              {/* MVP */}
               <div className="bg-slate-800/50 rounded-xl p-8 border border-violet-500/30">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-violet-600/20 rounded-lg flex items-center justify-center text-2xl">
@@ -392,7 +392,7 @@ export default function AardvarkAlternativePage() {
               </div>
 
               <p className="text-slate-400">
-                EsportsJobs.quest aggregates roles from esports organisations, tournament operators,
+                MVP aggregates roles from esports organisations, tournament operators,
                 broadcasters, and brands specifically investing in competitive gaming.
               </p>
             </div>

@@ -5,12 +5,12 @@ import { UnifiedFooter } from "../components/UnifiedFooter";
 
 // Target keywords: "haptic recruit alternative", "haptic alternative esports", "gaming recruitment vs esports"
 export const metadata: Metadata = {
-  title: "Haptic Recruit Alternative for Esports Jobs 2025 | EsportsJobs.quest",
-  description: "Looking for esports-specific recruitment? Haptic Recruit excels at gaming studio roles. For dedicated esports positions, discover how EsportsJobs.quest complements your search.",
+  title: "Haptic Recruit Alternative for Esports Jobs 2025 | MVP",
+  description: "Looking for esports-specific recruitment? Haptic Recruit excels at gaming studio roles. For dedicated esports positions, discover how MVP complements your search.",
   keywords: "haptic recruit alternative, haptic alternative, gaming recruitment agency, esports recruitment, haptic recruit review",
   openGraph: {
     title: "Haptic Recruit Alternative for Esports Jobs 2025",
-    description: "Compare Haptic Recruit and EsportsJobs.quest for gaming and esports careers.",
+    description: "Compare Haptic Recruit and MVP for gaming and esports careers.",
     type: "website",
     url: "https://mvp.actor/haptic-recruit-alternative",
   },
@@ -69,7 +69,7 @@ const comparisonFeatures = [
 
 const platformDetails = {
   esportsjobs: {
-    name: "EsportsJobs.quest",
+    name: "MVP",
     founded: "2024",
     focus: "Esports organisations, tournaments, and competitive gaming",
     strengths: [
@@ -100,8 +100,8 @@ const platformDetails = {
 
 const faqs = [
   {
-    question: "What's the difference between Haptic Recruit and EsportsJobs.quest?",
-    answer: "Haptic Recruit specialises in game development studio recruitment—placing artists, animators, programmers, and designers at gaming studios. EsportsJobs.quest focuses on the competitive esports industry—roles at esports organisations, tournament operators, and broadcast companies. Both serve the gaming industry but in different sectors.",
+    question: "What's the difference between Haptic Recruit and MVP?",
+    answer: "Haptic Recruit specialises in game development studio recruitment—placing artists, animators, programmers, and designers at gaming studios. MVP focuses on the competitive esports industry—roles at esports organisations, tournament operators, and broadcast companies. Both serve the gaming industry but in different sectors.",
   },
   {
     question: "Should I use both platforms?",
@@ -109,15 +109,15 @@ const faqs = [
   },
   {
     question: "Which platform is better for esports coaching or analyst roles?",
-    answer: "EsportsJobs.quest is specifically focused on competitive esports roles including coaches, analysts, performance managers, and team operations. These roles are our core focus, whereas Haptic Recruit specialises in game development positions.",
+    answer: "MVP is specifically focused on competitive esports roles including coaches, analysts, performance managers, and team operations. These roles are our core focus, whereas Haptic Recruit specialises in game development positions.",
   },
   {
     question: "Is Haptic Recruit free for job seekers?",
-    answer: "Yes, both platforms are free for candidates. Haptic Recruit operates as a recruitment agency connecting talent with studios, while EsportsJobs.quest is both a job board and recruitment agency focused on esports.",
+    answer: "Yes, both platforms are free for candidates. Haptic Recruit operates as a recruitment agency connecting talent with studios, while MVP is both a job board and recruitment agency focused on esports.",
   },
   {
     question: "Which has more UK jobs?",
-    answer: "Both have strong UK presence. Haptic Recruit has extensive relationships with UK and European game studios. EsportsJobs.quest focuses on UK esports organisations, tournament operators, and broadcast companies. The best choice depends on whether you want game development or esports roles.",
+    answer: "Both have strong UK presence. Haptic Recruit has extensive relationships with UK and European game studios. MVP focuses on UK esports organisations, tournament operators, and broadcast companies. The best choice depends on whether you want game development or esports roles.",
   },
 ];
 
@@ -126,15 +126,15 @@ export default function HapticAlternativePage() {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: "Haptic Recruit Alternative for Esports Jobs 2025",
-    description: "Compare Haptic Recruit and EsportsJobs.quest for gaming and esports careers.",
+    description: "Compare Haptic Recruit and MVP for gaming and esports careers.",
     author: {
       "@type": "Person",
       name: "Dan Keegan",
-      jobTitle: "Founder, EsportsJobs.quest",
+      jobTitle: "Founder, MVP",
     },
     publisher: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
       url: "https://mvp.actor",
     },
     datePublished: "2024-12-30",
@@ -192,7 +192,7 @@ export default function HapticAlternativePage() {
                 <h2 className="text-lg font-semibold text-white mb-4">Quick Summary</h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-medium text-violet-400 mb-2">Choose EsportsJobs.quest for:</h3>
+                    <h3 className="font-medium text-violet-400 mb-2">Choose MVP for:</h3>
                     <ul className="text-slate-300 text-sm space-y-1">
                       <li>Esports organisation roles</li>
                       <li>Coaching, analysis, performance</li>
@@ -228,7 +228,7 @@ export default function HapticAlternativePage() {
                 <thead>
                   <tr className="border-b border-slate-700">
                     <th className="text-left py-4 px-4 text-slate-400 font-medium">Feature</th>
-                    <th className="text-center py-4 px-4 text-violet-400 font-medium">EsportsJobs.quest</th>
+                    <th className="text-center py-4 px-4 text-violet-400 font-medium">MVP</th>
                     <th className="text-center py-4 px-4 text-emerald-400 font-medium">Haptic Recruit</th>
                   </tr>
                 </thead>
@@ -266,7 +266,7 @@ export default function HapticAlternativePage() {
             <h2 className="text-3xl font-bold text-white mb-10">Platform Deep Dive</h2>
 
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* EsportsJobs.quest */}
+              {/* MVP */}
               <div className="bg-slate-800/50 rounded-xl p-8 border border-violet-500/30">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-violet-600/20 rounded-lg flex items-center justify-center text-2xl">
@@ -364,7 +364,7 @@ export default function HapticAlternativePage() {
                 <em> and</em> an esports org.
               </p>
               <p className="text-slate-400 mb-8">
-                There&apos;s no reason not to use Haptic for studio opportunities and EsportsJobs.quest
+                There&apos;s no reason not to use Haptic for studio opportunities and MVP
                 for esports-specific roles. The industries overlap, and covering both maximises your options.
               </p>
 

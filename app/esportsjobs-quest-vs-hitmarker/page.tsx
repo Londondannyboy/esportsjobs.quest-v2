@@ -5,18 +5,18 @@ import { UnifiedFooter } from "../components/UnifiedFooter";
 
 // Target keywords: "hitmarker alternative", "esportsjobs vs hitmarker", "hitmarker jobs"
 export const metadata: Metadata = {
-  title: "EsportsJobs.quest vs Hitmarker 2025 | Best Esports Job Board Comparison",
-  description: "Compare EsportsJobs.quest vs Hitmarker for finding esports jobs in 2025. See pricing, features, job listings, and which platform is best for UK esports careers.",
+  title: "MVP vs Hitmarker 2025 | Best Esports Job Board Comparison",
+  description: "Compare MVP vs Hitmarker for finding esports jobs in 2025. See pricing, features, job listings, and which platform is best for UK esports careers.",
   keywords: "hitmarker alternative, esportsjobs vs hitmarker, hitmarker jobs, esports job board comparison, hitmarker review",
   openGraph: {
-    title: "EsportsJobs.quest vs Hitmarker 2025 | Esports Job Board Comparison",
-    description: "Detailed comparison of EsportsJobs.quest and Hitmarker for esports job seekers and employers.",
+    title: "MVP vs Hitmarker 2025 | Esports Job Board Comparison",
+    description: "Detailed comparison of MVP and Hitmarker for esports job seekers and employers.",
     type: "website",
     url: "https://mvp.actor/esportsjobs-quest-vs-hitmarker",
   },
   twitter: {
     card: "summary_large_image",
-    title: "EsportsJobs.quest vs Hitmarker 2025",
+    title: "MVP vs Hitmarker 2025",
     description: "Which esports job board is right for you? Full comparison inside.",
   },
   alternates: {
@@ -79,7 +79,7 @@ const comparisonFeatures = [
 
 const platformDetails = {
   esportsjobs: {
-    name: "EsportsJobs.quest",
+    name: "MVP",
     founded: "2024",
     focus: "UK & European esports recruitment",
     pricing: "Free for job seekers, flexible employer pricing",
@@ -123,31 +123,31 @@ const platformDetails = {
 const faqs = [
   {
     question: "Is Hitmarker free to use?",
-    answer: "Hitmarker is free for job seekers to browse and apply for jobs. However, employers typically pay to post job listings on the platform. EsportsJobs.quest offers free basic job posting options for employers as well as free access for job seekers, plus optional recruitment agency services for those wanting more support.",
+    answer: "Hitmarker is free for job seekers to browse and apply for jobs. However, employers typically pay to post job listings on the platform. MVP offers free basic job posting options for employers as well as free access for job seekers, plus optional recruitment agency services for those wanting more support.",
   },
   {
     question: "Which platform has more UK esports jobs?",
-    answer: "EsportsJobs.quest is specifically focused on the UK and European esports market, with dedicated pages for London, Manchester, Birmingham, and other UK cities. While Hitmarker has UK jobs, their global focus means UK-specific roles may be diluted among international listings. For UK job seekers, EsportsJobs.quest offers more targeted local opportunities.",
+    answer: "MVP is specifically focused on the UK and European esports market, with dedicated pages for London, Manchester, Birmingham, and other UK cities. While Hitmarker has UK jobs, their global focus means UK-specific roles may be diluted among international listings. For UK job seekers, MVP offers more targeted local opportunities.",
   },
   {
     question: "What's the best Hitmarker alternative for UK esports jobs?",
-    answer: "EsportsJobs.quest is the leading Hitmarker alternative for UK-based esports professionals. Key advantages include: specialist UK focus, free job posting for employers, full recruitment agency services, UK salary guides, and a founder with 20+ years of esports industry experience. Other alternatives include LinkedIn, Indeed, and general gaming job boards.",
+    answer: "MVP is the leading Hitmarker alternative for UK-based esports professionals. Key advantages include: specialist UK focus, free job posting for employers, full recruitment agency services, UK salary guides, and a founder with 20+ years of esports industry experience. Other alternatives include LinkedIn, Indeed, and general gaming job boards.",
   },
   {
     question: "Do I need to pay to apply for jobs on these platforms?",
-    answer: "No - both EsportsJobs.quest and Hitmarker are completely free for job seekers. You can browse listings and apply for positions without any cost. The platforms make money from employers who post jobs or use additional services.",
+    answer: "No - both MVP and Hitmarker are completely free for job seekers. You can browse listings and apply for positions without any cost. The platforms make money from employers who post jobs or use additional services.",
   },
   {
     question: "Which platform is better for entry-level esports jobs?",
-    answer: "Both platforms cater to entry-level candidates. EsportsJobs.quest has a dedicated entry-level esports jobs section and career guides specifically for those breaking into the industry. The 'How to Get Into Esports' guide and entry-level job filtering make it particularly useful for newcomers. Hitmarker also lists entry-level positions across their global database.",
+    answer: "Both platforms cater to entry-level candidates. MVP has a dedicated entry-level esports jobs section and career guides specifically for those breaking into the industry. The 'How to Get Into Esports' guide and entry-level job filtering make it particularly useful for newcomers. Hitmarker also lists entry-level positions across their global database.",
   },
   {
     question: "Can employers post jobs for free?",
-    answer: "EsportsJobs.quest offers free basic job posting options for employers, making it accessible for smaller esports organisations and startups. Hitmarker primarily operates on a paid model for job postings. For employers on a budget, EsportsJobs.quest provides a more cost-effective entry point.",
+    answer: "MVP offers free basic job posting options for employers, making it accessible for smaller esports organisations and startups. Hitmarker primarily operates on a paid model for job postings. For employers on a budget, MVP provides a more cost-effective entry point.",
   },
   {
     question: "Which platform offers recruitment services?",
-    answer: "EsportsJobs.quest is both a job board AND a specialist esports recruitment agency. This means employers can choose to post jobs directly or engage full recruitment services including headhunting, candidate screening, and executive search. Hitmarker is purely a job board platform without recruitment agency services.",
+    answer: "MVP is both a job board AND a specialist esports recruitment agency. This means employers can choose to post jobs directly or engage full recruitment services including headhunting, candidate screening, and executive search. Hitmarker is purely a job board platform without recruitment agency services.",
   },
 ];
 
@@ -155,16 +155,16 @@ export default function ComparisonPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "EsportsJobs.quest vs Hitmarker: Esports Job Board Comparison 2025",
-    description: "Comprehensive comparison of EsportsJobs.quest and Hitmarker for esports job seekers and employers.",
+    headline: "MVP vs Hitmarker: Esports Job Board Comparison 2025",
+    description: "Comprehensive comparison of MVP and Hitmarker for esports job seekers and employers.",
     author: {
       "@type": "Person",
       name: "Dan Keegan",
-      jobTitle: "Founder, EsportsJobs.quest",
+      jobTitle: "Founder, MVP",
     },
     publisher: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
       url: "https://mvp.actor",
     },
     datePublished: "2024-12-30",
@@ -198,19 +198,19 @@ export default function ComparisonPage() {
             <nav className="text-sm mb-8 text-slate-400">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
               <span className="mx-2">/</span>
-              <span className="text-violet-400">EsportsJobs.quest vs Hitmarker</span>
+              <span className="text-violet-400">MVP vs Hitmarker</span>
             </nav>
 
             <div className="max-w-4xl">
               <p className="text-violet-400 font-medium mb-4">Comparison Guide 2025</p>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                EsportsJobs.quest vs Hitmarker:{" "}
+                MVP vs Hitmarker:{" "}
                 <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
                   Which Is Best for You?
                 </span>
               </h1>
               <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-                Looking for the best esports job board? We compare EsportsJobs.quest and Hitmarker
+                Looking for the best esports job board? We compare MVP and Hitmarker
                 across features, pricing, and UK job coverage to help you choose the right platform
                 for your esports career or hiring needs.
               </p>
@@ -219,7 +219,7 @@ export default function ComparisonPage() {
                 <h2 className="text-lg font-semibold text-white mb-4">Quick Summary</h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-medium text-violet-400 mb-2">Choose EsportsJobs.quest if:</h3>
+                    <h3 className="font-medium text-violet-400 mb-2">Choose MVP if:</h3>
                     <ul className="text-slate-300 text-sm space-y-1">
                       <li>You&apos;re focused on UK/European esports jobs</li>
                       <li>You want recruitment agency support</li>
@@ -255,7 +255,7 @@ export default function ComparisonPage() {
                 <thead>
                   <tr className="border-b border-slate-700">
                     <th className="text-left py-4 px-4 text-slate-400 font-medium">Feature</th>
-                    <th className="text-center py-4 px-4 text-violet-400 font-medium">EsportsJobs.quest</th>
+                    <th className="text-center py-4 px-4 text-violet-400 font-medium">MVP</th>
                     <th className="text-center py-4 px-4 text-cyan-400 font-medium">Hitmarker</th>
                   </tr>
                 </thead>
@@ -293,7 +293,7 @@ export default function ComparisonPage() {
             <h2 className="text-3xl font-bold text-white mb-10">Platform Deep Dive</h2>
 
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* EsportsJobs.quest */}
+              {/* MVP */}
               <div className="bg-slate-800/50 rounded-xl p-8 border border-violet-500/30">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-violet-600/20 rounded-lg flex items-center justify-center text-2xl">
@@ -342,7 +342,7 @@ export default function ComparisonPage() {
                   href="/esports-jobs"
                   className="mt-6 block w-full text-center px-6 py-3 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-500 transition-colors"
                 >
-                  Browse Jobs on EsportsJobs.quest
+                  Browse Jobs on MVP
                 </Link>
               </div>
 
@@ -404,12 +404,12 @@ export default function ComparisonPage() {
           </div>
         </section>
 
-        {/* Why Consider EsportsJobs.quest */}
+        {/* Why Consider MVP */}
         <section className="py-16 bg-slate-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-4">Why UK Job Seekers Choose EsportsJobs.quest</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">Why UK Job Seekers Choose MVP</h2>
             <p className="text-slate-400 mb-10 max-w-3xl">
-              While Hitmarker is a solid global platform, here&apos;s why UK esports professionals often prefer EsportsJobs.quest.
+              While Hitmarker is a solid global platform, here&apos;s why UK esports professionals often prefer MVP.
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -491,7 +491,7 @@ export default function ComparisonPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-white mb-4">Other Esports Job Board Alternatives</h2>
             <p className="text-slate-400 mb-10 max-w-3xl">
-              Beyond EsportsJobs.quest and Hitmarker, here are other platforms to consider:
+              Beyond MVP and Hitmarker, here are other platforms to consider:
             </p>
 
             <div className="grid md:grid-cols-4 gap-6">
@@ -529,7 +529,7 @@ export default function ComparisonPage() {
               Ready to Find Your Next Esports Role?
             </h2>
             <p className="text-slate-300 mb-8">
-              Whether you choose EsportsJobs.quest, Hitmarker, or both—the important thing is to
+              Whether you choose MVP, Hitmarker, or both—the important thing is to
               start your search. We&apos;re here to help UK esports professionals find their dream roles.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

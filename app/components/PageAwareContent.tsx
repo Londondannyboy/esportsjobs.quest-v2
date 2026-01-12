@@ -96,7 +96,7 @@ export function PageAwareContent({
 
   // Build page-aware instructions
   const pageInstructions = `
-You are an AI assistant for EsportsJobs.quest.
+You are an AI assistant for MVP.
 
 ## CURRENT PAGE CONTEXT
 The user is viewing: ${pageContext.title}

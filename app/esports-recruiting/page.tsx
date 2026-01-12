@@ -155,7 +155,7 @@ export default function EsportsRecruiting() {
         description: "Specialist esports and gaming recruitment services connecting talent with leading organisations.",
         provider: {
           "@type": "Organization",
-          name: "EsportsJobs.quest",
+          name: "MVP",
           url: "https://mvp.actor",
         },
         serviceType: "Recruitment",

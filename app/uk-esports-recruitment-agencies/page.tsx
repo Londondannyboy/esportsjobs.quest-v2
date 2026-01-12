@@ -7,7 +7,7 @@ import { JobEmbed } from "../components/JobEmbed";
 // Target keywords: "esports recruitment agencies uk", "gaming recruitment agencies", "esports job boards"
 export const metadata: Metadata = {
   title: "UK Esports Recruitment Agencies & Job Boards Compared 2025",
-  description: "Complete guide to UK esports recruitment agencies and job boards. Compare Hitmarker, EsportsJobs.quest, InGame Recruitment, and more to find gaming jobs.",
+  description: "Complete guide to UK esports recruitment agencies and job boards. Compare Hitmarker, MVP, InGame Recruitment, and more to find gaming jobs.",
   keywords: "esports recruitment agencies uk, gaming recruitment agencies, esports job boards, hitmarker, esports jobs uk, gaming recruiters uk",
   openGraph: {
     title: "UK Esports Recruitment Agencies & Job Boards Compared 2025",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 const recruitmentOptions = {
   specialist: [
     {
-      name: "EsportsJobs.quest",
+      name: "MVP",
       type: "Job Board + Recruitment Agency",
       url: "https://mvp.actor",
       focus: "UK & European esports careers",
@@ -226,15 +226,15 @@ const comparisonTable = [
 const faqs = [
   {
     question: "What's the difference between an esports job board and recruitment agency?",
-    answer: "Job boards (like Hitmarker) list positions for you to apply to directly. Recruitment agencies (like EsportsJobs.quest's agency services or InGame Recruitment) actively source candidates, screen applications, and present shortlists to employers. Agencies often have access to unadvertised roles and can advocate for candidates during the hiring process.",
+    answer: "Job boards (like Hitmarker) list positions for you to apply to directly. Recruitment agencies (like MVP's agency services or InGame Recruitment) actively source candidates, screen applications, and present shortlists to employers. Agencies often have access to unadvertised roles and can advocate for candidates during the hiring process.",
   },
   {
     question: "Which esports recruitment agencies are best for UK jobs?",
-    answer: "For UK-specific esports roles, EsportsJobs.quest offers both job listings and full recruitment services with deep UK market knowledge. InGame Recruitment and Datascope are excellent for game development positions. British Esports Federation is best for grassroots, student, and entry-level UK opportunities.",
+    answer: "For UK-specific esports roles, MVP offers both job listings and full recruitment services with deep UK market knowledge. InGame Recruitment and Datascope are excellent for game development positions. British Esports Federation is best for grassroots, student, and entry-level UK opportunities.",
   },
   {
     question: "Do I need to pay to use esports job boards?",
-    answer: "No. Job seekers can use platforms like EsportsJobs.quest, Hitmarker, LinkedIn, and Indeed for free. The platforms typically charge employers to post jobs or access premium features. Never pay for job applications.",
+    answer: "No. Job seekers can use platforms like MVP, Hitmarker, LinkedIn, and Indeed for free. The platforms typically charge employers to post jobs or access premium features. Never pay for job applications.",
   },
   {
     question: "How do esports talent agencies work?",
@@ -242,7 +242,7 @@ const faqs = [
   },
   {
     question: "Where should I look for entry-level esports jobs in the UK?",
-    answer: "Start with EsportsJobs.quest for UK-specific listings, British Esports Federation for grassroots and student opportunities, and company websites/social media of UK organisations like Excel Esports, Guild Esports, and Fnatic. Setting alerts for 'esports' on LinkedIn and Indeed can also surface opportunities.",
+    answer: "Start with MVP for UK-specific listings, British Esports Federation for grassroots and student opportunities, and company websites/social media of UK organisations like Excel Esports, Guild Esports, and Fnatic. Setting alerts for 'esports' on LinkedIn and Indeed can also surface opportunities.",
   },
   {
     question: "Can recruitment agencies help me get into esports with no experience?",
@@ -258,11 +258,11 @@ export default function UKEsportsRecruitmentAgencies() {
     description: "Comprehensive guide to UK esports recruitment agencies and gaming job boards.",
     author: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
     },
     publisher: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
       url: "https://mvp.actor",
     },
     datePublished: "2024-12-30",
@@ -320,7 +320,7 @@ export default function UKEsportsRecruitmentAgencies() {
                 <ul className="space-y-2 text-slate-300">
                   <li className="flex gap-3">
                     <span className="text-violet-400 font-bold">→</span>
-                    <span><strong className="text-white">UK esports jobs:</strong> EsportsJobs.quest, British Esports Federation</span>
+                    <span><strong className="text-white">UK esports jobs:</strong> MVP, British Esports Federation</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-violet-400 font-bold">→</span>
@@ -350,7 +350,7 @@ export default function UKEsportsRecruitmentAgencies() {
                 <thead>
                   <tr className="border-b border-slate-700">
                     <th className="text-left py-4 px-4 text-slate-400 font-medium">Feature</th>
-                    <th className="text-center py-4 px-4 text-violet-400 font-medium">EsportsJobs.quest</th>
+                    <th className="text-center py-4 px-4 text-violet-400 font-medium">MVP</th>
                     <th className="text-center py-4 px-4 text-cyan-400 font-medium">Hitmarker</th>
                     <th className="text-center py-4 px-4 text-slate-300 font-medium">InGame Recruitment</th>
                   </tr>

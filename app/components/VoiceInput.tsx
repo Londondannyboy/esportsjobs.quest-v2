@@ -80,7 +80,7 @@ function VoiceButton({ onMessage, firstName, userId, email, pageContext }: Voice
 
         // Build system prompt for esports recruiter persona
         const systemPrompt = `## YOUR ROLE
-You are the voice assistant for EsportsJobs.quest - an AI-powered esports job search platform.
+You are the voice assistant for MVP - an AI-powered esports job search platform.
 
 ## USER INFO
 ${firstName ? `Name: ${firstName}` : "Guest user"}

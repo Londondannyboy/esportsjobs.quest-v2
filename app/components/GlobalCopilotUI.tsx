@@ -92,7 +92,7 @@ function getPageContext(pathname: string) {
     title: pageTitle,
     pageH1: pageTitle,
     pageUrl: pathname,
-    pageDescription: pageDescription || `${pageTitle} - EsportsJobs.quest`,
+    pageDescription: pageDescription || `${pageTitle} - MVP`,
   };
 }
 
@@ -158,7 +158,7 @@ ${pageContext.location ? `When user asks about jobs, prioritize ${pageContext.lo
 ${userSection}
 
 ## YOUR ROLE
-You are an AI assistant for EsportsJobs.quest helping users find esports jobs.
+You are an AI assistant for MVP helping users find esports jobs.
 ${pageContext.pageType === "location-hub" ? `On THIS page, you are specifically focused on ${pageContext.location} esports opportunities.` : ""}
 ${pageContext.pageType === "career-guide" ? `On THIS page, you are helping users understand this esports career path.` : ""}
 ${pageContext.pageType === "company-careers" ? `On THIS page, you are helping users learn about this company and their opportunities.` : ""}
@@ -187,7 +187,7 @@ Always use your tools to provide real data! Be enthusiastic about esports career
       return `${greeting}You're viewing ${pageContext.title}. Interested in learning about their culture or open roles?`;
     }
     if (pageContext.pageType === "homepage") {
-      return `${greeting}Welcome to EsportsJobs.quest! I can help you find esports jobs, explore companies, or learn about gaming careers.`;
+      return `${greeting}Welcome to MVP! I can help you find esports jobs, explore companies, or learn about gaming careers.`;
     }
     return `${greeting}I'm here to help you find your next esports opportunity. What are you looking for?`;
   }, [pageContext, firstName]);

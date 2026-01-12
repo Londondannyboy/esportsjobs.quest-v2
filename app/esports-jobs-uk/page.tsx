@@ -135,7 +135,7 @@ const jobCategories = [
 const faqs = [
   {
     question: "Where can I find esports jobs in the UK?",
-    answer: "The best places to find UK esports jobs include: specialist esports recruiters like EsportsJobs.quest, company career pages (Fnatic, Excel Esports, Gfinity), LinkedIn with esports-specific searches, Twitter/X where many roles are announced, Discord communities for specific games/organisations, and working with an experienced esports recruiter. London has the most opportunities, but remote roles are increasingly common.",
+    answer: "The best places to find UK esports jobs include: specialist esports recruiters like MVP (mvp.actor), company career pages (Fnatic, Excel Esports, Gfinity), LinkedIn with esports-specific searches, Twitter/X where many roles are announced, Discord communities for specific games/organisations, and working with an experienced esports recruiter. London has the most opportunities, but remote roles are increasingly common.",
   },
   {
     question: "What salary can I expect from esports jobs in the UK?",

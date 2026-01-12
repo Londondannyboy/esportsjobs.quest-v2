@@ -91,8 +91,8 @@ const faqs = [
     answer: "Look for agencies that specialise in your area (esports vs game dev), have a track record with companies you'd want to work for, and communicate well. Check their job listings to see if they work with relevant employers. Read reviews on Glassdoor. A good recruiter will understand your career goals, not just push any role.",
   },
   {
-    question: "What is EsportsJobs.quest?",
-    answer: "We're a job search platform, not a recruitment agency. We aggregate esports and gaming job listings from company career pages, LinkedIn, and other sources into one searchable database. It's free to use. We don't charge fees or make placements—we simply help you find and apply to jobs directly with employers.",
+    question: "What is MVP?",
+    answer: "We're an esports recruitment agency and job search platform. We aggregate esports and gaming job listings from company career pages, LinkedIn, and other sources into one searchable database. It's free to use for job seekers. We help you find and apply to jobs directly with employers.",
   },
 ];
 
@@ -105,11 +105,11 @@ export default function EsportsRecruitmentAgency() {
     description: "Compare specialist esports and gaming recruitment agencies in the UK",
     author: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
     },
     publisher: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
       url: "https://mvp.actor",
     },
   };

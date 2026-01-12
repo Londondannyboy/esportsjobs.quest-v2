@@ -23,7 +23,7 @@ export default function SettingsPage() {
       {/* Header */}
       <header className="p-4 flex justify-between items-center bg-black/30 backdrop-blur-sm">
         <Link href="/" className="text-white font-bold text-lg hover:text-cyan-400 transition-colors">
-          &larr; EsportsJobs.quest
+          &larr; MVP
         </Link>
         <SignedIn>
           <UserButton />

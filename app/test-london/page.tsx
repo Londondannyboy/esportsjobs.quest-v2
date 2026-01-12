@@ -177,7 +177,7 @@ Greet them by name and be friendly!` : `## GUEST USER
 The user is not logged in. Encourage them to sign up for personalized recommendations.`}
 
 ## YOUR ROLE
-You are an AI assistant for EsportsJobs.quest helping users find esports jobs.
+You are an AI assistant for MVP helping users find esports jobs.
 On THIS page, you are specifically focused on LONDON esports opportunities.
 
 ## YOUR TOOLS
@@ -198,9 +198,9 @@ Always use your tools to provide real data! Be enthusiastic about esports career
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center font-bold text-sm">
-                  EJ
+                  MVP
                 </div>
-                <span className="text-white font-bold">EsportsJobs.quest</span>
+                <span className="text-white font-bold">MVP</span>
               </Link>
 
               {/* Nav Links */}

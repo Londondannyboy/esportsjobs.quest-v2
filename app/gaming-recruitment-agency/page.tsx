@@ -97,7 +97,7 @@ const faqs = [
     answer: "Both have value. Agencies can access unadvertised roles, advocate for you, and help with senior positions. Job boards like ours show you all available roles and let you apply directly. For entry-level roles, job boards are often more effective. For senior/specialist positions, agencies may have exclusive mandates. Many people use both.",
   },
   {
-    question: "What is EsportsJobs.quest?",
+    question: "What is MVP?",
     answer: "We're a job search platform, not a recruitment agency. We aggregate gaming and esports job listings from company career pages, LinkedIn, and other sources into one searchable database. It's completely free for job seekers. We don't charge fees, make placements, or take commissions—we simply help you find and apply to jobs directly.",
   },
   {
@@ -121,11 +121,11 @@ export default function GamingRecruitmentAgency() {
         description: "Directory of specialist gaming recruitment agencies in the UK",
         author: {
           "@type": "Organization",
-          name: "EsportsJobs.quest",
+          name: "MVP",
         },
         publisher: {
           "@type": "Organization",
-          name: "EsportsJobs.quest",
+          name: "MVP",
           url: "https://mvp.actor",
         },
       },

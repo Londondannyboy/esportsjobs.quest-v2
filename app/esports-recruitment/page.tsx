@@ -77,7 +77,7 @@ const faqs = [
     answer: "Both have advantages. Agencies can access unadvertised roles, advocate for you, and provide interview coaching—but they only represent certain companies. Direct applications give you access to all employers and show initiative. For entry-level roles, job boards and direct applications are often more effective. For senior positions, agencies may have exclusive mandates. Many people use both approaches.",
   },
   {
-    question: "What is EsportsJobs.quest?",
+    question: "What is MVP?",
     answer: "We're a job search platform, not a recruitment agency. We aggregate esports and gaming job listings from company career pages, LinkedIn, and other sources into one searchable database. It's completely free for job seekers. We don't charge fees, make placements, or take commissions—we simply help you find and apply to jobs directly with employers.",
   },
   {
@@ -94,11 +94,11 @@ export default function EsportsRecruitment() {
     description: "Guide to finding esports recruitment opportunities in the UK",
     author: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
     },
     publisher: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
       url: "https://mvp.actor",
     },
   };
@@ -158,7 +158,7 @@ export default function EsportsRecruitment() {
                 <div>
                   <h2 className="text-lg font-semibold text-white mb-2">What We Are</h2>
                   <p className="text-slate-300">
-                    <strong>EsportsJobs.quest is a job search platform built by people from the esports industry.</strong> We
+                    <strong>MVP is a job search platform built by people from the esports industry.</strong> We
                     aggregate job listings from across gaming and esports into one searchable place—like Indeed
                     for gaming jobs. We&apos;re not a recruitment agency: we don&apos;t make placements or charge fees.
                     You apply directly to employers.

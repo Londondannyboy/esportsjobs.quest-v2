@@ -34,7 +34,7 @@ export default function EsportsNewsPage() {
     url: "https://mvp.actor/esports-news",
     publisher: {
       "@type": "Organization",
-      name: "EsportsJobs.quest",
+      name: "MVP",
       url: "https://mvp.actor",
     },
     mainEntity: {
