@@ -952,7 +952,7 @@ export default function Home() {
                   <h2 className="text-4xl md:text-5xl font-black">About Our <span className="text-purple-400">E-Sports Recruitment Company</span></h2>
                 </div>
                 <p className="text-xl text-gray-300 mb-4">We&apos;re an <strong>esports recruitment agency</strong> that connects gaming talent with industry-leading organisations.</p>
-                <p className="text-lg text-gray-400 mb-6">We work with award-winning esports production companies and gaming organisations to help them find exceptional talent.</p>
+                <p className="text-lg text-gray-400 mb-6">We work with award-winning <a href="https://esportsproduction.quest" className="text-purple-400 hover:underline">esports production companies</a> and gaming organisations to help them find exceptional talent. For tournament and event coverage, our partners deliver world-class broadcast services.</p>
                 <ul className="space-y-4 text-gray-400 mb-8">
                   <li className="flex items-start gap-3"><span className="text-cyan-400 mt-1">✓</span><span>Trusted by Emmy & BAFTA-winning production companies</span></li>
                   <li className="flex items-start gap-3"><span className="text-cyan-400 mt-1">✓</span><span>Real job listings aggregated from public sources</span></li>
